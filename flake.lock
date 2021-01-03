@@ -24,14 +24,16 @@
       "locked": {
         "lastModified": 1609520816,
         "narHash": "sha256-IGO7tfJXsv9u2wpW76VCzOsHYapRZqH9pHGVsoffPrI=",
-        "owner": "NixOS",
+        "owner": "NixOs",
         "repo": "nix",
         "rev": "8a2ce0f455da32bc20978e68c0aad9efb4560abc",
         "type": "github"
       },
       "original": {
-        "id": "nix",
-        "type": "indirect"
+        "owner": "NixOs",
+        "ref": "master",
+        "repo": "nix",
+        "type": "github"
       }
     },
     "nixos": {
