@@ -9,7 +9,7 @@
   };
   outputs = { nixpkgs, nixos, nix, self, ... }@inputs: {
     nixosConfigurations.dratrion = nixos.lib.nixosSystem {
-      system = builtins.currentSystem;
+      system = "x86_64-linux";
       modules = [
         (import ./configuration.nix)
       ];
