@@ -258,7 +258,7 @@
   
   nix = {
    gc = {
-     automatic = true;
+     automatic = false;
      dates = "00:15";
    };
    # package = pkgs.nixFlakes;
