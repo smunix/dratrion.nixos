@@ -257,14 +257,18 @@
   nixpkgs.config.allowUnfree = true;
   
   nix = {
+    autoOtpimiseStore = true;
    gc = {
-     automatic = false;
-     dates = "00:15";
+     automatic = true;
+     dates = "weekly";
+     options = "--delete-older-than 30d";
    };
-   # package = pkgs.nixFlakes;
    package = pkgs.nixUnstable;
-   extraOptions = lib.optionalString (config.nix.package == pkgs.nixFlakes || config.nix.package == pkgs.nixUnstable)
-    "experimental-features = nix-command flakes ca-references";
+   extraOptions = ''
+     ${lib.optionalString (config.nix.package == pkgs.nixFlakes || config.nix.package == pkgs.nixUnstable) "experimental-features = nix-command flakes ca-references"}
+     min-free = ${toString (1 * 1024 * 1024 * 1024)}
+     max-free = ${toString (5 * 1024 * 1024 * 1024)}
+   '';
   };
 
   # Some programs need SUID wrappers, can be configured further or are
