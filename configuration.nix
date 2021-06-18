@@ -264,6 +264,7 @@
       options = "--delete-older-than 30d";
     };
     package = pkgs.nixUnstable;
+    sandboxPaths = [ "/bin/sh=${pkgs.bash}/bin/sh" ];
     extraOptions = ''
      ${lib.optionalString (config.nix.package == pkgs.nixFlakes || config.nix.package == pkgs.nixUnstable) "experimental-features = nix-command flakes ca-references"}
      min-free = ${toString (1 * 1024 * 1024 * 1024)}
