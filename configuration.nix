@@ -544,6 +544,8 @@
   };
   services.xserver.autorun = true;
 
+  services.udev.packages = with pkgs; [ android-udev-rules ];
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   # users.users.jane = {
   #   isNormalUser = true;
