@@ -44,6 +44,8 @@
   sound.mediaKeys.enable = true;
   nixpkgs.config.pulseaudio = true;
   
+  nixpkgs.config.allowUnfree = true;
+
    # services.postgresql = {
    # enable = true;
    # package = pkgs.postgresql_10;
@@ -535,6 +537,7 @@
   services.xserver.displayManager.sddm.enable = true;
   services.xserver.desktopManager.plasma5.enable = true;
   services.xserver = {
+    videoDrivers = [ "nvidia" ];
     windowManager = {
       awesome = {
         enable = true;
