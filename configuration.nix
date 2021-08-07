@@ -44,8 +44,6 @@
   sound.mediaKeys.enable = true;
   nixpkgs.config.pulseaudio = true;
   
-  nixpkgs.config.allowUnfree = true;
-
    # services.postgresql = {
    # enable = true;
    # package = pkgs.postgresql_10;
