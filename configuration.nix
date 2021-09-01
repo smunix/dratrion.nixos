@@ -9,6 +9,7 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./cachix.nix
+      ./v4l2.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -43,7 +44,9 @@
   sound.enable = true;
   sound.mediaKeys.enable = true;
   nixpkgs.config.pulseaudio = true;
-  
+
+  v4l2 = true;  
+
    # services.postgresql = {
    # enable = true;
    # package = pkgs.postgresql_10;
