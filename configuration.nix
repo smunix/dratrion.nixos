@@ -83,6 +83,10 @@
   #   "192.168.80.42" = [ "printer" ];
   # };
 
+  networking.extraHosts = ''
+    155.138.157.218 kagiso
+  '';
+
   networking.wlanInterfaces = {
     wlan-station0 = { device = "wlp6s0"; };
     wlan-ap0 = { device = "wlp6s0"; mac = "02:e4:e3:7e:20"; };
