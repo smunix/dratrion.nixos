@@ -545,7 +545,7 @@
   services.xserver.displayManager.sddm.enable = true;
   services.xserver.desktopManager.plasma5.enable = true;
   services.xserver = {
-    videoDrivers = [ "nvidia" "nouveau" "modsetting"  ];
+    videoDrivers = [ "nouveau" "modsetting"  ];
     windowManager = {
       awesome = {
         enable = true;
