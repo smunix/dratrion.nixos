@@ -542,7 +542,7 @@
   services.xserver.displayManager.sddm.enable = true;
   services.xserver.desktopManager.plasma5.enable = true;
   services.xserver = {
-    videoDrivers = [ "nvidia" "nouveau" "modsetting"  ];
+    videoDrivers = [ "nouveau" "modsetting"  ];
     windowManager = {
       awesome = {
         enable = true;
@@ -569,7 +569,6 @@
   users.extraUsers.smunix = {
     shell = pkgs.fish;
   };
-  # 111611k@yl@
   users.users.kayla = {
     isNormalUser = true;
     description = "Kayla Salumu-A";
@@ -584,7 +583,6 @@
     enable = true;
     wheelNeedsPassword = false;
   };
-  # nelly120804
   users.users.narakaza = {
     isNormalUser = true;
     description = "Nelly Arakaza";
