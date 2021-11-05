@@ -76,6 +76,7 @@
   nix.trustedUsers = [ "root" "smunix" ];
 
   networking.hostName = "dratrion"; # Define your hostname.
+  networking.nameservers = [ "207.164.234.193" "207.164.234.129"];
   # networking.hosts = {
   #   "192.168.80.81" = [ "aristote" ];
   #   "192.168.80.85" = [ "q45" ];
@@ -85,34 +86,35 @@
 
   networking.extraHosts = ''
     155.138.157.218 kagiso
+    49.12.70.26 rutwe
   '';
 
-  networking.wlanInterfaces = {
-    wlan-station0 = { device = "wlp6s0"; };
-    wlan-ap0 = { device = "wlp6s0"; mac = "02:e4:e3:7e:20"; };
-    # wlan-ap1 = { device = "wlp6s0"; mac = "02:e4:e3:7e:22"; };
-    # wlan2 = { device = "wlp6s0"; mac = "02:e4:e3:7e:24"; };
-    # wlan3 = { device = "wlp6s0"; mac = "02:e4:e3:7e:26"; };
-    # wlan4 = { device = "wlp6s0"; mac = "02:e4:e3:7e:28"; };
-  };
+  # networking.wlanInterfaces = {
+  #  wlan-station0 = { device = "wlp6s0"; };
+  #  wlan-ap0 = { device = "wlp6s0"; mac = "02:e4:e3:7e:20"; };
+  #  # wlan-ap1 = { device = "wlp6s0"; mac = "02:e4:e3:7e:22"; };
+  #  # wlan2 = { device = "wlp6s0"; mac = "02:e4:e3:7e:24"; };
+  #  # wlan3 = { device = "wlp6s0"; mac = "02:e4:e3:7e:26"; };
+  #  # wlan4 = { device = "wlp6s0"; mac = "02:e4:e3:7e:28"; };
+  # };
   
   # networking.networkmanager.unmanaged = [ "interface-name:wlp*" ] ++ lib.optional config.services.hostapd.enable "interface-name:${config.services.hostapd.interface}";
-  networking.networkmanager.unmanaged = lib.optional config.services.hostapd.enable "interface-name:${config.services.hostapd.interface}";
+  # networking.networkmanager.unmanaged = lib.optional config.services.hostapd.enable "interface-name:${config.services.hostapd.interface}";
   
-  services.hostapd = {
-    enable        = true;
-    interface     = "wlan-ap0";
-    hwMode        = "g";
-    ssid          = "smunix24";
-    wpaPassphrase = "75F33ekt";
-    extraConfig = ''
-      ieee80211n=1
-      ieee80211ac=1
-      wmm_enabled=1
-    '';
-  };
+  # services.hostapd = {
+  #  enable        = true;
+  #  interface     = "wlan-ap0";
+  #  hwMode        = "g";
+  #  ssid          = "smunix24";
+  #  wpaPassphrase = "75F33ekt";
+  #  extraConfig = ''
+  #    ieee80211n=1
+  #    ieee80211ac=1
+  #    wmm_enabled=1
+  #  '';
+  # };
   
-  networking.interfaces.wlan-ap0.ipv4.addresses = lib.optionals config.services.hostapd.enable [{ address = "192.168.80.1"; prefixLength = 24; }] ;
+  # networking.interfaces.wlan-ap0.ipv4.addresses = lib.optionals config.services.hostapd.enable [{ address = "192.168.80.1"; prefixLength = 24; }] ;
   # networking.interfaces.wlan-ap1.ipv4.addresses = lib.optionals config.services.hostapd.enable [{ address = "192.168.81.1"; prefixLength = 24; }] ;
   # networking.interfaces.wlan1.ipv4.addresses = lib.optionals config.services.hostapd.enable [{ address = "192.168.81.1"; prefixLength = 24; }] ;
   # networking.interfaces.wlan2.ipv4.addresses = lib.optionals config.services.hostapd.enable [{ address = "192.168.82.1"; prefixLength = 24; }] ;
@@ -120,7 +122,7 @@
   # networking.interfaces.wlan4.ipv4.addresses = lib.optionals config.services.hostapd.enable [{ address = "192.168.84.1"; prefixLength = 24; }] ;
   
   services.dnsmasq = lib.optionalAttrs config.services.hostapd.enable {
-    enable = true;
+    enable = false;
     extraConfig = ''
       interface=wlan-ap0
       bind-interfaces
