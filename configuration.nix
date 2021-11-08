@@ -228,7 +228,10 @@
   # Per-interface useDHCP will be mandatory in the future, so this generated config
   # replicates the default behaviour.
   networking.useDHCP = false;
-  networking.networkmanager.enable = true;
+  networking.interfaces.enp0s31f6.useDHCP = true;
+  networking.interfaces.enp2s0.useDHCP = true;
+  networking.interfaces.wlp69s0.useDHCP = true;
+  # networking.networkmanager.enable = true;
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -609,7 +612,7 @@
   # system.stateVersion = "20.09"; # Did you read the comment?
   
   system = {
-    stateVersion = "21.05"; # Did you read the comment?
+    stateVersion = "21.11"; # Did you read the comment?
     autoUpgrade = {
       enable = true;
       channel = "https://channels.nixos.org/nixos-unstable-small";
