@@ -57,7 +57,7 @@
     user = "smunix";
     group = "users";
     dataDir = "/home/smunix/Videos";
-    # openFirewall = true;
+    openFirewall = true;
   };
 
   services.udev.packages = with pkgs; [ android-udev-rules ];
