@@ -51,6 +51,15 @@
   # };
 
   services.blueman.enable = true;
+
+  services.plex = {
+    enable = true;
+    user = "smunix";
+    group = "users";
+    dataDir = "/home/smunix/Videos";
+    # openFirewall = true;
+  };
+
   services.udev.packages = with pkgs; [ android-udev-rules ];
   # Enable the X11 windowing system.
   services.xserver.enable = true;
