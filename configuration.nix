@@ -89,6 +89,11 @@
       URxvt.matcher.button:         1
       URxvt.url-select.underline:   true
 
+      URxvt.keysym.C-minus:     resize-font:smaller
+      URxvt.keysym.C-plus:      resize-font:bigger
+      URxvt.keysym.C-equal:     resize-font:reset
+      URxvt.keysym.C-question:  resize-font:show
+
       Xft.antialias:                1
       Xft.autohint:                 0
       Xft.hinting:                  1
