@@ -64,7 +64,7 @@
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
-  services.xserver.displayManager.sddm.enable = false;
+  services.xserver.displayManager.sddm.enable = true;
   services.xserver.displayManager.sessionCommands = ''
     xrdb "${pkgs.writeText "xrdb.conf" ''
       Xterm*background:             black
