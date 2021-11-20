@@ -75,7 +75,7 @@
       URxvt.iso14755:               false
       URxvt.iso14755_52:            false
 
-      URxvt.perl-ext-common:        default,tabbedex,matcher,resize-font,url-select,keyboard-select,selection-to-clipboard,fullscreen
+      URxvt.perl-ext-common:        default,matcher,resize-font,url-select,keyboard-select,selection-to-clipboard,fullscreen
       URxvt.transparent:            true
       URxvt.shading:                30
 
