@@ -83,8 +83,10 @@
       URxvt*secondaryScroll:        true
 
       URxvt.colorUL:                #AED210
-      URxvt.perl-ext:               default,url-select
+      URxvt.perl-ext-common:        default,tabbed,matcher,resize-fond,-tabbed
+      URxvt.resize-font.step:       2
       URxvt.keysym.M-u:             perl:url-select:select_next
+      URxvt.matcher.button:         1
       URxvt.url-select.underline:   true
 
       Xft.antialias:                1
@@ -139,7 +141,7 @@
     path = [ pkgs.rxvt_unicode ];
     serviceConfig.Restart = "always";
     serviceConfig.RestartSec = 2;
-    serviceConfig.ExecStart = "${pkgs.rxvt-unicode-unwrapped}/bin/urxvtd -q -o";
+    serviceConfig.ExecStart = "${pkgs.rxvt-unicode}/bin/urxvtd -q -o";
   };
 
   systemd.user.services."udiskie" = {
