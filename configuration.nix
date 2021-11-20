@@ -72,7 +72,10 @@
       xterm*vt100.locale:           true
       xterm*vt100.metaSendsEscape:  true
 
-      URxvt.perl-ext-common:        default,tabbed,matcher,resize-font,url-select,keyboard-select,fullscreen
+      URxvt.iso14755:               false
+      URxvt.iso14755_52:            false
+
+      URxvt.perl-ext-common:        default,tabbedex,matcher,resize-font,url-select,keyboard-select,selection-to-clipboard,fullscreen
       URxvt.transparent:            true
       URxvt.shading:                30
 
@@ -96,7 +99,9 @@
 
       URxvt.keysym.M-c:             perl:clipboard:copy
       URxvt.keysym.M-v:             perl:clipboard:paste
-      URxvt.keysym.M-C-v:           perl:clipboard:paste_escaped
+
+      URxvt.keysym.Shift-Control-V: eval:paste_clipboard
+      URxvt.keysym.Shift-Control-C: eval:selection_to_clipboard
 
       URxvt.keysym.M-Escape:        perl:keyboard-select:activate
       URxvt.keysym.M-s:             perl:keyboard-select:search
