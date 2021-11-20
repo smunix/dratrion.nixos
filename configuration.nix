@@ -73,6 +73,8 @@
       xterm*vt100.metaSendsEscape:  true
 
       URxvt.perl-ext-common:        default,tabbed,matcher,resize-font,url-select,keyboard-select,fullscreen
+      URxvt.transparent:            true
+      URxvt.shading:                30
 
       URxvt.background:             black
       URxvt.foreground:             white
