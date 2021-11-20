@@ -64,7 +64,37 @@
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
-  services.xserver.displayManager.sddm.enable = true;
+  services.xserver.displayManager.sddm.enable = false;
+  services.xserver.displayManager.sessionCommands = ''
+    xrdb "${pkgs.writeText "xrdb.conf" ''
+      Xterm*background:             black
+      Xterm*foreground:             white
+      Xterm*vt100.locale:           true
+      Xterm.vt100.metaSendsEscape:  true
+
+      URxvt*background:             black
+      URxvt*foreground:             white
+
+      URxvt.scrollBar:              false
+      URxvt*scrollTtyKeypress:      true
+      URxvt*scrollTtyOutput:        false
+      URxvt*scrollWithBuffer:       false
+      URxvt*scrollstyle:            plain
+      URxvt*secondaryScroll:        true
+
+      URxvt.colorUL:                #AED210
+      URxvt.perl-ext:               default,url-select
+      URxvt.keysym.M-u:             perl:url-select:select_next
+      URxvt.url-select.underline:   true
+
+      Xft.antialias:                1
+      Xft.autohint:                 0
+      Xft.hinting:                  1
+      Xft.hintstyle:                hintslight
+      Xft.lcdfilter:                lcddefault
+      Xft.rgba:                     rgb
+    ''}"
+  '';
   services.xserver.desktopManager.plasma5.enable = true;
   services.xserver = {
     autorun = true;
@@ -101,6 +131,41 @@
     users = { smunix = { isNormalUser = true; extraGroups = [ "wheel" "audio" "networkmanager" ]; }; };
     extraUsers = { smunix = { shell = pkgs.fish; }; };
   };
+
+  systemd.user.services."urxvtd" = {
+    enable = true;
+    description = "rxvt unicode daemon";
+    wantedBy = [ "default.target" ];
+    path = [ pkgs.rxvt_unicode ];
+    serviceConfig.Restart = "always";
+    serviceConfig.RestartSec = 2;
+    serviceConfig.ExecStart = "${pkgs.rxvt-unicode-unwrapped}/bin/urxvtd -q -o";
+  };
+
+  systemd.user.services."udiskie" = {
+    enable = true;
+    description = "udiskie to automount removable media";
+    wantedBy = [ "default.target" ];
+    path = with pkgs; [
+      gnome3.defaultIconTheme
+      gnome3.gnome_themes_standard
+      udiskie
+    ];
+    environment.XDG_DATA_DIRS="${pkgs.gnome3.defaultIconTheme}/share:${pkgs.gnome3.gnome_themes_standard}/share";
+    serviceConfig.Restart = "always";
+    serviceConfig.RestartSec = 2;
+    serviceConfig.ExecStart = "${pkgs.udiskie}/bin/udiskie -a -t -n -F ";
+  };
+
+  systemd.user.services."dunst" = {
+    enable = true;
+    description = "";
+    wantedBy = [ "default.target" ];
+    serviceConfig.Restart = "always";
+    serviceConfig.RestartSec = 2;
+    serviceConfig.ExecStart = "${pkgs.dunst}/bin/dunst";
+  };
+
   nix = {
     autoOptimiseStore = true;
     package = pkgs.nixUnstable;
@@ -116,7 +181,9 @@
       options = "--delete-older-then 30d";
     };
   };
+
   security.sudo = { enable = true; wheelNeedsPassword = false; };
+
   nixpkgs.config.allowUnfree = true;
 
   # List packages installed in system profile. To search, run:
@@ -130,6 +197,7 @@
     fish
     networkmanagerapplet
     htop
+    # rxvt-unicode-unwrapped
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
