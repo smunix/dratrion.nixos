@@ -51,7 +51,7 @@
   # };
 
   services.blueman.enable = true;
-
+  services.urxvtd = { enable = true; };
   services.plex = {
     enable = true;
     user = "smunix";
@@ -62,6 +62,7 @@
 
   services.udev.packages = with pkgs; [ android-udev-rules ];
   # Enable the X11 windowing system.
+  services.picom = { enable = true; };
   services.xserver = {
     enable = true;
     autorun = true;
@@ -162,16 +163,6 @@
     extraUsers = { smunix = { shell = pkgs.fish; }; };
   };
 
-  systemd.user.services."urxvtd" = {
-    enable = true;
-    description = "rxvt unicode daemon";
-    wantedBy = [ "default.target" ];
-    path = [ pkgs.rxvt_unicode ];
-    serviceConfig.Restart = "always";
-    serviceConfig.RestartSec = 2;
-    serviceConfig.ExecStart = "${pkgs.rxvt-unicode}/bin/urxvtd -q -o";
-  };
-
   systemd.user.services."udiskie" = {
     enable = true;
     description = "udiskie to automount removable media";
@@ -185,15 +176,6 @@
     serviceConfig.Restart = "always";
     serviceConfig.RestartSec = 2;
     serviceConfig.ExecStart = "${pkgs.udiskie}/bin/udiskie -a -t -n -F ";
-  };
-
-  systemd.user.services."dunst" = {
-    enable = true;
-    description = "";
-    wantedBy = [ "default.target" ];
-    serviceConfig.Restart = "always";
-    serviceConfig.RestartSec = 2;
-    serviceConfig.ExecStart = "${pkgs.dunst}/bin/dunst";
   };
 
   nix = {
