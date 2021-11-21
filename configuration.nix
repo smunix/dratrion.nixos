@@ -62,71 +62,73 @@
 
   services.udev.packages = with pkgs; [ android-udev-rules ];
   # Enable the X11 windowing system.
-  services.xserver.enable = true;
-
-  services.xserver.displayManager.sddm.enable = true;
-  services.xserver.displayManager.sessionCommands = ''
-    xrdb "${pkgs.writeText "xrdb.conf" ''
-      xterm*background:             black
-      xterm*foreground:             white
-      xterm*vt100.locale:           true
-      xterm*vt100.metaSendsEscape:  true
-
-      URxvt.iso14755:               false
-      URxvt.iso14755_52:            false
-
-      URxvt.perl-ext-common:        default,matcher,resize-font,url-select,keyboard-select,selection-to-clipboard,fullscreen
-      URxvt.transparent:            true
-      URxvt.shading:                30
-
-      URxvt.background:             black
-      URxvt.foreground:             white
-
-      URxvt.scrollBar:              false
-      URxvt.scrollTtyKeypress:      true
-      URxvt.scrollTtyOutput:        false
-      URxvt.scrollWithBuffer:       false
-      URxvt.scrollstyle:            plain
-      URxvt.secondaryScroll:        true
-
-      URxvt.colorUL:                #AED210
-      URxvt.resize-font.step:       2
-      URxvt.matcher.button:         1
-      URxvt.url-select.underline:   true
-
-      URxvt.copyCommand:            ${pkgs.xclip}/bin/xclip -i -selection clipboard
-      URxvt.pasteCommand:           ${pkgs.xclip}/bin/xclip -o -selection clipboard
-
-      URxvt.keysym.M-c:             perl:clipboard:copy
-      URxvt.keysym.M-v:             perl:clipboard:paste
-
-      URxvt.keysym.Shift-Control-V: eval:paste_clipboard
-      URxvt.keysym.Shift-Control-C: eval:selection_to_clipboard
-
-      URxvt.keysym.M-Escape:        perl:keyboard-select:activate
-      URxvt.keysym.M-s:             perl:keyboard-select:search
-
-      URxvt.keysym.M-u:             perl:url-select:select_next
-
-      URxvt.keysym.C-minus:         resize-font:smaller
-      URxvt.keysym.C-plus:          resize-font:bigger
-      URxvt.keysym.C-equal:         resize-font:reset
-      URxvt.keysym.C-question:      resize-font:show
-      URxvt.keysym.C-Down:          resize-font:smaller
-      URxvt.keysym.C-Up:            resize-font:bigger
-
-      Xft.antialias:                1
-      Xft.autohint:                 0
-      Xft.hinting:                  1
-      Xft.hintstyle:                hintslight
-      Xft.lcdfilter:                lcddefault
-      Xft.rgba:                     rgb
-    ''}"
-  '';
-  services.xserver.desktopManager.plasma5.enable = true;
   services.xserver = {
+    enable = true;
     autorun = true;
     videoDrivers = [ "nvidia" ];
+    desktopManager.plasma5.enable = true;
+    displayManager = {
+      sddm.enable = true;
+      defaultSession = "none+awesome";
+      sessionCommands = ''
+        xrdb "${pkgs.writeText "xrdb.conf" ''
+          xterm*background:             black
+          xterm*foreground:             white
+          xterm*vt100.locale:           true
+          xterm*vt100.metaSendsEscape:  true
+
+          URxvt.iso14755:               false
+          URxvt.iso14755_52:            false
+
+          URxvt.perl-ext-common:        default,matcher,resize-font,url-select,keyboard-select,selection-to-clipboard,fullscreen
+          URxvt.transparent:            true
+          URxvt.shading:                30
+
+          URxvt.background:             black
+          URxvt.foreground:             white
+
+          URxvt.scrollBar:              false
+          URxvt.scrollTtyKeypress:      true
+          URxvt.scrollTtyOutput:        false
+          URxvt.scrollWithBuffer:       false
+          URxvt.scrollstyle:            plain
+          URxvt.secondaryScroll:        true
+
+          URxvt.colorUL:                #AED210
+          URxvt.resize-font.step:       2
+          URxvt.matcher.button:         1
+          URxvt.url-select.underline:   true
+
+          URxvt.copyCommand:            ${pkgs.xclip}/bin/xclip -i -selection clipboard
+          URxvt.pasteCommand:           ${pkgs.xclip}/bin/xclip -o -selection clipboard
+
+          URxvt.keysym.M-c:             perl:clipboard:copy
+          URxvt.keysym.M-v:             perl:clipboard:paste
+
+          URxvt.keysym.Shift-Control-V: eval:paste_clipboard
+          URxvt.keysym.Shift-Control-C: eval:selection_to_clipboard
+
+          URxvt.keysym.M-Escape:        perl:keyboard-select:activate
+          URxvt.keysym.M-s:             perl:keyboard-select:search
+
+          URxvt.keysym.M-u:             perl:url-select:select_next
+
+          URxvt.keysym.C-minus:         resize-font:smaller
+          URxvt.keysym.C-plus:          resize-font:bigger
+          URxvt.keysym.C-equal:         resize-font:reset
+          URxvt.keysym.C-question:      resize-font:show
+          URxvt.keysym.C-Down:          resize-font:smaller
+          URxvt.keysym.C-Up:            resize-font:bigger
+
+          Xft.antialias:                1
+          Xft.autohint:                 0
+          Xft.hinting:                  1
+          Xft.hintstyle:                hintslight
+          Xft.lcdfilter:                lcddefault
+          Xft.rgba:                     rgb
+        ''}"
+      '';
+    };
     windowManager = { awesome = { enable = true; luaModules = [ pkgs.luaPackages.luaposix ];  }; };
   };
   hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.legacy_470;
