@@ -209,7 +209,6 @@
     fish
     networkmanagerapplet
     htop
-    # rxvt-unicode-unwrapped
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
