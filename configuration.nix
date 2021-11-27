@@ -5,11 +5,10 @@
 { config, pkgs, modulesPath, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      ./v4l2.nix
-    ];
+  imports = [ # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    ./v4l2.nix
+  ];
 
   v4l2 = true;
 
@@ -35,9 +34,7 @@
   networking.interfaces.enp0s31f6.useDHCP = true;
   networking.interfaces.enp2s0.useDHCP = true;
   networking.interfaces.wlp69s0.useDHCP = true;
-  networking.hosts = {
-    "49.12.70.26" = [ "rutwe" ];
-  };
+  networking.hosts = { "49.12.70.26" = [ "rutwe" ]; };
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -65,9 +62,7 @@
   services.picom = {
     enable = true;
     shadow = true;
-    opacityRules = [
-      "100:class_g = 'Firefox' && argb"
-    ];
+    opacityRules = [ "100:class_g = 'Firefox' && argb" ];
   };
   # Enable the X11 windowing system.
   services.xserver = {
@@ -79,68 +74,75 @@
       sddm.enable = true;
       defaultSession = "none+awesome";
       sessionCommands = ''
-        xrdb "${pkgs.writeText "xrdb.conf" ''
-          xterm*background:             black
-          xterm*foreground:             white
-          xterm*vt100.locale:           true
-          xterm*vt100.metaSendsEscape:  true
+        xrdb "${
+          pkgs.writeText "xrdb.conf" ''
+            xterm*background:             black
+            xterm*foreground:             white
+            xterm*vt100.locale:           true
+            xterm*vt100.metaSendsEscape:  true
 
-          URxvt.iso14755:               false
-          URxvt.iso14755_52:            false
+            URxvt.iso14755:               false
+            URxvt.iso14755_52:            false
 
-          URxvt.perl-ext-common:        default,matcher,resize-font,url-select,keyboard-select,selection-to-clipboard,fullscreen
-          URxvt.transparent:            true
-          URxvt.shading:                30
+            URxvt.perl-ext-common:        default,matcher,resize-font,url-select,keyboard-select,selection-to-clipboard,fullscreen
+            URxvt.transparent:            true
+            URxvt.shading:                30
 
-          URxvt.background:             black
-          URxvt.foreground:             white
+            URxvt.background:             black
+            URxvt.foreground:             white
 
-          URxvt.scrollBar:              false
-          URxvt.scrollTtyKeypress:      true
-          URxvt.scrollTtyOutput:        false
-          URxvt.scrollWithBuffer:       false
-          URxvt.scrollstyle:            plain
-          URxvt.secondaryScroll:        true
+            URxvt.scrollBar:              false
+            URxvt.scrollTtyKeypress:      true
+            URxvt.scrollTtyOutput:        false
+            URxvt.scrollWithBuffer:       false
+            URxvt.scrollstyle:            plain
+            URxvt.secondaryScroll:        true
 
-          URxvt.colorUL:                #AED210
-          URxvt.resize-font.step:       2
-          URxvt.matcher.button:         1
-          URxvt.url-select.underline:   true
+            URxvt.colorUL:                #AED210
+            URxvt.resize-font.step:       2
+            URxvt.matcher.button:         1
+            URxvt.url-select.underline:   true
 
-          URxvt.copyCommand:            ${pkgs.xclip}/bin/xclip -i -selection clipboard
-          URxvt.pasteCommand:           ${pkgs.xclip}/bin/xclip -o -selection clipboard
+            URxvt.copyCommand:            ${pkgs.xclip}/bin/xclip -i -selection clipboard
+            URxvt.pasteCommand:           ${pkgs.xclip}/bin/xclip -o -selection clipboard
 
-          URxvt.keysym.M-c:             perl:clipboard:copy
-          URxvt.keysym.M-v:             perl:clipboard:paste
+            URxvt.keysym.M-c:             perl:clipboard:copy
+            URxvt.keysym.M-v:             perl:clipboard:paste
 
-          URxvt.keysym.Shift-Control-V: eval:paste_clipboard
-          URxvt.keysym.Shift-Control-C: eval:selection_to_clipboard
+            URxvt.keysym.Shift-Control-V: eval:paste_clipboard
+            URxvt.keysym.Shift-Control-C: eval:selection_to_clipboard
 
-          URxvt.keysym.M-Escape:        perl:keyboard-select:activate
-          URxvt.keysym.M-s:             perl:keyboard-select:search
+            URxvt.keysym.M-Escape:        perl:keyboard-select:activate
+            URxvt.keysym.M-s:             perl:keyboard-select:search
 
-          URxvt.keysym.M-u:             perl:url-select:select_next
+            URxvt.keysym.M-u:             perl:url-select:select_next
 
-          URxvt.keysym.C-minus:         resize-font:smaller
-          URxvt.keysym.C-plus:          resize-font:bigger
-          URxvt.keysym.C-equal:         resize-font:reset
-          URxvt.keysym.C-question:      resize-font:show
-          URxvt.keysym.C-Down:          resize-font:smaller
-          URxvt.keysym.C-Up:            resize-font:bigger
+            URxvt.keysym.C-minus:         resize-font:smaller
+            URxvt.keysym.C-plus:          resize-font:bigger
+            URxvt.keysym.C-equal:         resize-font:reset
+            URxvt.keysym.C-question:      resize-font:show
+            URxvt.keysym.C-Down:          resize-font:smaller
+            URxvt.keysym.C-Up:            resize-font:bigger
 
-          Xft.antialias:                1
-          Xft.autohint:                 0
-          Xft.hinting:                  1
-          Xft.hintstyle:                hintslight
-          Xft.lcdfilter:                lcddefault
-          Xft.rgba:                     rgb
-        ''}"
+            Xft.antialias:                1
+            Xft.autohint:                 0
+            Xft.hinting:                  1
+            Xft.hintstyle:                hintslight
+            Xft.lcdfilter:                lcddefault
+            Xft.rgba:                     rgb
+          ''
+        }"
       '';
     };
-    windowManager = { awesome = { enable = true; luaModules = [ pkgs.luaPackages.luaposix ];  }; };
+    windowManager = {
+      awesome = {
+        enable = true;
+        luaModules = [ pkgs.luaPackages.luaposix ];
+      };
+    };
   };
-  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.legacy_470;
-  
+  hardware.nvidia.package =
+    config.boot.kernelPackages.nvidiaPackages.legacy_470;
 
   # Configure keymap in X11
   # services.xserver.layout = "us";
@@ -166,7 +168,12 @@
   # };
   # 
   users = {
-    users = { smunix = { isNormalUser = true; extraGroups = [ "wheel" "audio" "networkmanager" ]; }; };
+    users = {
+      smunix = {
+        isNormalUser = true;
+        extraGroups = [ "wheel" "audio" "networkmanager" ];
+      };
+    };
     extraUsers = { smunix = { shell = pkgs.fish; }; };
   };
 
@@ -179,7 +186,8 @@
       gnome3.gnome_themes_standard
       udiskie
     ];
-    environment.XDG_DATA_DIRS="${pkgs.gnome3.defaultIconTheme}/share:${pkgs.gnome3.gnome_themes_standard}/share";
+    environment.XDG_DATA_DIRS =
+      "${pkgs.gnome3.defaultIconTheme}/share:${pkgs.gnome3.gnome_themes_standard}/share";
     serviceConfig.Restart = "always";
     serviceConfig.RestartSec = 2;
     serviceConfig.ExecStart = "${pkgs.udiskie}/bin/udiskie -a -t -n -F ";
@@ -196,12 +204,15 @@
     trustedUsers = [ "smunix" ];
     gc = {
       automatic = true;
-      dates = "weekly";
-      options = "--delete-older-then 30d";
+      dates = "daily";
+      options = "--delete-older-then 7d";
     };
   };
 
-  security.sudo = { enable = true; wheelNeedsPassword = false; };
+  security.sudo = {
+    enable = true;
+    wheelNeedsPassword = false;
+  };
 
   nixpkgs.config.allowUnfree = true;
 
