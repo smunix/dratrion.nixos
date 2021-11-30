@@ -141,8 +141,10 @@
       };
     };
   };
-  hardware.nvidia.package =
-    config.boot.kernelPackages.nvidiaPackages.legacy_470;
+  hardware.nvidia = {
+    modesetting.enable = true;
+    package = config.boot.kernelPackages.nvidiaPackages.legacy_470;
+  };
 
   # Configure keymap in X11
   # services.xserver.layout = "us";
