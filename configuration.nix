@@ -206,6 +206,9 @@
       max-free = ${toString (5 * 1024 * 1024 * 1024)}
     '';
     trustedUsers = [ "smunix" ];
+    binaryCachePublicKeys =
+      [ "hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ=" ];
+    binaryCaches = [ "https://hydra.iohk.io" ];
     gc = {
       automatic = true;
       dates = "daily";
