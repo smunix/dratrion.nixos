@@ -8,9 +8,11 @@
   imports = [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ./v4l2.nix
+    ./osx-kvm.nix
   ];
 
   v4l2 = true;
+  osx-kvm = true;
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
