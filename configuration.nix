@@ -211,7 +211,7 @@
     binaryCaches = [ "https://hydra.iohk.io" "https://cache.nixos.org/" ];
     gc = {
       automatic = true;
-      dates = "daily";
+      dates = "Sat";
       options = "--delete-older-than 7d";
     };
   };
