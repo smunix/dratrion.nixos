@@ -206,12 +206,11 @@
       max-free = ${toString (5 * 1024 * 1024 * 1024)}
     '';
     trustedUsers = [ "smunix" ];
-    binaryCachePublicKeys =
-      [ "hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ=" ];
-    binaryCaches = [ "https://hydra.iohk.io" "https://cache.nixos.org/" ];
+    binaryCachePublicKeys = [ ];
+    binaryCaches = [ "https://cache.nixos.org/" ];
     gc = {
       automatic = true;
-      dates = "monthly";
+      dates = "daily";
       options = "--delete-older-than 15d";
     };
   };
@@ -265,7 +264,7 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system = {
-    stateVersion = "21.11"; # Did you read the comment?
+    stateVersion = "22.05"; # Did you read the comment?
     autoUpgrade = {
       enable = true;
       channel = "https://channels.nixos.org/nixos-unstable-small";
