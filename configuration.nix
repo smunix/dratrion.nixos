@@ -179,7 +179,10 @@
       };
     };
     extraUsers = { smunix = { shell = pkgs.fish; }; };
+    extraGroups.vboxusers.members = [ "smunix" ];
   };
+
+  virtualisation = { virtualbox.host.enable = true; };
 
   systemd.user.services."udiskie" = {
     enable = true;
