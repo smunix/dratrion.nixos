@@ -18,8 +18,12 @@
 ;;
 ;; They all accept either a font-spec, font string ("Input Mono-12"), or xlfd
 ;; font string. You generally only need these two:
-;; (setq doom-font (font-spec :family "monospace" :size 12 :weight 'semi-light)
-;;       doom-variable-pitch-font (font-spec :family "sans" :size 13))
+;; (setq doom-font (font-spec :family "monospace" :size 10 :weight 'semi-light)
+;;       doom-variable-pitch-font (font-spec :family "sans" :size 11))
+;;
+(setq doom-font (font-spec :family "Input Mono Narrow" :size 10 :weight 'semi-light)
+      doom-variable-pitch-font (font-spec :family "sans" :size 11)
+      doom-unicode-font (font-spec :family "Input Mono Narrow" :size 10))
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
@@ -27,10 +31,10 @@
 
 ;; See: https://github.com/hlissner/doom-emacs/blob/develop/docs/faq.org#how-do-i-change-the-fonts
 ;;      https://github.com/hlissner/doom-emacs/issues/2652
-;; (setq doom-font (font-spec :family "Input Mono Narrow" :size 12 :weight 'semi-light)
+;; (setq doom-font (font-spec :family "Input Mono Narrow" :size 10 :weight 'semi-light)
 ;;      doom-variable-pitch-font (font-spec :family "Fira Sans") ; inherits `doom-font''s :size
-;;      doom-unicode-font (font-spec :family "Input Mono Narrow" :size 12)
-;;      doom-big-font (font-spec :family "Fira Mono" :size 19))
+;;      doom-unicode-font (font-spec :family "Input Mono Narrow" :size 10)
+;;      doom-big-font (font-spec :family "Fira Mono" :size 17))
 
 ;; (add-hook 'window-setup-hook #'toggle-frame-maximized)
 
@@ -44,7 +48,7 @@
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
 (setq display-line-numbers-type t)
 
-(setq projectile-project-search-path '("~/Programming" "~/Documents"))
+(setq projectile-project-search-path '("~/Programming" "~/Programming/compilers" "~/Programming/haskell" "~/Documents"))
 
 ;; Copied from: https://robert.kra.hn/posts/2021-02-07_rust-with-emacs/
 (use-package lsp-mode

@@ -32,6 +32,7 @@
               useGlobalPkgs = false;
               useUserPackages = true;
               users.smunix = import ./smunix.home.nix inputs;
+              users.root = import ./root.home.nix inputs;
             };
           }
         ];
