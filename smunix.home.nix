@@ -74,6 +74,7 @@
       mplayer
       nix
       nixfmt
+      nix-top
       nix-prefetch-scripts
       networkmanagerapplet
       nodejs
