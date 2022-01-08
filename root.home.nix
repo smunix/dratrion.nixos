@@ -5,7 +5,10 @@
   #
   imports = [ inputs.nix-doom-emacs.hmModule ];
   nixpkgs = {
-    config = { allowUnfree = true; input-fonts.acceptLicense = true; };
+    config = {
+      allowUnfree = true;
+      input-fonts.acceptLicense = true;
+    };
     overlays = [
       inputs.nix-hls.overlay
       inputs.emacs-overlay.overlay
@@ -43,13 +46,12 @@
       rxvt-unicode
       tmux
       tree
-      xscreensaver
       xclip
     ];
   };
   services.gpg-agent = {
     enable = true;
-    defaultCacheTtl = 1800;
+    # defaultCacheTtl = 1800;
     enableSshSupport = true;
   };
   programs.doom-emacs = {

@@ -101,7 +101,7 @@
   };
   services.gpg-agent = {
     enable = true;
-    defaultCacheTtl = 1800;
+    # defaultCacheTtl = 1800;
     enableSshSupport = true;
   };
   # Speed up direnv
