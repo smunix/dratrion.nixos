@@ -666,21 +666,6 @@
         "type": "github"
       }
     },
-    "nur": {
-      "locked": {
-        "lastModified": 1641660002,
-        "narHash": "sha256-iPsw3L/jkPPCoc/unnGvt3tpnMorMgOkRJc+YgfpLPw=",
-        "owner": "nix-community",
-        "repo": "NUR",
-        "rev": "340e42c9dd92108275245261f66335443d5e6fa1",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-community",
-        "repo": "NUR",
-        "type": "github"
-      }
-    },
     "ob-racket": {
       "flake": false,
       "locked": {
@@ -807,8 +792,7 @@
         "nix-hls": "nix-hls",
         "nix-smunix-pkgs": "nix-smunix-pkgs",
         "nixos": "nixos",
-        "nixpkgs": "nixpkgs_8",
-        "nur": "nur"
+        "nixpkgs": "nixpkgs_8"
       }
     },
     "rotate-text": {
