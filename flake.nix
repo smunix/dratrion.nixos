@@ -9,7 +9,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nix.url = "github:nixos/nix?ref=master";
     nixos.url = "github:nixos/nixpkgs/master";
-    nur.url = "github:nix-community/NUR";
+    # nur.url = "github:nix-community/NUR";
     home-manager.url = "github:nix-community/home-manager";
     emacs-overlay.url = "github:nix-community/emacs-overlay";
     nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";

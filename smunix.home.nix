@@ -11,7 +11,7 @@
     };
     overlays = [
       inputs.nix-hls.overlay
-      inputs.emacs-overlay.overlay
+      # inputs.emacs-overlay.overlay
       inputs.nix-colmena.overlay
     ];
   };
@@ -109,7 +109,7 @@
   programs.doom-emacs = {
     enable = true;
     doomPrivateDir = ./doom.d;
-    emacsPackage = pkgs.emacsGcc;
+    # emacsPackage = pkgs.emacsGcc;
     # emacsPackagesOverlay = inputs.emacs-overlay.overlay;
   };
 }
