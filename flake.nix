@@ -31,8 +31,10 @@
               backupFileExtension = "backup.hm";
               useGlobalPkgs = false;
               useUserPackages = true;
-              users.smunix = import ./smunix.home.nix inputs;
-              users.root = import ./root.home.nix inputs;
+              users = {
+                smunix = import ./smunix.home.nix inputs;
+                root = import ./root.home.nix inputs;
+              };
             };
           }
         ];

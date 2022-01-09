@@ -57,7 +57,7 @@
   programs.doom-emacs = {
     enable = true;
     doomPrivateDir = ./doom.d;
-    emacsPackage = pkgs.emacsGcc;
+    # emacsPackage = pkgs.emacsGcc;
     # emacsPackagesOverlay = inputs.emacs-overlay.overlay;
   };
 }
