@@ -21,7 +21,7 @@
   outputs = { self, nixpkgs, nixos, nix, home-manager, nix-doom-emacs
     , emacs-overlay, nix-haskell-updates, nix-smunix-pkgs, nix-hls, nix-colmena
     , ... }@inputs: {
-      nixosConfigurations.dratrion = nixos.lib.nixosSystem {
+      nixosConfigurations.aristote = nixos.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
           (import ./configuration.nix)

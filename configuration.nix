@@ -17,11 +17,11 @@
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.grub.useOSProber = true;
-  boot.loader.grub.device = /dev/sdc;
+  # boot.loader.grub.useOSProber = true;
+  # boot.loader.grub.device = /dev/sdc;
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  networking.hostName = "dratrion"; # Define your hostname.
+  networking.hostName = "aristote"; # Define your hostname.
   networking.networkmanager.enable = true;
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 

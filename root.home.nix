@@ -20,13 +20,13 @@
     stateVersion = "22.05";
     packages = with pkgs; [
       # fonts start
-      noto-fonts
-      noto-fonts-cjk
-      noto-fonts-emoji
-      liberation_ttf
-      fira-code
-      fira-code-symbols
-      input-fonts
+      # noto-fonts
+      # noto-fonts-cjk
+      # noto-fonts-emoji
+      # liberation_ttf
+      # fira-code
+      # fira-code-symbols
+      # input-fonts
       # fonts end
       ack
       ag
