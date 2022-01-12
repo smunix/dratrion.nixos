@@ -90,6 +90,7 @@
       ripgrep
       rnix-lsp
       rxvt-unicode
+      slack
       tmux
       tree
       vlc
