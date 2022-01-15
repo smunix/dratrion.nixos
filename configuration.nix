@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, modulesPath, ... }:
+{ config, pkgs, modulesPath, inputs, ... }:
 
 {
   imports = [ # Include the results of the hardware scan.
@@ -202,7 +202,7 @@
 
   nix = {
     autoOptimiseStore = true;
-    package = pkgs.nixUnstable;
+    package = inputs.nixF.defaultPackage."x86_64-linux";
     extraOptions = ''
       experimental-features = nix-command flakes
       min-free = ${toString (1 * 1024 * 1024 * 1024)}
