@@ -355,30 +355,10 @@
         "url": "https://hackage.haskell.org/package/lsp-types-1.4.0.0/lsp-types-1.4.0.0.tar.gz"
       }
     },
-    "nix": {
-      "inputs": {
-        "lowdown-src": "lowdown-src",
-        "nixpkgs": "nixpkgs_2"
-      },
-      "locked": {
-        "lastModified": 1642192119,
-        "narHash": "sha256-dP+ERcXUGLLMraLtBqJOEWYcx/iuAXhCT9LuhtqUozE=",
-        "owner": "nixos",
-        "repo": "nix",
-        "rev": "34f2eebd5be06658c04aa7846753d5de124d7195",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixos",
-        "ref": "master",
-        "repo": "nix",
-        "type": "github"
-      }
-    },
     "nix-colmena": {
       "inputs": {
         "flake-compat": "flake-compat",
-        "nixpkgs": "nixpkgs_3",
+        "nixpkgs": "nixpkgs_2",
         "utils": "utils"
       },
       "locked": {
@@ -409,7 +389,7 @@
         "flake-utils": "flake-utils",
         "format-all": "format-all",
         "nix-straight": "nix-straight",
-        "nixpkgs": "nixpkgs_4",
+        "nixpkgs": "nixpkgs_3",
         "nose": "nose",
         "ob-racket": "ob-racket",
         "org": "org",
@@ -457,7 +437,7 @@
         "lsp-source": "lsp-source",
         "lsp-test-source": "lsp-test-source",
         "lsp-types-source": "lsp-types-source",
-        "nixpkgs": "nixpkgs_5",
+        "nixpkgs": "nixpkgs_4",
         "pre-commit-hooks": "pre-commit-hooks"
       },
       "locked": {
@@ -479,7 +459,7 @@
       "inputs": {
         "emacs": "emacs",
         "flake-utils": "flake-utils_4",
-        "nixpkgs": "nixpkgs_7"
+        "nixpkgs": "nixpkgs_6"
       },
       "locked": {
         "lastModified": 1641110295,
@@ -512,13 +492,33 @@
         "type": "github"
       }
     },
+    "nixF": {
+      "inputs": {
+        "lowdown-src": "lowdown-src",
+        "nixpkgs": "nixpkgs_7"
+      },
+      "locked": {
+        "lastModified": 1642192119,
+        "narHash": "sha256-dP+ERcXUGLLMraLtBqJOEWYcx/iuAXhCT9LuhtqUozE=",
+        "owner": "nixos",
+        "repo": "nix",
+        "rev": "34f2eebd5be06658c04aa7846753d5de124d7195",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "master",
+        "repo": "nix",
+        "type": "github"
+      }
+    },
     "nixos": {
       "locked": {
-        "lastModified": 1642212532,
-        "narHash": "sha256-SEgTD2/7qwYRpPxZX4LiOpdWx7syw95S7sOT4xTZ/d8=",
+        "lastModified": 1642214513,
+        "narHash": "sha256-Kfmvpedhp/9h9vhHsukx6qfj2F6FR6VBNO8xMaOrg+g=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "f542129a99a7104d98bf9d30acfffc3fce61000c",
+        "rev": "25a9a2d6ccbd83f60281404e5b3ae32a2d8d6803",
         "type": "github"
       },
       "original": {
@@ -544,21 +544,6 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1632864508,
-        "narHash": "sha256-d127FIvGR41XbVRDPVvozUPQ/uRHbHwvfyKHwEt5xFM=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "82891b5e2c2359d7e58d08849e4c89511ab94234",
-        "type": "github"
-      },
-      "original": {
-        "id": "nixpkgs",
-        "ref": "nixos-21.05-small",
-        "type": "indirect"
-      }
-    },
-    "nixpkgs_3": {
-      "locked": {
         "lastModified": 1640418986,
         "narHash": "sha256-a8GGtxn2iL3WAkY5H+4E0s3Q7XJt6bTOvos9qqxT5OQ=",
         "owner": "NixOS",
@@ -573,7 +558,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_4": {
+    "nixpkgs_3": {
       "locked": {
         "lastModified": 1642069818,
         "narHash": "sha256-666w6j8wl/bojfgpp0k58/UJ5rbrdYFbI2RFT2BXbSQ=",
@@ -588,7 +573,7 @@
         "type": "indirect"
       }
     },
-    "nixpkgs_5": {
+    "nixpkgs_4": {
       "locked": {
         "lastModified": 1639357775,
         "narHash": "sha256-mJJFCPqZi1ZO3CvgEfN2nFAYv4uAJSRnTKzLFi61+WA=",
@@ -604,7 +589,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_6": {
+    "nixpkgs_5": {
       "locked": {
         "lastModified": 1641016545,
         "narHash": "sha256-JMNwvnBzG0RjGG3eH27Y5/GlJ9ryeCdGJfqGbqxnmZY=",
@@ -618,7 +603,7 @@
         "type": "indirect"
       }
     },
-    "nixpkgs_7": {
+    "nixpkgs_6": {
       "locked": {
         "lastModified": 1641106260,
         "narHash": "sha256-x79qxMc80rzRohEncAk+Xybim1pzeye1iVtNz3vJ66M=",
@@ -632,6 +617,21 @@
         "ref": "master",
         "repo": "nixpkgs",
         "type": "github"
+      }
+    },
+    "nixpkgs_7": {
+      "locked": {
+        "lastModified": 1632864508,
+        "narHash": "sha256-d127FIvGR41XbVRDPVvozUPQ/uRHbHwvfyKHwEt5xFM=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "82891b5e2c2359d7e58d08849e4c89511ab94234",
+        "type": "github"
+      },
+      "original": {
+        "id": "nixpkgs",
+        "ref": "nixos-21.05-small",
+        "type": "indirect"
       }
     },
     "nixpkgs_8": {
@@ -749,7 +749,7 @@
     "pre-commit-hooks": {
       "inputs": {
         "flake-utils": "flake-utils_3",
-        "nixpkgs": "nixpkgs_6"
+        "nixpkgs": "nixpkgs_5"
       },
       "locked": {
         "lastModified": 1624971177,
@@ -785,12 +785,12 @@
       "inputs": {
         "emacs-overlay": "emacs-overlay",
         "home-manager": "home-manager",
-        "nix": "nix",
         "nix-colmena": "nix-colmena",
         "nix-doom-emacs": "nix-doom-emacs",
         "nix-haskell-updates": "nix-haskell-updates",
         "nix-hls": "nix-hls",
         "nix-smunix-pkgs": "nix-smunix-pkgs",
+        "nixF": "nixF",
         "nixos": "nixos",
         "nixpkgs": "nixpkgs_8"
       }
