@@ -72,7 +72,8 @@
       lorri
       lsb-release
       mplayer
-      nix
+      # nix
+      inputs.nixF.defaultPackage.x86_64-linux
       nixfmt
       nix-top
       nix-prefetch-scripts

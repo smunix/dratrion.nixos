@@ -34,7 +34,7 @@
       gcc
       htop
       lm_sensors
-      nix
+      inputs.nixF.defaultPackage.x86_64-linux
       nixfmt
       nix-prefetch-scripts
       pinentry_curses
