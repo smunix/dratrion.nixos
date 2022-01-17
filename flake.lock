@@ -33,6 +33,23 @@
         "type": "github"
       }
     },
+    "dtrx": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1637792987,
+        "narHash": "sha256-tc2+0sVf7XTBRPf2gqgKzKahxuY5QfoQf0SxqsWM1pY=",
+        "owner": "dtrx-py",
+        "repo": "dtrx",
+        "rev": "6396a9767384e499f7c03c09e0d44530fba12271",
+        "type": "github"
+      },
+      "original": {
+        "owner": "dtrx-py",
+        "ref": "master",
+        "repo": "dtrx",
+        "type": "github"
+      }
+    },
     "emacs": {
       "locked": {
         "lastModified": 1641093461,
@@ -650,6 +667,22 @@
         "type": "github"
       }
     },
+    "nixpkgs_9": {
+      "locked": {
+        "lastModified": 1624561540,
+        "narHash": "sha256-izJ2PYZMGMsSkg+e7c9A1x3t/yOLT+qzUM6WQsc2tqo=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "c6a049a3d32293b24c0f894a840872cf67fd7c11",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixpkgs-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nose": {
       "flake": false,
       "locked": {
@@ -792,7 +825,8 @@
         "nix-smunix-pkgs": "nix-smunix-pkgs",
         "nixF": "nixF",
         "nixos": "nixos",
-        "nixpkgs": "nixpkgs_8"
+        "nixpkgs": "nixpkgs_8",
+        "smunix-nur": "smunix-nur"
       }
     },
     "rotate-text": {
@@ -809,6 +843,26 @@
         "owner": "debug-ito",
         "repo": "rotate-text.el",
         "type": "github"
+      }
+    },
+    "smunix-nur": {
+      "inputs": {
+        "dtrx": "dtrx",
+        "nixpkgs": "nixpkgs_9"
+      },
+      "locked": {
+        "lastModified": 1642385090,
+        "narHash": "sha256-hMu3FTJwY35cy6/r02fliFF1eXa784bEyyrnn8OvAwc=",
+        "owner": "smunix.nixos",
+        "repo": "nur-packages",
+        "rev": "a64ee7c63765bdef058d5cb21950c635161b0cdb",
+        "type": "gitlab"
+      },
+      "original": {
+        "owner": "smunix.nixos",
+        "ref": "master",
+        "repo": "nur-packages",
+        "type": "gitlab"
       }
     },
     "utils": {

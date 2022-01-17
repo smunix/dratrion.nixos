@@ -13,6 +13,7 @@
       inputs.nix-hls.overlay
       # inputs.emacs-overlay.overlay
       inputs.nix-colmena.overlay
+      inputs.smunix-nur.overlay
     ];
   };
   fonts = { fontconfig.enable = true; };
@@ -39,6 +40,7 @@
       conky
       direnv
       dos2unix
+      dtrx
       eclipses.eclipse-cpp
       evince
       feh
