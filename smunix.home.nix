@@ -100,6 +100,7 @@
       xscreensaver
       xclip
       xdotool
+      yarn
       zoom-us
     ];
   };
