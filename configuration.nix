@@ -244,7 +244,7 @@
   programs.gnupg.agent = {
     enable = true;
     enableSSHSupport = true;
-    pinentryFlavor = "curses";
+    pinentryFlavor = "tty";
   };
 
   # List services that you want to enable:

@@ -85,7 +85,7 @@
       ormolu
       pasystray
       pciutils
-      pinentry_curses
+      pinentry
       pmount
       python39Full
       python39Packages.youtube-dl-light

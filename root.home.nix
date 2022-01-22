@@ -37,7 +37,7 @@
       inputs.nixF.defaultPackage.x86_64-linux
       nixfmt
       nix-prefetch-scripts
-      pinentry_curses
+      pinentry
       python39Full
       python39Packages.youtube-dl-light
       python39Packages.python-lsp-server
