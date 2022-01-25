@@ -54,8 +54,8 @@
       gimpPlugins.gmic
       ghcid
       google-chrome-dev
-      inputs.nix-hls.packages.x86_64-linux.haskell-language-server-921
-      # haskell-language-server
+      # inputs.nix-hls.packages.x86_64-linux.haskell-language-server-921
+      haskell-language-server
       haskellPackages.cabal-install
       haskellPackages.fourmolu
       haskellPackages.hasktags
