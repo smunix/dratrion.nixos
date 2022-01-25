@@ -61,8 +61,8 @@
       haskellPackages.hasktags
       haskellPackages.hoogle
       haskellPackages.implicit-hie
-      haskell.compiler.ghc8107
-      # haskell.compiler.ghc902
+      # haskell.compiler.ghc8107
+      haskell.compiler.ghc921
       haskellPackages.fourmolu
       hddtemp
       hpack
