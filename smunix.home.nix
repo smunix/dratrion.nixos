@@ -54,6 +54,7 @@
       gimpPlugins.gmic
       ghcid
       google-chrome-dev
+      graphviz
       # inputs.nix-hls.packages.x86_64-linux.haskell-language-server-921
       haskell-language-server
       haskellPackages.cabal-install
