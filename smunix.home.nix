@@ -68,6 +68,7 @@
       hpack
       htop
       imagemagick
+      inkscape
       irony-server
       jq
       lm_sensors
