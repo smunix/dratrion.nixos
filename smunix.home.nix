@@ -71,6 +71,7 @@
       imagemagick
       inkscape
       irony-server
+      ispell
       jq
       lm_sensors
       lorri
