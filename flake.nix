@@ -18,10 +18,14 @@
     nix-smunix-pkgs.url = "github:smunix/nixpkgs-unfree?ref=main";
     nix-colmena.url = "github:zhaofengli/colmena?ref=main";
     smunix-nur.url = "gitlab:smunix.nixos/nur-packages?ref=master";
+    moletrooper-dotfiles = {
+      url = "github:smunix/dotfiles-1?ref=master";
+      flake = false;
+    };
   };
   outputs = { self, nixpkgs, nixos, nixF, home-manager, nix-doom-emacs
     , emacs-overlay, nix-haskell-updates, nix-smunix-pkgs, nix-hls, nix-colmena
-    , smunix-nur, ... }@inputs: {
+    , smunix-nur, moletrooper-dotfiles, ... }@inputs: {
       nixosConfigurations.dratrion = nixos.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [

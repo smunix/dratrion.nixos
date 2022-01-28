@@ -227,6 +227,7 @@
   nixpkgs.config = {
     allowUnfree = true;
     pulseaudio = true;
+    input-fonts.acceptLicense = true;
   };
 
   # List packages installed in system profile. To search, run:
@@ -239,6 +240,17 @@
     fish
     networkmanagerapplet
     htop
+  ];
+
+  fonts.fonts = with pkgs; [
+    noto-fonts
+    noto-fonts-cjk
+    noto-fonts-emoji
+    liberation_ttf
+    fira-code
+    fira-code-symbols
+    input-fonts
+    (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

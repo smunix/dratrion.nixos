@@ -456,6 +456,23 @@
         "url": "https://hackage.haskell.org/package/lsp-types-1.4.0.1/lsp-types-1.4.0.1.tar.gz"
       }
     },
+    "moletrooper-dotfiles": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1642717913,
+        "narHash": "sha256-HacrkoQxeRf4ospsujfgeuftnuPMYRcA8EySf8dtSyo=",
+        "owner": "smunix",
+        "repo": "dotfiles-1",
+        "rev": "15e8eb95d82d7e2131eaa84da4e8348e7a4b1daa",
+        "type": "github"
+      },
+      "original": {
+        "owner": "smunix",
+        "ref": "master",
+        "repo": "dotfiles-1",
+        "type": "github"
+      }
+    },
     "nix-colmena": {
       "inputs": {
         "flake-compat": "flake-compat",
@@ -965,6 +982,7 @@
       "inputs": {
         "emacs-overlay": "emacs-overlay",
         "home-manager": "home-manager",
+        "moletrooper-dotfiles": "moletrooper-dotfiles",
         "nix-colmena": "nix-colmena",
         "nix-doom-emacs": "nix-doom-emacs",
         "nix-haskell-updates": "nix-haskell-updates",
