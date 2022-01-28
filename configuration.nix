@@ -200,16 +200,18 @@
   };
 
   nix = {
-    autoOptimiseStore = true;
+    settings = {
+      trusted-users = [ "smunix" ];
+      substituters = [ "https://cache.nixos.org/" ];
+      trusted-public-keys = [ ];
+      auto-optimise-store = true;
+    };
     package = inputs.nixF.defaultPackage."x86_64-linux";
     extraOptions = ''
       experimental-features = nix-command flakes
       min-free = ${toString (1 * 1024 * 1024 * 1024)}
       max-free = ${toString (5 * 1024 * 1024 * 1024)}
     '';
-    trustedUsers = [ "smunix" ];
-    binaryCachePublicKeys = [ ];
-    binaryCaches = [ "https://cache.nixos.org/" ];
     gc = {
       automatic = true;
       dates = "daily";
@@ -222,8 +224,10 @@
     wheelNeedsPassword = false;
   };
 
-  nixpkgs.config.allowUnfree = true;
-  nixpkgs.config.pulseaudio = true;
+  nixpkgs.config = {
+    allowUnfree = true;
+    pulseaudio = true;
+  };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
