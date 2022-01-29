@@ -175,7 +175,7 @@
     users = {
       smunix = {
         isNormalUser = true;
-        extraGroups = [ "wheel" "audio" "networkmanager" ];
+        extraGroups = [ "wheel" "audio" "networkmanager" "shadow" ];
       };
     };
     extraUsers = { smunix = { shell = pkgs.fish; }; };
