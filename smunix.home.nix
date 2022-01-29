@@ -320,14 +320,14 @@
         package = pkgs.jetbrains-mono;
       };
       settings = {
-        font_size = 11;
-        disable_ligatures = "cursor";
-        # solarized dark colors
-        foreground = "#839496";
-        foreground_bold = "#eee8d5";
-        cursor = "#839496";
-        cursor_foreground = "#002b36";
-        background = "#002b36";
+        font_size = 8;
+        # disable_ligatures = "cursor";
+        # # solarized dark colors
+        # foreground = "#839496";
+        # foreground_bold = "#eee8d5";
+        # cursor = "#839496";
+        # cursor_foreground = "#002b36";
+        # background = "#002b36";
         # dark backgrounds
         color0 = "#073642";
         color8 = "#002b36";

@@ -127,7 +127,7 @@ end
 beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "urxvt"
+terminal = "kitty"
 editor = os.getenv("EDITOR") or "emacs"
 editor_cmd = terminal .. " -e " .. editor
 beautiful.wallpaper = awful.util.get_configuration_dir() .. "wallpaper/wallpaper.jpg"
