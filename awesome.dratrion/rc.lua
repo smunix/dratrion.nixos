@@ -750,6 +750,10 @@ awful.rules.rules = {
       properties = { screen = 1, tag = "8-Videos", floating = true }
     },
     {
+      rule = { class = "obs" },
+      properties = { screen = 1, tag = "8-Videos", floating = true }
+    },
+    {
       rule = { class = "Mplayer" },
       properties = { screen = 1, tag = "8-Videos", floating = true }
     },
@@ -783,6 +787,10 @@ awful.rules.rules = {
     },
     {
       rule = { class = "URxvt" },
+      properties = { screen = 1, tag = "1-Term", floating = true }
+    },
+    {
+      rule = { class = "kitty" },
       properties = { screen = 1, tag = "1-Term", floating = true }
     },
 }
