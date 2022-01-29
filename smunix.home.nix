@@ -67,6 +67,7 @@
       graphviz
       # inputs.nix-hls.packages.x86_64-linux.haskell-language-server-921
       haskell-language-server
+      # (hlsHpkgs "ghc8107").haskell-language-server
       haskellPackages.cabal-install
       haskellPackages.fourmolu
       haskellPackages.hasktags
@@ -110,7 +111,6 @@
       pmount
       pulsemixer
       python39Full
-      python39Packages.youtube-dl-light
       python39Packages.python-lsp-server
       ripgrep
       rnix-lsp
@@ -126,6 +126,7 @@
       xclip
       xdotool
       yarn
+      yt-dlp
       zoom-us
     ];
   };

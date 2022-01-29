@@ -19,15 +19,6 @@
   home = {
     stateVersion = "22.05";
     packages = with pkgs; [
-      # fonts start
-      noto-fonts
-      noto-fonts-cjk
-      noto-fonts-emoji
-      liberation_ttf
-      fira-code
-      fira-code-symbols
-      input-fonts
-      # fonts end
       ack
       ag
       file
@@ -39,7 +30,6 @@
       nix-prefetch-scripts
       pinentry
       python39Full
-      python39Packages.youtube-dl-light
       python39Packages.python-lsp-server
       ripgrep
       rnix-lsp

@@ -14,6 +14,7 @@
     emacs-overlay.url = "github:nix-community/emacs-overlay";
     nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
     nix-hls.url = "github:haskell/haskell-language-server?ref=master";
+    # nix-hls.url = "github:guibou/haskell-language-server?ref=fix_relative_flake";
     nix-haskell-updates.url = "github:NixOS/nixpkgs/haskell-updates";
     nix-smunix-pkgs.url = "github:smunix/nixpkgs-unfree?ref=main";
     nix-colmena.url = "github:zhaofengli/colmena?ref=main";
