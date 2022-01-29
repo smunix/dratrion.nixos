@@ -66,7 +66,8 @@
       google-chrome-dev
       graphviz
       # inputs.nix-hls.packages.x86_64-linux.haskell-language-server-921
-      haskell-language-server
+      inputs.nix-hls.packages.x86_64-linux.haskell-language-server-8107
+      # haskell-language-server
       # (hlsHpkgs "ghc8107").haskell-language-server
       haskellPackages.cabal-install
       haskellPackages.fourmolu
