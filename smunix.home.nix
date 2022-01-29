@@ -91,7 +91,17 @@
       less
       lorri
       lsb-release
-      mplayer
+      # mplayer => vlc
+      (symlinkJoin {
+        name = "mplayer";
+        paths = [ vlc mplayer ];
+        buildInputs = [ makeWrapper ];
+        postBuild = ''
+          makeWrapper ${vlc}/bin/vlc $out/bin/vplayer --add-flags "-I dummy"
+        '';
+      })
+      # (runCommand "mplayer" { buildInputs = [ makeWrapper ]; }
+      #   ''makeWrapper ${vlc}/bin/vlc $out/bin/mplayer --add-flags "-I dummy"'')
       # nix
       inputs.nixF.defaultPackage.x86_64-linux
       maim
@@ -121,7 +131,6 @@
       tmux
       tokei
       tree
-      vlc
       xscreensaver
       xclip
       xdotool
