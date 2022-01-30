@@ -272,6 +272,7 @@
   # started in user sessions.
   programs.mtr.enable = true;
   programs.fish.enable = true;
+  programs.dconf.enable = true;
   programs.nm-applet.enable = true;
   programs.gnupg.agent = {
     enable = true;

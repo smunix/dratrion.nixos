@@ -155,6 +155,10 @@
     xscreensaver.enable = true;
     betterlockscreen.enable = false;
     udiskie = { enable = true; };
+    taffybar.enable = true;
+    pulseeffects.enable = true;
+    notify-osd.enable = true;
+    caffeine.enable = true;
     gpg-agent = {
       enable = true;
       # defaultCacheTtl = 1800;
@@ -206,12 +210,14 @@
       longitude = "25.70";
     };
   };
+
   programs = {
     lsd.enable = true;
     feh.enable = true;
     fzf.enable = true;
     direnv.enable = true;
-    # home-manager.enable = true;
+    home-manager.enable = true;
+    # dconf.enable = true;
 
     doom-emacs = {
       enable = true;
@@ -236,6 +242,11 @@
         "Session.vim"
         "dist-newstyle"
         "result"
+        "stack.yaml.lock"
+        "build"
+        "TAGS"
+        ".stack-work"
+        ".direnv"
       ];
       lfs.enable = true;
       delta.enable = true;
@@ -370,8 +381,29 @@
       };
     };
   };
+
   xsession = {
-    windowManager = { awesome.enable = true; };
+    windowManager = {
+      awesome = { enable = false; };
+      xmonad = with pkgs; {
+        enable = true;
+        enableContribAndExtras = true;
+        config = writeText "xmonad.hs" ''
+          import XMonad
+          main = xmonad defaultConfig
+            { terminal = "${kitty}/bin/kitty"
+            , modMask  = mod4Mask
+            , borderWidth = 3
+            }
+        '';
+        libFiles = {
+          "Tools.hs" = writeText "Tool.hs" ''
+            module Tools where
+            screenshot = "import"
+          '';
+        };
+      };
+    };
     pointerCursor = {
       package = pkgs.bibata-cursors;
       name = "Bibata-Modern-Ice";

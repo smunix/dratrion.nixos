@@ -44,6 +44,40 @@
     # defaultCacheTtl = 1800;
     enableSshSupport = true;
   };
+  programs = {
+    #
+    # GIT
+    #
+    git = {
+      enable = true;
+      userName = "Providence Salumu";
+      userEmail = "Providence.Salumu@smunix.com";
+      signing.signByDefault = true;
+      signing.key = "48288CFA12817D0C5D56733C6E341E460DD3F77C";
+      ignores = [
+        "*.nogit*"
+        ".envrc"
+        ".vscode"
+        ".vim"
+        "Session.vim"
+        "dist-newstyle"
+        "result"
+        "stack.yaml.lock"
+        "build"
+        "TAGS"
+        ".stack-work"
+        ".direnv"
+      ];
+      lfs.enable = true;
+      delta.enable = true;
+      extraConfig = {
+        pull = { rebase = true; };
+        fetch = { prune = true; };
+        diff = { colorMoved = "zebra"; };
+        core = { editor = "emacs -nw"; };
+      };
+    };
+  };
   programs.doom-emacs = {
     enable = true;
     doomPrivateDir = ./doom.d;
