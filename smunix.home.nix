@@ -157,7 +157,6 @@
     xscreensaver.enable = true;
     betterlockscreen.enable = false;
     udiskie = { enable = true; };
-    taffybar.enable = true;
     pulseeffects.enable = true;
     notify-osd.enable = true;
     caffeine.enable = true;
@@ -427,7 +426,7 @@
               -- Hooks
           import XMonad.Hooks.DynamicLog (dynamicLogWithPP, wrap, xmobarPP, xmobarColor, shorten, PP(..))
           import XMonad.Hooks.EwmhDesktops  -- for some fullscreen events, also for xcomposite in obs.
-          import XMonad.Hooks.ManageDocks (avoidStruts, docksEventHook, manageDocks, ToggleStruts(..))
+          import XMonad.Hooks.ManageDocks (avoidStruts, docksEventHook, manageDocks, docks, ToggleStruts(..))
           import XMonad.Hooks.ManageHelpers (isFullscreen, doFullFloat, doCenterFloat)
           import XMonad.Hooks.ServerMode
           import XMonad.Hooks.SetWMName
@@ -467,6 +466,7 @@
           import XMonad.Util.SpawnOnce
 
           import Color
+          import System.Taffybar.Support.PagerHints (pagerHints)
 
           myFont :: String
           myFont = "xft:SauceCodePro Nerd Font Mono:regular:size=9:antialias=true:hinting=true"
@@ -833,6 +833,27 @@
           -- END_KEYS
 
           main = do
+            -- xmproc <- spawnPipe "${xmobar}/bin/xmobar"
+            spawn "${feh}/bin/feh --bg-scale ${self}/awesome.dratrion/wallpaper/wallpaper.jpg"
+            xmonad $ docks $ ewmh $ pagerHints desktopConfig
+              { terminal = myTerminal
+              , modMask  = myModMask
+              , borderWidth = myBorderWidth
+              , manageHook = myManageHook <+> manageDocks <+> manageHook desktopConfig
+              , layoutHook = avoidStruts (myLayoutHook)
+              , logHook = dynamicLogWithPP xmobarPP
+                  { ppTitle = xmobarColor "green" "" . shorten 50
+                  }
+              , handleEventHook = docksEventHook
+              , workspaces = myWorkspaces
+              , focusedBorderColor = myFocusColor
+              , normalBorderColor = myNormColor
+              } `additionalKeys`
+              [ ((myModMask, xK_l), spawn "xscreensaver-command -lock")
+              , ((myModMask, xK_r), spawn "dmenu_run -i -p \"Run: \"")
+              ]
+
+          mainX = do
             xmproc <- spawnPipe "${xmobar}/bin/xmobar"
             spawn "${feh}/bin/feh --bg-scale ${self}/awesome.dratrion/wallpaper/wallpaper.jpg"
             xmonad $ ewmh desktopConfig
@@ -851,8 +872,10 @@
               , normalBorderColor = myNormColor
               } `additionalKeys`
               [ ((myModMask, xK_l), spawn "xscreensaver-command -lock")
+              , ((myModMask, xK_r), spawn "dmenu_run -i -p \"Run: \"")
               ]
         '';
+
         libFiles = {
           "Tools.hs" = writeText "Tool.hs" ''
             module Tools where

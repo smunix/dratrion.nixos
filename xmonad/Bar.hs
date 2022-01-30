@@ -1,7 +1,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 
 -- |
-module Bar (taffiBar) where
+module Bar (taffyBar) where
 
 import System.Taffybar
 import System.Taffybar.Information.CPU
