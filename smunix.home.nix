@@ -645,8 +645,8 @@
                                            ||| tallAccordion
                                            ||| wideAccordion
 
-          -- myWorkspaces = [" 1 ", " 2 ", " 3 ", " 4 ", " 5 ", " 6 ", " 7 ", " 8 ", " 9 "]
-          myWorkspaces = [" dev ", " www ", " sys ", " doc ", " vbox ", " chat ", " mus ", " vid ", " gfx "]
+          -- myWorkspaces = [" 1 ", " 2 ", " 3 ", " 4 ", " 5 ", " 6 ", " 7 "]
+          myWorkspaces = zipWith (\i w -> " " <> show i <> ":" <> w <> " ") [1 ..] ["xterm", "www", "remote", "dev", "chat", "doc", "vid"]
           myWorkspaceIndices = M.fromList $ zipWith (,) myWorkspaces [1..] -- (,) == \x y -> (x,y)
 
           clickable ws = "<action=xdotool key super+"++show i++">"++ws++"</action>"
@@ -668,16 +668,13 @@
                , className =? "pinentry-gtk-2"            --> doFloat
                , className =? "splash"                    --> doFloat
                , className =? "toolbar"                   --> doFloat
-               , className =? "kitty"                     --> doFloat
-               , className =? "google-chrome-unstable"    --> doFloat
-               , className =? "Google-chrome-unstable"    --> doFloat
-               , className =? "Yad"                       --> doCenterFloat
+               , className =? "kitty"                     --> doFloat <+> doShift (myWorkspaces !! 0)
+               , className =? "google-chrome-unstable"    --> doFloat <+> doShift (myWorkspaces !! 1)
+               , className =? "Google-chrome-unstable"    --> doFloat <+> doShift (myWorkspaces !! 1)
                , title =? "Oracle VM VirtualBox Manager"  --> doFloat
                , title =? "Mozilla Firefox"               --> doShift ( myWorkspaces !! 1 )
-               , className =? "Brave-browser"             --> doShift ( myWorkspaces !! 1 )
-               , className =? "mpv"                       --> doShift ( myWorkspaces !! 7 )
-               , className =? "Gimp"                      --> doShift ( myWorkspaces !! 8 )
-               , className =? "VirtualBox Manager"        --> doShift  ( myWorkspaces !! 4 )
+               , className =? "Gimp"                      --> doShift ( myWorkspaces !! 2 )
+               , className =? "VirtualBox Manager"        --> doShift ( myWorkspaces !! 3 )
                , (className =? "firefox" <&&> resource =? "Dialog") --> doFloat  -- Float Firefox Dialog
                , isFullscreen -->  doFullFloat
                ]
