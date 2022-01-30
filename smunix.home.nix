@@ -833,7 +833,7 @@
           -- END_KEYS
 
           main = do
-            -- xmproc <- spawnPipe "${xmobar}/bin/xmobar"
+            xmproc <- spawnPipe "${xmobar}/bin/xmobar"
             spawn "${feh}/bin/feh --bg-scale ${self}/awesome.dratrion/wallpaper/wallpaper.jpg"
             xmonad $ docks $ ewmh $ pagerHints desktopConfig
               { terminal = myTerminal
@@ -842,7 +842,8 @@
               , manageHook = myManageHook <+> manageDocks <+> manageHook desktopConfig
               , layoutHook = avoidStruts (myLayoutHook)
               , logHook = dynamicLogWithPP xmobarPP
-                  { ppTitle = xmobarColor "green" "" . shorten 50
+                  { ppOutput = hPutStrLn xmproc
+                  , ppTitle = xmobarColor "green" "" . shorten 50
                   }
               , handleEventHook = docksEventHook
               , workspaces = myWorkspaces
