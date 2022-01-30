@@ -25,6 +25,7 @@
         # source = ./awesome.moletrooper;
         target = "./.config/awesome";
       };
+      "xscreensaver" = { source = ./.xscreensaver; };
       # "tmux" = {
       #   source = ./tmux.dratrion;
       #   target = "./.tmux";
@@ -43,6 +44,7 @@
       colmena
       conky
       direnv
+      dconf
       dos2unix
       dtrx
       du-dust
@@ -56,13 +58,14 @@
       ffmpeg
       file
       fish
-      git
       gcc
-      gimp
-      gmic
       gimpPlugins.gmic
       ghcid
+      gifski
+      gimp
+      git
       git-quick-stats
+      gmic
       google-chrome-dev
       graphviz
       # inputs.nix-hls.packages.x86_64-linux.haskell-language-server-921
@@ -144,6 +147,14 @@
   # Speed up direnv
   services = {
     lorri.enable = true;
+    pasystray.enable = true;
+    blueman-applet.enable = true;
+    network-manager-applet.enable = true;
+    dunst.enable = true;
+    xidlehook = { enable = false; };
+    xscreensaver.enable = true;
+    betterlockscreen.enable = false;
+    udiskie = { enable = true; };
     gpg-agent = {
       enable = true;
       # defaultCacheTtl = 1800;
@@ -232,6 +243,7 @@
         pull = { rebase = true; };
         fetch = { prune = true; };
         diff = { colorMoved = "zebra"; };
+        core = { editor = "emacs -nw"; };
       };
     };
     #

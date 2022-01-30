@@ -184,19 +184,34 @@
 
   virtualisation = { virtualbox.host.enable = true; };
 
-  systemd.user.services."udiskie" = {
-    enable = true;
-    description = "udiskie to automount removable media";
-    wantedBy = [ "default.target" ];
-    path = with pkgs; [
-      gnome3.adwaita-icon-theme
-      # gnome3.gnome_themes_standard
-      udiskie
-    ];
-    environment.XDG_DATA_DIRS = "${pkgs.gnome3.adwaita-icon-theme}/share";
-    serviceConfig.Restart = "always";
-    serviceConfig.RestartSec = 2;
-    serviceConfig.ExecStart = "${pkgs.udiskie}/bin/udiskie -a -t -n -F ";
+  systemd.user.services = {
+    # "udiskie" = {
+    #   enable = true;
+    #   description = "udiskie to automount removable media";
+    #   wantedBy = [ "default.target" ];
+    #   path = with pkgs; [
+    #     gnome3.adwaita-icon-theme
+    #     # gnome3.gnome_themes_standard
+    #     udiskie
+    #   ];
+    #   environment.XDG_DATA_DIRS = "${pkgs.gnome3.adwaita-icon-theme}/share";
+    #   serviceConfig.Restart = "always";
+    #   serviceConfig.RestartSec = 2;
+    #   serviceConfig.ExecStart = "${pkgs.udiskie}/bin/udiskie -a -t -n -F ";
+    # };
+
+    "stretchly" = {
+      enable = true;
+      description = "A break time reminder app";
+      wantedBy = [ "graphical-session.target" ];
+      after = [ "graphical-session-pre.target" ];
+      path = with pkgs; [ stretchly ];
+      serviceConfig = {
+        Restart = "always";
+        RestartSec = 3;
+        ExecStart = "${pkgs.stretchly}/bin/stretchly";
+      };
+    };
   };
 
   nix = {
