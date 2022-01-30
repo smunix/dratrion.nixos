@@ -48,7 +48,6 @@
       dos2unix
       dtrx
       du-dust
-      eclipses.eclipse-cpp
       entr
       et
       evince
@@ -59,12 +58,14 @@
       file
       fish
       gcc
-      gimpPlugins.gmic
       ghcid
       gifski
       gimp
+      gimpPlugins.gmic
       git
       git-quick-stats
+      glab
+      gh
       gmic
       google-chrome-dev
       graphviz
@@ -211,14 +212,17 @@
     };
   };
 
-  programs = {
+  programs = with pkgs; {
     lsd.enable = true;
     feh.enable = true;
     fzf.enable = true;
     direnv.enable = true;
     home-manager.enable = true;
     # dconf.enable = true;
-
+    eclipse = {
+      enable = true;
+      package = eclipses.eclipse-cpp;
+    };
     doom-emacs = {
       enable = true;
       doomPrivateDir = ./doom.d;
