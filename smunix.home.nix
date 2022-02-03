@@ -725,12 +725,12 @@
               myXterm = ["kitty"]
               myWww = ["Firefox", "Google-chrome-unstable", "google-chrome-unstable"]
               myRemote = ["Wfica"]
-              myDev = ["Emacs", "emacs", "VirtualBox Manager"]
+              myDev = ["Emacs", "emacs", "Gimp", "gimp", "VirtualBox Manager"]
               myChat = []
               myDoc = ["Evince", "evince"]
               myVid = ["vlc", "obs", "Zoom"]
               myNames = ["Google Chrome"]
-              myFloats = ["Firefox", "Wfica", "obs"]
+              myFloats = ["Firefox", "Wfica", "Gimp", "obs"]
 
               name = stringProperty "WM_NAME"
               role = stringProperty "WM_WINDOW_ROLE"
