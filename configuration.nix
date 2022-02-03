@@ -203,6 +203,18 @@
     #   serviceConfig.RestartSec = 2;
     #   serviceConfig.ExecStart = "${pkgs.udiskie}/bin/udiskie -a -t -n -F ";
     # };
+    "stalonetray" = {
+      enable = true;
+      description = "A standalone tray";
+      wantedBy = [ "graphical-session.target" ];
+      after = [ "graphical-session-pre.target" ];
+      path = with pkgs; [ stalonetray ];
+      serviceConfig = {
+        Restart = "always";
+        RestartSec = 3;
+        ExecStart = "${pkgs.stalonetray}/bin/stalonetray";
+      };
+    };
 
     "stretchly" = {
       enable = true;

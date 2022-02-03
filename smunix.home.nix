@@ -26,6 +26,28 @@
         target = "./.config/awesome";
       };
       "xscreensaver" = { source = ./.xscreensaver; };
+      "stalonetrayrc" = {
+        source = pkgs.writeText "stalonetrayrc" ''
+          decorations none
+          transparent false
+          dockapp_mode none
+          geometry 5x1-540+0
+          # max_geometry 5x1-325-20
+          max_geometry 0x0
+          background "#000000"
+          kludges force_icons_size
+          grow_gravity NE
+          icon_gravity NE
+          icon_size 12
+          sticky true
+          #window_strut none
+          window_type dock
+          window_layer bottom
+          #no_shrink false
+          skip_taskbar false
+        '';
+        target = "./.stalonetrayrc";
+      };
       # "tmux" = {
       #   source = ./tmux.dratrion;
       #   target = "./.tmux";
@@ -37,6 +59,7 @@
                  -- used to make the bar appear correctly after Mod-q in older xmonad implementations (0.9.x)
                  -- doesn't seem to do anything anymore (0.10, darcs)
                  -- lowerOnStart = False,
+                 -- position = Static { xpos = 0, ypos = 0, width = 2048, height = 20},
                  commands = [
                           -- Addison, TX
                           Run Weather "KADS" ["-t"," <tempC>C","-L","45","-H","74","--normal","green","--high","red","--low","lightblue"] 36000,
@@ -44,7 +67,7 @@
                           Run Memory ["-t","Mem: <usedratio>%"] 10,
                           Run Swap [] 10,
                           Run Date "%a %b %_d %l:%M" "date" 10,
-                          Run Com "uname" ["-s", "-r"] "" 36000,
+                          Run Com "uname" ["-n", "-r"] "" 36000,
                           Run Network "wlp69s0" [] 10,
                           Run StdinReader
                           ]
@@ -706,7 +729,7 @@
               myChat = []
               myDoc = ["Evince", "evince"]
               myVid = ["vlc", "obs", "Zoom"]
-              myNames = []
+              myNames = ["Google Chrome"]
               myFloats = ["Firefox", "Wfica", "obs"]
 
               name = stringProperty "WM_NAME"
@@ -740,6 +763,9 @@
           myKeys conf@(XConfig {XMonad.modMask = modMask}) = conf `additionalKeys`
             [ ((modMask, xK_r), spawn "dmenu_run -i -p \"Run: \"")
             , ((modMask .|. shiftMask, xK_l), spawn "xscreensaver-command -lock")
+            , ((0, 0x1008ff12), spawn "${pulsemixer}/bin/pulsemixer --toggle-mute")
+            , ((0, 0x1008ff11), spawn "${pulsemixer}/bin/pulsemixer --change-volume -10")
+            , ((0, 0x1008ff13), spawn "${pulsemixer}/bin/pulsemixer --change-volume +10")
             ]
           myKeys_ :: [(String, X ())]
           myKeys_ =
@@ -905,6 +931,8 @@
           main = do
             xmproc <- spawnPipe "${xmobar}/bin/xmobar"
             spawn "${feh}/bin/feh --bg-scale ${self}/awesome.dratrion/wallpaper/wallpaper.jpg"
+            -- spawn "${stalonetray}/bin/stalonetray"
+            spawn "${conky}/bin/conky -c ~/.conky/conky_system -y100 -c ~/conky_and_lua_by_mr_mattz_danuesx/.conkyrc"
             let cfg = desktopConfig {
                 terminal = myTerminal
               , modMask  = myModMask
