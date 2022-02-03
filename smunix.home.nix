@@ -30,6 +30,30 @@
       #   source = ./tmux.dratrion;
       #   target = "./.tmux";
       # };
+      "xmobarrc" = {
+        source = pkgs.writeText "xmobarrc" ''
+          Config {
+                 -- font = "xft:Monospace:pixelsize=11",
+                 -- used to make the bar appear correctly after Mod-q in older xmonad implementations (0.9.x)
+                 -- doesn't seem to do anything anymore (0.10, darcs)
+                 -- lowerOnStart = False,
+                 commands = [
+                          -- Addison, TX
+                          Run Weather "KADS" ["-t"," <tempC>C","-L","45","-H","74","--normal","green","--high","red","--low","lightblue"] 36000,
+                          Run Cpu ["-L","3","-H","50","--normal","green","--high","red"] 10,
+                          Run Memory ["-t","Mem: <usedratio>%"] 10,
+                          Run Swap [] 10,
+                          Run Date "%a %b %_d %l:%M" "date" 10,
+                          Run Com "uname" ["-s", "-r"] "" 36000,
+                          Run Network "wlp69s0" [] 10,
+                          Run StdinReader
+                          ]
+                 , sepChar = "%"
+                 , alignSep = "}{"
+                 , template = "%StdinReader% }{ %wlp69s0% | %cpu% | %memory% * %swap%    <fc=#ee9a00>%date%</fc> | %KADS% | %uname%"
+                 }
+        '';
+      };
     };
     packages = with pkgs; [
       ack
@@ -399,6 +423,11 @@
           import XMonad.Config.Desktop
           import XMonad.Hooks.DynamicLog
 
+          -- Prompt
+          import XMonad.Prompt
+          import XMonad.Prompt.RunOrRaise (runOrRaisePrompt)
+          import XMonad.Prompt.AppendFile (appendFilePrompt)
+
           import System.Directory
           import System.IO (hPutStrLn)
           import System.Exit (exitSuccess)
@@ -431,6 +460,8 @@
           import XMonad.Hooks.ServerMode
           import XMonad.Hooks.SetWMName
           import XMonad.Hooks.WorkspaceHistory
+          import XMonad.Hooks.FadeInactive
+          import XMonad.Hooks.UrgencyHook
 
               -- Layouts
           import XMonad.Layout.Accordion
@@ -466,6 +497,7 @@
           import XMonad.Util.SpawnOnce
 
           import Color
+          import Fonts
           import System.Taffybar.Support.PagerHints (pagerHints)
 
           myFont :: String
@@ -487,7 +519,7 @@
           myEditor = "${emacs}/bin/emacs"  -- Sets emacs as editor
 
           myBorderWidth :: Dimension
-          myBorderWidth = 3           -- Sets border width for windows
+          myBorderWidth = 1           -- Sets border width for windows
 
           myNormColor :: String       -- Border color of normal windows
           myNormColor   = colorBack   -- This variable is imported from Colors.THEME
@@ -645,43 +677,72 @@
                                            ||| tallAccordion
                                            ||| wideAccordion
 
-          -- myWorkspaces = [" 1 ", " 2 ", " 3 ", " 4 ", " 5 ", " 6 ", " 7 "]
-          myWorkspaces = zipWith (\i w -> " " <> show i <> ":" <> w <> " ") [1 ..] ["xterm", "www", "remote", "dev", "chat", "doc", "vid"]
-          myWorkspaceIndices = M.fromList $ zipWith (,) myWorkspaces [1..] -- (,) == \x y -> (x,y)
+          myWorkspaces = zipWith (\i w -> show i <> ":" <> w) [1 ..] ["xterm", "www", "remote", "dev", "chat", "doc", "vid"]
+          myWorkspaceIndices = M.fromList $ zipWith (,) myWorkspaces [1..]
 
           clickable ws = "<action=xdotool key super+"++show i++">"++ws++"</action>"
               where i = fromJust $ M.lookup ws myWorkspaceIndices
 
-          myManageHook :: XMonad.Query (Data.Monoid.Endo WindowSet)
-          myManageHook = composeAll
-               -- 'doFloat' forces a window to float.  Useful for dialog boxes and such.
-               -- using 'doShift ( myWorkspaces !! 7)' sends program to workspace 8!
-               -- I'm doing it this way because otherwise I would have to write out the full
-               -- name of my workspaces and the names would be very long if using clickable workspaces.
-               [ className =? "confirm"                   --> doFloat
-               , className =? "file_progress"             --> doFloat
-               , className =? "dialog"                    --> doFloat
-               , className =? "download"                  --> doFloat
-               , className =? "error"                     --> doFloat
-               , className =? "Gimp"                      --> doFloat
-               , className =? "notification"              --> doFloat
-               , className =? "pinentry-gtk-2"            --> doFloat
-               , className =? "splash"                    --> doFloat
-               , className =? "toolbar"                   --> doFloat
-               , className =? "kitty"                     --> doFloat <+> doShift (myWorkspaces !! 0)
-               , className =? "google-chrome-unstable"    --> doFloat <+> doShift (myWorkspaces !! 1)
-               , className =? "Google-chrome-unstable"    --> doFloat <+> doShift (myWorkspaces !! 1)
-               , title =? "Oracle VM VirtualBox Manager"  --> doFloat
-               , title =? "Mozilla Firefox"               --> doShift ( myWorkspaces !! 1 )
-               , className =? "Gimp"                      --> doShift ( myWorkspaces !! 2 )
-               , className =? "VirtualBox Manager"        --> doShift ( myWorkspaces !! 3 )
-               , (className =? "firefox" <&&> resource =? "Dialog") --> doFloat  -- Float Firefox Dialog
-               , isFullscreen -->  doFullFloat
-               ]
+          myManageHook :: ManageHook
+          myManageHook = composeAll . concat $
+            [ [ resource =? r --> doIgnore | r <- myIgnores ]
+            , [ className =? c --> doShift "1:xterm" | c <- myXterm ]
+            , [ className =? c --> doShift "2:www" | c <- myWww ]
+            , [ className =? c --> doShift "3:remote" | c <- myRemote ]
+            , [ className =? c --> doShift "4:dev" | c <- myDev ]
+            , [ className =? c --> doShift "5:chat" | c <- myChat ]
+            , [ className =? c --> doShift "6:doc" | c <- myDoc ]
+            , [ className =? c --> doShift "7:vid" | c <- myVid ]
+            , [ className =? c --> doCenterFloat | c <- myFloats ]
+            , [ name =? n --> doCenterFloat | n <- myNames ]
+            , [ isFullscreen --> myDoFullFloat ]
+            ]
+            where
+              myIgnores = []
+              myXterm = ["kitty"]
+              myWww = ["Firefox", "Google-chrome-unstable", "google-chrome-unstable"]
+              myRemote = ["Wfica"]
+              myDev = ["Emacs", "emacs", "VirtualBox Manager"]
+              myChat = []
+              myDoc = ["Evince", "evince"]
+              myVid = ["vlc", "obs", "Zoom"]
+              myNames = []
+              myFloats = ["Firefox", "Wfica", "obs"]
+
+              name = stringProperty "WM_NAME"
+              role = stringProperty "WM_WINDOW_ROLE"
+
+              myDoFullFloat :: ManageHook
+              myDoFullFloat = doF W.focusDown <+> doFullFloat
+
+          -- Prompt Config {{{
+          mXPConfig :: XPConfig
+          mXPConfig =
+              defaultXPConfig { font                  = barFont
+                              , bgColor               = colorDarkGray
+                              , fgColor               = colorGreen
+                              , bgHLight              = colorGreen
+                              , fgHLight              = colorDarkGray
+                              , promptBorderWidth     = 0
+                              , height                = 14
+                              , historyFilter         = deleteConsecutive
+                              }
+
+          -- Run or Raise Menu
+          largeXPConfig :: XPConfig
+          largeXPConfig = mXPConfig
+                          { font = xftFont
+                          , height = 22
+                          }
+          -- }}}
 
           -- START_KEYS
-          myKeys :: [(String, X ())]
-          myKeys =
+          myKeys conf@(XConfig {XMonad.modMask = modMask}) = conf `additionalKeys`
+            [ ((modMask, xK_r), spawn "dmenu_run -i -p \"Run: \"")
+            , ((modMask .|. shiftMask, xK_l), spawn "xscreensaver-command -lock")
+            ]
+          myKeys_ :: [(String, X ())]
+          myKeys_ =
               -- KB_GROUP Xmonad
                   [ ("M-C-r", spawn "xmonad --recompile")       -- Recompiles xmonad
                   , ("M-S-r", spawn "xmonad --restart")         -- Restarts xmonad
@@ -828,16 +889,29 @@
                     where nonNSP          = WSIs (return (\ws -> W.tag ws /= "NSP"))
                           nonEmptyNonNSP  = WSIs (return (\ws -> isJust (W.stack ws) && W.tag ws /= "NSP"))
           -- END_KEYS
-
+          -- myLogHook :: Handle -> X ()
+          myLogHook h = dynamicLogWithPP $ defaultPP
+              {
+                  ppCurrent           =   dzenColor "#ebac54" "#1B1D1E" . pad
+                , ppVisible           =   dzenColor "white" "#1B1D1E" . pad
+                , ppHidden            =   dzenColor "white" "#1B1D1E" . pad
+                , ppHiddenNoWindows   =   dzenColor "#7b7b7b" "#1B1D1E" . pad
+                , ppUrgent            =   dzenColor "#ff0000" "#1B1D1E" . pad
+                , ppWsSep             =   " "
+                , ppSep               =   "  |  "
+                , ppTitle             =   (" " ++) . dzenColor "white" "#1B1D1E" . dzenEscape
+                , ppOutput            =   hPutStrLn h
+              }
           main = do
             xmproc <- spawnPipe "${xmobar}/bin/xmobar"
             spawn "${feh}/bin/feh --bg-scale ${self}/awesome.dratrion/wallpaper/wallpaper.jpg"
-            xmonad $ docks $ ewmh $ pagerHints desktopConfig
-              { terminal = myTerminal
+            let cfg = desktopConfig {
+                terminal = myTerminal
               , modMask  = myModMask
               , borderWidth = myBorderWidth
               , manageHook = myManageHook <+> manageDocks <+> manageHook desktopConfig
               , layoutHook = avoidStruts (myLayoutHook)
+              -- , logHook = myLogHook dzenLeftBar >> fadeInactiveLogHook 0xdddddddd
               , logHook = dynamicLogWithPP xmobarPP
                   { ppOutput = hPutStrLn xmproc
                   , ppTitle = xmobarColor "green" "" . shorten 50
@@ -846,32 +920,8 @@
               , workspaces = myWorkspaces
               , focusedBorderColor = myFocusColor
               , normalBorderColor = myNormColor
-              } `additionalKeys`
-              [ ((myModMask, xK_l), spawn "xscreensaver-command -lock")
-              , ((myModMask, xK_r), spawn "dmenu_run -i -p \"Run: \"")
-              ]
-
-          mainX = do
-            xmproc <- spawnPipe "${xmobar}/bin/xmobar"
-            spawn "${feh}/bin/feh --bg-scale ${self}/awesome.dratrion/wallpaper/wallpaper.jpg"
-            xmonad $ ewmh desktopConfig
-              { terminal = myTerminal
-              , modMask  = myModMask
-              , borderWidth = myBorderWidth
-              , manageHook = myManageHook <+> manageDocks <+> manageHook desktopConfig
-              , layoutHook = avoidStruts (myLayoutHook)
-              , logHook = dynamicLogWithPP xmobarPP
-                  { ppOutput = hPutStrLn xmproc
-                  , ppTitle = xmobarColor "green" "" . shorten 50
-                  }
-              , handleEventHook = docksEventHook
-              , workspaces = myWorkspaces
-              , focusedBorderColor = myFocusColor
-              , normalBorderColor = myNormColor
-              } `additionalKeys`
-              [ ((myModMask, xK_l), spawn "xscreensaver-command -lock")
-              , ((myModMask, xK_r), spawn "dmenu_run -i -p \"Run: \"")
-              ]
+              }
+            xmonad $ docks $ ewmh $ pagerHints $ myKeys $ cfg
         '';
 
         libFiles = {
@@ -882,6 +932,7 @@
           "Bar.hs" = ./xmonad/Bar.hs;
           "Config.hs" = ./xmonad/Config.hs;
           "Color.hs" = ./xmonad/Color.hs;
+          "Fonts.hs" = ./xmonad/Fonts.hs;
         };
       };
     };

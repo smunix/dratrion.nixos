@@ -43,3 +43,21 @@ color16 = "#dfdfdf"
 
 colorTrayer :: String
 colorTrayer = "--tint 0x282c34"
+
+colorOrange = "#FD971F"
+
+colorDarkGray = "#1B1D1E"
+
+colorPink = "#F92672"
+
+colorGreen = "#A6E22E"
+
+colorBlue = "#66D9EF"
+
+colorYellow = "#E6DB74"
+
+colorWhite = "#CCCCC6"
+
+colorNormalBorder = "#CCCCC6"
+
+colorFocusedBorder = "#fd971f"
