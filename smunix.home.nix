@@ -87,7 +87,9 @@
       bluezFull
       bottom
       ccls
-      citrix_workspace
+      (writeShellScriptBin "launchExtMSAD" ''
+        ${citrix_workspace}/bin/wfica -sound -geometry 1024x928+0+0 ~/Downloads/launchExtMSAD.ica
+      '')
       colmena
       conky
       direnv
@@ -728,7 +730,7 @@
               myDev = ["Emacs", "emacs", "Gimp", "gimp", "VirtualBox Manager"]
               myChat = []
               myDoc = ["Evince", "evince"]
-              myVid = ["vlc", "obs", "Zoom"]
+              myVid = ["vlc", "obs", "zoom"]
               myNames = ["Google Chrome"]
               myFloats = ["Firefox", "Wfica", "Gimp", "obs"]
 

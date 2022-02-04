@@ -565,17 +565,17 @@
         "retrie": "retrie"
       },
       "locked": {
-        "lastModified": 1643829800,
-        "narHash": "sha256-Bl9jvowdPSq1VyrC2+ILCMBBAKbICNGWcsKao5x6YEc=",
+        "lastModified": 1643664578,
+        "narHash": "sha256-oWQu0xj1ceCMlj8unim3DEBDAUInhIdZzS86TbOZY90=",
         "owner": "haskell",
         "repo": "haskell-language-server",
-        "rev": "83d26ec1631322d1978d4ac17baf67e3d53a9ed7",
+        "rev": "9cd1fdd4fa5581456bb4e0a3dbf14a68faffa49d",
         "type": "github"
       },
       "original": {
         "owner": "haskell",
-        "ref": "master",
         "repo": "haskell-language-server",
+        "rev": "9cd1fdd4fa5581456bb4e0a3dbf14a68faffa49d",
         "type": "github"
       }
     },
