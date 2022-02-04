@@ -727,7 +727,7 @@
               myXterm = ["kitty"]
               myWww = ["Firefox", "Google-chrome-unstable", "google-chrome-unstable"]
               myRemote = ["Wfica"]
-              myDev = ["Eclipse", "java", "Java", "Emacs", "emacs", "Gimp", "gimp", "VirtualBox Manager"]
+              myDev = ["Eclipse", "java", "Java", "Emacs", "emacs", "Gimp", "gimp", "VirtualBox Manager", "Inkscape", "org.inkscape.Inkscape"]
               myChat = []
               myDoc = ["Evince", "evince"]
               myVid = ["vlc", "obs", "zoom"]
