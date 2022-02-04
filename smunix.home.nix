@@ -727,7 +727,7 @@
               myXterm = ["kitty"]
               myWww = ["Firefox", "Google-chrome-unstable", "google-chrome-unstable"]
               myRemote = ["Wfica"]
-              myDev = ["Emacs", "emacs", "Gimp", "gimp", "VirtualBox Manager"]
+              myDev = ["Eclipse", "java", "Java", "Emacs", "emacs", "Gimp", "gimp", "VirtualBox Manager"]
               myChat = []
               myDoc = ["Evince", "evince"]
               myVid = ["vlc", "obs", "zoom"]
@@ -765,6 +765,10 @@
           myKeys conf@(XConfig {XMonad.modMask = modMask}) = conf `additionalKeys`
             [ ((modMask, xK_r), spawn "dmenu_run -i -p \"Run: \"")
             , ((modMask .|. shiftMask, xK_l), spawn "xscreensaver-command -lock")
+            -- terminals
+            , ((modMask .|. shiftMask, xK_Return), windows W.swapMaster)
+            , ((modMask, xK_Return), spawn $ XMonad.terminal conf)
+            -- multimedia keys
             , ((0, 0x1008ff12), spawn "${pulsemixer}/bin/pulsemixer --toggle-mute")
             , ((0, 0x1008ff11), spawn "${pulsemixer}/bin/pulsemixer --change-volume -10")
             , ((0, 0x1008ff13), spawn "${pulsemixer}/bin/pulsemixer --change-volume +10")
