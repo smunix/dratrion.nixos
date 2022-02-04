@@ -764,7 +764,7 @@
           -- START_KEYS
           myKeys conf@(XConfig {XMonad.modMask = modMask}) = conf `additionalKeys`
             [ ((modMask, xK_r), spawn "dmenu_run -i -p \"Run: \"")
-            , ((modMask .|. shiftMask, xK_l), spawn "xscreensaver-command -lock")
+            , ((modMask, xK_l), spawn "xscreensaver-command -lock")
             -- terminals
             , ((modMask .|. shiftMask, xK_Return), windows W.swapMaster)
             , ((modMask, xK_Return), spawn $ XMonad.terminal conf)
@@ -772,6 +772,9 @@
             , ((0, 0x1008ff12), spawn "${pulsemixer}/bin/pulsemixer --toggle-mute")
             , ((0, 0x1008ff11), spawn "${pulsemixer}/bin/pulsemixer --change-volume -10")
             , ((0, 0x1008ff13), spawn "${pulsemixer}/bin/pulsemixer --change-volume +10")
+            -- sizing windows
+            , ((modMask .|. shiftMask, xK_h), sendMessage XMonad.Shrink)
+            , ((modMask .|. shiftMask, xK_l), sendMessage XMonad.Expand)
             ]
           myKeys_ :: [(String, X ())]
           myKeys_ =
