@@ -56,7 +56,7 @@
           decorations none
           transparent false
           dockapp_mode none
-          geometry 5x1-540+0
+          geometry 5x1-580+0
           # max_geometry 5x1-325-20
           max_geometry 0x0
           background "#000000"
@@ -1160,7 +1160,7 @@
               , focusFollowsMouse  = myFocusFollowsMouse
               , clickJustFocuses   = myClickJustFocuses
               , manageHook = myManageHook <+> manageDocks <+> manageHook desktopConfig
-              , layoutHook = gaps [(L,15), (R,15), (U,20), (D,30)] $ spacingRaw True (Border 5 5 5 5) True (Border 5 5 5 5) True $ smartBorders $ avoidStruts (myLayoutHook)
+              , layoutHook = gaps [(L,1), (R,180), (U,0), (D,0)] $ spacingRaw True (Border 5 5 5 5) True (Border 5 5 5 5) True $ smartBorders $ avoidStruts (myLayoutHook)
               -- , logHook = myLogHook dzenLeftBar >> fadeInactiveLogHook 0xdddddddd
               , logHook = dynamicLogWithPP xmobarPP
                   { ppOutput = hPutStrLn xmproc
