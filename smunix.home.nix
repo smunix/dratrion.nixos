@@ -170,6 +170,7 @@
       jitsi
       jq
       killall
+      libnotify
       lm_sensors
       less
       lorri
@@ -323,8 +324,7 @@
     network-manager-applet.enable = true;
     dunst.enable = true;
     xidlehook = { enable = false; };
-    xscreensaver.enable = true;
-    betterlockscreen.enable = false;
+    xscreensaver.enable = false;
     udiskie = { enable = true; };
     pulseeffects.enable = true;
     notify-osd.enable = true;
@@ -379,6 +379,15 @@
       };
       latitude = "45.48";
       longitude = "73.56";
+    };
+    betterlockscreen = {
+      enable = true;
+      inactiveInterval = 5;
+      arguments = [
+        "-u ${self}/awesome.dratrion/wallpaper/"
+        "--fx dim,pixel"
+        "--lock dimblur"
+      ];
     };
   };
 
@@ -721,15 +730,22 @@
           clipboardy :: MonadIO m => m () -- Don't question it
           clipboardy = spawn "rofi -modi \"\63053 :greenclip print\" -show \"\63053 \" -run-command '{cmd}' -theme ~/.config/rofi/launcher/style.rasi"
 
-          centerlaunch = spawn "exec ~/bin/eww open-many blur_full weather profile quote search_full incognito-icon vpn-icon home_dir screenshot power_full reboot_full lock_full logout_full suspend_full"
-          sidebarlaunch = spawn "exec ~/bin/eww open-many weather_side time_side smol_calendar player_side sys_side sliders_side"
-          ewwclose = spawn "exec ~/bin/eww close-all"
-          -- maimcopy = spawn "maim -s | xclip -selection clipboard -t image/png && notify-send \"Screenshot\" \"Copied to Clipboard\" -i flameshot"
-          -- maimsave = spawn "maim -s ~/Desktop/$(date +%Y-%m-%d_%H-%M-%S).png && notify-send \"Screenshot\" \"Saved to Desktop\" -i flameshot"
+          centerlaunch = spawn "eww open-many blur_full weather profile quote search_full incognito-icon vpn-icon home_dir screenshot power_full reboot_full lock_full logout_full suspend_full"
+          sidebarlaunch = spawn "eww open-many weather_side time_side smol_calendar player_side sys_side sliders_side"
+          ewwclose = spawn "eww close-all"
           rofi_launcher = spawn "rofi -no-lazy-grab -show drun -modi run,drun,window -theme $HOME/.config/rofi/launcher/style -drun-icon-theme \"candy-icons\" "
 
           myStartupHook :: X ()
           myStartupHook = do
+            spawnOnce "eww daemon"
+            spawn "xsetroot -cursor_name left_ptr"
+            spawnOnce "xset s 500"
+            spawnOnce "xautolock -time 5 -locker \"${betterlockscreen}/bin/betterlockscreen -l\" -notify 30 -notifier \"${libnotify}/bin/notify-send 'Locker' 'Locking screen in 30 seconds'\" -killtime 5 -killer \"systemctl suspend\""
+            spawnOnce "${picom}/bin/picom --experimental-backends"
+            spawnOnce "${haskellPackages.greenclip}/bin/greenclip daemon"
+            -- spawnOnce "dunst"
+            spawnOnce "${feh}/bin/feh --bg-scale ${self}/awesome.dratrion/wallpaper/wallpaper.jpg"
+            spawn "${conky}/bin/conky -c ~/.conky/conky_system -y100 -c ~/conky_and_lua_by_mr_mattz_danuesx/.conkyrc"
             return ()
 
           myColorizer :: Window -> Bool -> X (String, String)
@@ -937,7 +953,7 @@
           -- START_KEYS
           myKeys conf@(XConfig {XMonad.modMask = modMask}) = conf `additionalKeys`
             [ ((modMask, xK_r), spawn "dmenu_run -i -p \"Run: \"")
-            , ((modMask, xK_l), spawn "xscreensaver-command -lock")
+            , ((modMask, xK_l), spawn "${betterlockscreen}/bin/betterlockscreen -l -u ~/.config/awesome/wallpapaer/")
             -- terminals
             , ((modMask .|. shiftMask, xK_Return), windows W.swapMaster)
             , ((modMask, xK_Return), spawn $ XMonad.terminal conf)
@@ -952,11 +968,27 @@
             , ((modMask,               xK_o     ), rofi_launcher)
             , ((modMask,               xK_p     ), centerlaunch)
             , ((modMask .|. shiftMask, xK_p     ), ewwclose)
-
             -- launch eww sidebar
             , ((modMask,               xK_s     ), sidebarlaunch)
             , ((modMask .|. shiftMask, xK_s     ), ewwclose)
+            -- launch eww sidebar
+            , ((modMask,               xK_s     ), sidebarlaunch)
+            , ((modMask .|. shiftMask, xK_s     ), ewwclose)
+            -- GAPS!!!
+            , ((modMask .|. controlMask, xK_g), sendMessage $ ToggleGaps)               -- toggle all gaps
+            , ((modMask .|. shiftMask, xK_g), sendMessage $ setGaps [(L,30), (R,30), (U,40), (D,60)]) -- reset the GapSpec
 
+            , ((modMask .|. controlMask, xK_t), sendMessage $ IncGap 10 L)              -- increment the left-hand gap
+            , ((modMask .|. shiftMask, xK_t     ), sendMessage $ DecGap 10 L)           -- decrement the left-hand gap
+
+            , ((modMask .|. controlMask, xK_y), sendMessage $ IncGap 10 U)              -- increment the top gap
+            , ((modMask .|. shiftMask, xK_y     ), sendMessage $ DecGap 10 U)           -- decrement the top gap
+
+            , ((modMask .|. controlMask, xK_u), sendMessage $ IncGap 10 D)              -- increment the bottom gap
+            , ((modMask .|. shiftMask, xK_u     ), sendMessage $ DecGap 10 D)           -- decrement the bottom gap
+
+            , ((modMask .|. controlMask, xK_i), sendMessage $ IncGap 10 R)              -- increment the right-hand gap
+            , ((modMask .|. shiftMask, xK_i     ), sendMessage $ DecGap 10 R)           -- decrement the right-hand gap
             ]
           myKeys_ :: [(String, X ())]
           myKeys_ =
@@ -1121,9 +1153,6 @@
               }
           main = do
             xmproc <- spawnPipe "${xmobar}/bin/xmobar"
-            spawn "${feh}/bin/feh --bg-scale ${self}/awesome.dratrion/wallpaper/wallpaper.jpg"
-            -- spawn "${stalonetray}/bin/stalonetray"
-            spawn "${conky}/bin/conky -c ~/.conky/conky_system -y100 -c ~/conky_and_lua_by_mr_mattz_danuesx/.conkyrc"
             let cfg = desktopConfig {
                 terminal = myTerminal
               , modMask  = myModMask
