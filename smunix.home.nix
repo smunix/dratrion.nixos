@@ -14,12 +14,37 @@
       # inputs.emacs-overlay.overlay
       inputs.nix-colmena.overlay
       inputs.smunix-nur.overlay
+      (_: p: { picom = p.picom.overrideAttrs (_: { src = inputs.jpicom; }); })
     ];
   };
   fonts = { fontconfig.enable = true; };
   home = {
     stateVersion = "22.05";
     file = {
+      "axarva.fonts" = {
+        source = ./axarva/fonts;
+        target = "./.local/share/fonts";
+      };
+      "axarva.rofi" = {
+        source = ./axarva/config/rofi;
+        target = "./.config/rofi";
+      };
+      "axarva.eww" = {
+        source = ./axarva/config/eww-1920;
+        target = "./.config/eww";
+      };
+      "axarva.picom" = {
+        source = ./axarva/config/picom.conf;
+        target = "./.config/picom.conf";
+      };
+      "axarva.tint2" = {
+        source = ./axarva/config/tint2;
+        target = "./.config/tint2";
+      };
+      "axarva.dunst" = {
+        source = ./axarva/config/dunst;
+        target = "./.config/axarva/dunst";
+      };
       "awesome" = {
         source = ./awesome.dratrion;
         # source = ./awesome.moletrooper;
@@ -80,6 +105,7 @@
     };
     packages = with pkgs; [
       ack
+      acpi
       ag
       arc-icon-theme
       bat
@@ -121,10 +147,12 @@
       graphviz
       # inputs.nix-hls.packages.x86_64-linux.haskell-language-server-921
       inputs.nix-hls.packages.x86_64-linux.haskell-language-server-8107
+      inputs.eww.defaultPackage.x86_64-linux
       # haskell-language-server
       # (hlsHpkgs "ghc8107").haskell-language-server
       haskellPackages.cabal-install
       haskellPackages.fourmolu
+      haskellPackages.greenclip
       haskellPackages.hasktags
       haskellPackages.hoogle
       haskellPackages.implicit-hie
@@ -172,6 +200,7 @@
       nixfmt
       nix-top
       nix-prefetch-scripts
+      networkmanager
       networkmanagerapplet
       nodejs
       notify-desktop
@@ -200,6 +229,89 @@
       yarn
       yt-dlp
       zoom-us
+      rofi
+      rofi-menugen
+      rofi-file-browser
+      rofi-systemd
+      rofi-calc
+      rofi-power-menu
+      rofimoji
+      wmctrl
+      playerctl
+      tint2
+      (writeShellScriptBin "inhibitor.sh" ''
+        printf "%s" "$SEP1"
+        if [ -z "$(pgrep xautolock)" ]
+        then
+            printf ""
+        else
+            printf ""
+        fi
+        printf "%s" " "
+      '')
+      (writeShellScriptBin "networkclick.sh" ''
+        x=$(${networkmanager}/bin/nmcli -a | grep 'Wired connection' | awk 'NR==1{print $1}')
+        y=$(${networkmanager}/bin/nmcli -t -f active,ssid dev wifi | grep '^yes' | cut -c 5-)
+
+        if [ -z "$x" ] && [ -z "$y" ]; then
+            ${libnotify}/bin/notify-send "Not Connected" -i ${self}/axarva/config/dunst/images/no-connection.png
+            exit 1
+        elif [ -z "$x" ]; then
+            ${libnotify}/bin/notify-send "Connected to $y" -i ${self}/axarva/config/dunst/images/wifi.png
+            exit 1
+        elif [ -z "$y" ]; then
+            ${libnotify}/bin/notify-send "Connected to $x" -i ${self}/axarva/config/dunst/images/ethernet.png
+            exit 1
+        fi
+      '')
+      (writeShellScriptBin "battery.sh" ''
+        # A dwm_bar function to read the battery level and status
+        # Joe Standring <git@joestandring.com>
+        # GNU GPLv3
+
+            # Change BAT1 to whatever your battery is identified as. Typically BAT0 or BAT1
+            CHARGE=$(cat /sys/class/power_supply/BAT0/capacity)
+            STATUS=$(cat /sys/class/power_supply/BAT0/status)
+
+            printf "%s" "$SEP1"
+                if [ "$STATUS" = "Charging" ]; then
+                    printf " " #"$CHARGE" "+" #🔌
+            	elif [ $CHARGE -le 75 ] && [ $CHARGE -gt 50  ]; then
+        	    printf " " #"$CHARGE"
+        	elif [ $CHARGE -le 50 ] && [ $CHARGE -gt 25  ]; then
+        	    printf " " #"$CHARGE"
+        	elif [ $CHARGE -le 25 ] && [ $CHARGE -gt 10  ]; then
+        	    printf " " #"$CHARGE"
+        	elif [ $CHARGE -le 10 ]; then
+        	    printf " "  "!!"
+                else
+                    printf " " #"$CHARGE" #🔋
+                fi
+            printf "%s" #"$SEP2"
+      '')
+      (writeShellScriptBin "networkmanager.sh" ''
+        # A dwm_bar function to show the current network connection/SSID, private IP, and public IP using NetworkManager
+        # Joe Standring <git@joestandring.com>
+        # GNU GPLv3
+
+        # Dependencies: NetworkManager, curl
+
+            CONNAME=$(${networkmanager}/bin/nmcli -a | grep 'Wired connection' | awk 'NR==1{print $1}')
+            if [ "$CONNAME" = "" ]; then
+                CONNAME=$(${networkmanager}/bin/nmcli -t -f active,ssid dev wifi | grep '^yes' | cut -c 5-)
+            fi
+
+            PRIVATE=$(${networkmanager}/bin/nmcli -a | grep 'inet4 192' | awk '{print $2}')
+            PUBLIC=$(curl -s https://ipinfo.io/ip)
+
+            printf "%s" "$SEP1"
+        	if [ "$CONNAME" != "" ]; then
+                    printf " %s" # %s" "$CONNAME" ########"$PRIVATE" "$PUBLIC"🌐
+                else
+        	    printf " %s"
+        	fi
+            printf "%s" #"$SEP2"
+      '')
     ];
   };
 
@@ -224,7 +336,7 @@
     };
     picom = {
       enable = true;
-      shadow = false;
+      shadow = true;
       fade = true;
       fadeDelta = 4;
       blur = true;
@@ -256,6 +368,7 @@
       ];
       # fixes flickering problems with glx backend
       backend = "xrender";
+      extraOptions = (builtins.readFile ./axarva/config/picom.conf);
     };
     unclutter.enable = true;
     redshift = {
@@ -482,11 +595,11 @@
 
               -- Data
           import Data.Char (isSpace, toUpper)
-          import Data.Maybe (fromJust)
           import Data.Monoid
-          import Data.Maybe (isJust)
+          import Data.Maybe (fromJust, isJust, maybeToList)
           import Data.Tree
           import qualified Data.Map as M
+          import Control.Monad ( join, when )
 
               -- Hooks
           import XMonad.Hooks.DynamicLog (dynamicLogWithPP, wrap, xmobarPP, xmobarColor, shorten, PP(..))
@@ -507,6 +620,12 @@
           import XMonad.Layout.ResizableTile
           import XMonad.Layout.Tabbed
           import XMonad.Layout.ThreeColumns
+
+          import XMonad.Layout.Gaps
+              ( Direction2D(D, L, R, U),
+                gaps,
+                setGaps,
+                GapMessage(DecGap, ToggleGaps, IncGap) )
 
               -- Layouts modifiers
           import XMonad.Layout.LayoutModifier
@@ -554,8 +673,17 @@
           myEditor :: String
           myEditor = "${emacs}/bin/emacs"  -- Sets emacs as editor
 
+          -- Whether focus follows the mouse pointer.
+          myFocusFollowsMouse :: Bool
+          myFocusFollowsMouse = True
+
+          -- Whether clicking on a window to focus also passes the click to the window
+          myClickJustFocuses :: Bool
+          myClickJustFocuses = False
+
+          -- Width of the window border in pixels.
           myBorderWidth :: Dimension
-          myBorderWidth = 1           -- Sets border width for windows
+          myBorderWidth = 2           -- Sets border width for windows
 
           myNormColor :: String       -- Border color of normal windows
           myNormColor   = colorBack   -- This variable is imported from Colors.THEME
@@ -565,6 +693,40 @@
 
           windowCount :: X (Maybe String)
           windowCount = gets $ Just . show . length . W.integrate' . W.stack . W.workspace . W.current . windowset
+
+          -- Border colors for unfocused and focused windows, respectively.
+          --
+          myNormalBorderColor  = "#3b4252"
+          myFocusedBorderColor = "#bc96da"
+
+          addNETSupported :: Atom -> X ()
+          addNETSupported x   = withDisplay $ \dpy -> do
+              r               <- asks theRoot
+              a_NET_SUPPORTED <- getAtom "_NET_SUPPORTED"
+              a               <- getAtom "ATOM"
+              liftIO $ do
+                 sup <- (join . maybeToList) <$> getWindowProperty32 dpy a_NET_SUPPORTED r
+                 when (fromIntegral x `notElem` sup) $
+                   changeProperty32 dpy r a_NET_SUPPORTED a propModeAppend [fromIntegral x]
+
+          addEWMHFullscreen :: X ()
+          addEWMHFullscreen   = do
+              wms <- getAtom "_NET_WM_STATE"
+              wfs <- getAtom "_NET_WM_STATE_FULLSCREEN"
+              mapM_ addNETSupported [wms, wfs]
+
+          ------------------------------------------------------------------------
+          -- Key bindings. Add, modify or remove key bindings here.
+          --
+          clipboardy :: MonadIO m => m () -- Don't question it
+          clipboardy = spawn "rofi -modi \"\63053 :greenclip print\" -show \"\63053 \" -run-command '{cmd}' -theme ~/.config/rofi/launcher/style.rasi"
+
+          centerlaunch = spawn "exec ~/bin/eww open-many blur_full weather profile quote search_full incognito-icon vpn-icon home_dir screenshot power_full reboot_full lock_full logout_full suspend_full"
+          sidebarlaunch = spawn "exec ~/bin/eww open-many weather_side time_side smol_calendar player_side sys_side sliders_side"
+          ewwclose = spawn "exec ~/bin/eww close-all"
+          -- maimcopy = spawn "maim -s | xclip -selection clipboard -t image/png && notify-send \"Screenshot\" \"Copied to Clipboard\" -i flameshot"
+          -- maimsave = spawn "maim -s ~/Desktop/$(date +%Y-%m-%d_%H-%M-%S).png && notify-send \"Screenshot\" \"Saved to Desktop\" -i flameshot"
+          rofi_launcher = spawn "rofi -no-lazy-grab -show drun -modi run,drun,window -theme $HOME/.config/rofi/launcher/style -drun-icon-theme \"candy-icons\" "
 
           myStartupHook :: X ()
           myStartupHook = do
@@ -786,6 +948,15 @@
             -- sizing windows
             , ((modMask .|. shiftMask, xK_h), sendMessage XMonad.Shrink)
             , ((modMask .|. shiftMask, xK_l), sendMessage XMonad.Expand)
+            -- launch rofi and dashboard
+            , ((modMask,               xK_o     ), rofi_launcher)
+            , ((modMask,               xK_p     ), centerlaunch)
+            , ((modMask .|. shiftMask, xK_p     ), ewwclose)
+
+            -- launch eww sidebar
+            , ((modMask,               xK_s     ), sidebarlaunch)
+            , ((modMask .|. shiftMask, xK_s     ), ewwclose)
+
             ]
           myKeys_ :: [(String, X ())]
           myKeys_ =
@@ -957,8 +1128,10 @@
                 terminal = myTerminal
               , modMask  = myModMask
               , borderWidth = myBorderWidth
+              , focusFollowsMouse  = myFocusFollowsMouse
+              , clickJustFocuses   = myClickJustFocuses
               , manageHook = myManageHook <+> manageDocks <+> manageHook desktopConfig
-              , layoutHook = avoidStruts (myLayoutHook)
+              , layoutHook = gaps [(L,15), (R,15), (U,20), (D,30)] $ spacingRaw True (Border 5 5 5 5) True (Border 5 5 5 5) True $ smartBorders $ avoidStruts (myLayoutHook)
               -- , logHook = myLogHook dzenLeftBar >> fadeInactiveLogHook 0xdddddddd
               , logHook = dynamicLogWithPP xmobarPP
                   { ppOutput = hPutStrLn xmproc
@@ -966,8 +1139,9 @@
                   }
               , handleEventHook = docksEventHook
               , workspaces = myWorkspaces
-              , focusedBorderColor = myFocusColor
-              , normalBorderColor = myNormColor
+              , focusedBorderColor = myFocusedBorderColor
+              , normalBorderColor = myNormalBorderColor
+              , startupHook        = myStartupHook >> addEWMHFullscreen
               }
             xmonad $ docks $ ewmh $ pagerHints $ myKeys $ cfg
         '';

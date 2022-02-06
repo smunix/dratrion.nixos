@@ -23,10 +23,15 @@
       url = "github:smunix/dotfiles-1?ref=master";
       flake = false;
     };
+    eww.url = "github:elkowar/eww?ref=master";
+    jpicom = {
+      url = "github:jonaburg/picom?ref=next";
+      flake = false;
+    };
   };
   outputs = { self, nixpkgs, nixos, nixF, home-manager, nix-doom-emacs
     , emacs-overlay, nix-haskell-updates, nix-smunix-pkgs, nix-hls, nix-colmena
-    , smunix-nur, moletrooper-dotfiles, ... }@inputs: {
+    , smunix-nur, moletrooper-dotfiles, eww, jpicom, ... }@inputs: {
       nixosConfigurations.dratrion = nixos.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [

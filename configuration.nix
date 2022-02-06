@@ -61,11 +61,11 @@
 
   services.udev.packages = with pkgs; [ android-udev-rules ];
   # Enable Picom composite WM
-  services.picom = {
-    enable = true;
-    shadow = true;
-    opacityRules = [ "100:class_g = 'Firefox' && argb" ];
-  };
+  # services.picom = {
+  #   enable = true;
+  #   shadow = true;
+  #   opacityRules = [ "100:class_g = 'Firefox' && argb" ];
+  # };
   # Enable the X11 windowing system.
   services.xserver = {
     enable = true;
