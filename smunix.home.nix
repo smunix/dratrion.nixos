@@ -316,6 +316,7 @@
         fetch = { prune = true; };
         diff = { colorMoved = "zebra"; };
         core = { editor = "emacs -nw"; };
+        init = { defaultBranch = "main"; };
       };
     };
     #
