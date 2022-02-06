@@ -352,6 +352,8 @@
         glo = "git log --oneline";
         gloa = "git log --oneline --graph --all";
         grh = "git reset HEAD";
+        # nix
+        n = "nix";
       };
       # generally use abbrs for readability,
       # but some long commands are better off as aliases
