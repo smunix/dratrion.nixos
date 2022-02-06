@@ -1160,7 +1160,7 @@
               , focusFollowsMouse  = myFocusFollowsMouse
               , clickJustFocuses   = myClickJustFocuses
               , manageHook = myManageHook <+> manageDocks <+> manageHook desktopConfig
-              , layoutHook = gaps [(L,1), (R,180), (U,0), (D,0)] $ spacingRaw True (Border 5 5 5 5) True (Border 5 5 5 5) True $ smartBorders $ avoidStruts (myLayoutHook)
+              , layoutHook = gaps [(L,1), (R,240), (U,0), (D,0)] $ spacingRaw True (Border 5 5 5 5) True (Border 5 5 5 5) True $ smartBorders $ avoidStruts (myLayoutHook)
               -- , logHook = myLogHook dzenLeftBar >> fadeInactiveLogHook 0xdddddddd
               , logHook = dynamicLogWithPP xmobarPP
                   { ppOutput = hPutStrLn xmproc
