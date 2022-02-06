@@ -953,7 +953,7 @@
           -- START_KEYS
           myKeys conf@(XConfig {XMonad.modMask = modMask}) = conf `additionalKeys`
             [ ((modMask, xK_r), spawn "dmenu_run -i -p \"Run: \"")
-            , ((modMask, xK_l), spawn "${betterlockscreen}/bin/betterlockscreen -l -u ~/.config/awesome/wallpapaer/")
+            , ((modMask, xK_l), spawn "betterlockscreen -l")
             -- terminals
             , ((modMask .|. shiftMask, xK_Return), windows W.swapMaster)
             , ((modMask, xK_Return), spawn $ XMonad.terminal conf)
