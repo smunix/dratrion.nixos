@@ -159,6 +159,14 @@
       #   ''makeWrapper ${vlc}/bin/vlc $out/bin/mplayer --add-flags "-I dummy"'')
       # nix
       inputs.nixF.defaultPackage.x86_64-linux
+      (symlinkJoin {
+        name = "office";
+        paths = [ libreoffice ];
+        buildInputs = [ makeWrapper ];
+        postBuild = ''
+          makeWrapper ${libreoffice}/bin/libreoffice $out/bin/office
+        '';
+      })
       maim
       moreutils
       nixfmt
@@ -729,7 +737,7 @@
               myRemote = ["Wfica"]
               myDev = ["Eclipse", "java", "Java", "Emacs", "emacs", "Gimp", "gimp", "VirtualBox Manager", "Inkscape", "org.inkscape.Inkscape"]
               myChat = []
-              myDoc = ["Evince", "evince"]
+              myDoc = ["Evince", "evince", "libreoffice", "libreoffice-startcenter"]
               myVid = ["vlc", "obs", "zoom"]
               myNames = ["Google Chrome"]
               myFloats = ["Firefox", "Gimp", "obs"]
