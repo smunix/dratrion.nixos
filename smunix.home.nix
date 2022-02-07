@@ -921,7 +921,7 @@
               myDoc = ["Evince", "evince", "libreoffice", "libreoffice-startcenter"]
               myVid = ["vlc", "obs", "zoom"]
               myNames = ["Google Chrome"]
-              myFloats = ["Firefox", "Gimp", "obs"]
+              myFloats = ["Firefox", "Gimp", "obs", "feh"]
 
               name = stringProperty "WM_NAME"
               role = stringProperty "WM_WINDOW_ROLE"
