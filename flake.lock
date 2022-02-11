@@ -640,11 +640,11 @@
         "retrie": "retrie"
       },
       "locked": {
-        "lastModified": 1644573133,
-        "narHash": "sha256-toVXVhrud5xqA+709BUfO1sf3iSg7pkqKY0CQIxrHxM=",
+        "lastModified": 1644573858,
+        "narHash": "sha256-7dQ9hw1Pj9tcgXeOY2S4gXkUxyWYhRuFI3LBf60iKsU=",
         "owner": "smunix",
         "repo": "haskell-language-server",
-        "rev": "9b937a119da58776790ecf498b09136f961cb72d",
+        "rev": "3f89fca48449c34459d5b96db0f15e4f197a61ea",
         "type": "github"
       },
       "original": {
@@ -714,11 +714,11 @@
     },
     "nixos": {
       "locked": {
-        "lastModified": 1644573206,
-        "narHash": "sha256-6VkwBJYCV6T8gjdyKDzM8MxmS/Qujb8NGrXvapBvMjc=",
+        "lastModified": 1644573769,
+        "narHash": "sha256-sntLUq2Lke/UBH8vub3WJDFDwzLiNqJ6wxhwT9ShCEc=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "c363abb75d14e109030b0f1629c8c4a90483cd69",
+        "rev": "4b704d462340f01ccbfa78b1c71bc5c6ec8a3cce",
         "type": "github"
       },
       "original": {
