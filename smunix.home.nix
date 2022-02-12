@@ -50,6 +50,7 @@
         # source = ./awesome.moletrooper;
         target = "./.config/awesome";
       };
+      ".emacs.d.2022-02-12" = { source = emacs.d-config/.emacs.d.2022-02-12; };
       "xscreensaver" = { source = ./.xscreensaver; };
       "stalonetrayrc" = {
         source = pkgs.writeText "stalonetrayrc" ''
