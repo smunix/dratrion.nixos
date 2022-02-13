@@ -23,7 +23,7 @@
     file = {
       "axarva.fonts" = {
         source = ./axarva/fonts;
-        target = "./.local/share/fonts";
+        target = "./.local/share/fonts.axarva";
       };
       "axarva.rofi" = {
         source = ./axarva/config/rofi;
@@ -402,8 +402,8 @@
     doom-emacs = {
       enable = true;
       doomPrivateDir = ./doom.d;
+      emacsPackagesOverlay = inputs.emacs-overlay.overlay;
       emacsPackage = emacsGit;
-      # emacsPackagesOverlay = inputs.emacs-overlay.overlay;
     };
     # dconf.enable = true;
     eclipse = {
@@ -459,8 +459,8 @@
         ll = "lsd -l";
         clip = "xclip -sel clip";
         # emacs
-        e = "emacsclient -c -nw";
-        emacs = "emacsclient -c";
+        e = "emacs -nw";
+        eclient = "emacsclient -c";
         # git
         ga = "git add";
         gc = "git commit -v";
