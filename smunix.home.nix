@@ -50,7 +50,6 @@
         # source = ./awesome.moletrooper;
         target = "./.config/awesome";
       };
-      ".emacs.d.2022-02-12" = { source = emacs.d-config/.emacs.d.2022-02-12; };
       "xscreensaver" = { source = ./.xscreensaver; };
       "stalonetrayrc" = {
         source = pkgs.writeText "stalonetrayrc" ''
@@ -319,6 +318,7 @@
 
   # Speed up direnv
   services = {
+    emacs.enable = true;
     lorri.enable = true;
     pasystray.enable = true;
     blueman-applet.enable = true;
@@ -398,16 +398,17 @@
     fzf.enable = true;
     direnv.enable = true;
     home-manager.enable = true;
+    # DOOM
+    doom-emacs = {
+      enable = true;
+      doomPrivateDir = ./doom.d;
+      emacsPackage = emacsGit;
+      # emacsPackagesOverlay = inputs.emacs-overlay.overlay;
+    };
     # dconf.enable = true;
     eclipse = {
       enable = true;
       package = eclipses.eclipse-cpp;
-    };
-    doom-emacs = {
-      enable = true;
-      doomPrivateDir = ./doom.d;
-      emacsPackage = pkgs.emacsGcc;
-      # emacsPackagesOverlay = inputs.emacs-overlay.overlay;
     };
     #
     # GIT
@@ -457,6 +458,9 @@
         l = "lsd -al";
         ll = "lsd -l";
         clip = "xclip -sel clip";
+        # emacs
+        e = "emacsclient -c -nw";
+        emacs = "emacsclient -c";
         # git
         ga = "git add";
         gc = "git commit -v";
