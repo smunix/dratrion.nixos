@@ -116,9 +116,11 @@
       (writeShellScriptBin "launchExtMSAD" ''
         ${citrix_workspace}/bin/wfica -sound -geometry 1024x928+0+0 ~/Downloads/launchExtMSAD.ica
       '')
+      cordless
       colmena
       conky
       direnv
+      discord
       dconf
       dmenu
       dos2unix
