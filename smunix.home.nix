@@ -384,11 +384,7 @@
     betterlockscreen = {
       enable = true;
       inactiveInterval = 5;
-      arguments = [
-        "-u ${self}/awesome.dratrion/wallpaper/"
-        "--fx dim,pixel"
-        "--lock dimblur"
-      ];
+      arguments = [ "--fx dim,pixel" "--lock dimblur" ];
     };
   };
 
@@ -745,7 +741,7 @@
             spawnOnce "eww daemon"
             spawn "xsetroot -cursor_name left_ptr"
             spawnOnce "xset s 500"
-            spawnOnce "xautolock -time 5 -locker \"${betterlockscreen}/bin/betterlockscreen -l\" -notify 30 -notifier \"${libnotify}/bin/notify-send 'Locker' 'Locking screen in 30 seconds'\" -killtime 5 -killer \"systemctl suspend\""
+            spawnOnce "xautolock -time 5 -locker \"${betterlockscreen}/bin/betterlockscreen --fx dim,pixel --lock dimblur\" -notify 30 -notifier \"${libnotify}/bin/notify-send 'Locker' 'Locking screen in 30 seconds'\" -killtime 5 -killer \"systemctl suspend\""
             spawnOnce "${picom}/bin/picom --experimental-backends"
             spawnOnce "${haskellPackages.greenclip}/bin/greenclip daemon"
             -- spawnOnce "dunst"
@@ -976,7 +972,7 @@
           -- START_KEYS
           myKeys conf@(XConfig {XMonad.modMask = modMask}) = conf `additionalKeys`
             [ ((modMask, xK_r), spawn "dmenu_run -i -p \"Run: \"")
-            , ((modMask, xK_l), spawn "betterlockscreen -l")
+            , ((modMask, xK_l), spawn "betterlockscreen --fx dim,pixel --lock dimblur")
             -- terminals
             , ((modMask .|. shiftMask, xK_Return), windows W.swapMaster)
             , ((modMask, xK_Return), spawn $ XMonad.terminal conf)
