@@ -142,8 +142,6 @@
       gimpPlugins.gmic
       git
       git-quick-stats
-      glab
-      gh
       gmic
       google-chrome-dev
       graphviz
@@ -169,7 +167,6 @@
       inkscape
       irony-server
       ispell
-      jitsi
       jq
       killall
       libnotify
@@ -186,8 +183,7 @@
           makeWrapper ${vlc}/bin/vlc $out/bin/vplayer --add-flags "-I dummy"
         '';
       })
-      # (runCommand "mplayer" { buildInputs = [ makeWrapper ]; }
-      #   ''makeWrapper ${vlc}/bin/vlc $out/bin/mplayer --add-flags "-I dummy"'')
+      mpv
       # nix
       inputs.nixF.defaultPackage.x86_64-linux
       (symlinkJoin {
