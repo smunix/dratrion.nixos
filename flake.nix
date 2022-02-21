@@ -14,7 +14,6 @@
     emacs-overlay.url = "github:nix-community/emacs-overlay";
     nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
     nix-hls.url = "github:haskell/haskell-language-server?ref=master";
-    nix-haskell-updates.url = "github:NixOS/nixpkgs/haskell-updates";
     nix-smunix-pkgs.url = "github:smunix/nixpkgs-unfree?ref=main";
     nix-colmena.url = "github:zhaofengli/colmena?ref=main";
     smunix-nur.url = "gitlab:smunix.nixos/nur-packages?ref=master";
@@ -29,8 +28,8 @@
     };
   };
   outputs = { self, nixpkgs, nixos, nixF, home-manager, nix-doom-emacs
-    , emacs-overlay, nix-haskell-updates, nix-smunix-pkgs, nix-hls, nix-colmena
-    , smunix-nur, moletrooper-dotfiles, eww, jpicom, ... }@inputs: {
+    , emacs-overlay, nix-smunix-pkgs, nix-hls, nix-colmena, smunix-nur
+    , moletrooper-dotfiles, eww, jpicom, ... }@inputs: {
       nixosConfigurations.dratrion = nixos.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [

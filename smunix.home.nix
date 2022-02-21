@@ -145,8 +145,8 @@
       gmic
       google-chrome-dev
       graphviz
-      # inputs.nix-hls.packages.x86_64-linux.haskell-language-server-921
-      inputs.nix-hls.packages.x86_64-linux.haskell-language-server-8107
+      inputs.nix-hls.packages.x86_64-linux.haskell-language-server-921
+      # inputs.nix-hls.packages.x86_64-linux.haskell-language-server-8107
       inputs.eww.defaultPackage.x86_64-linux
       # haskell-language-server
       # (hlsHpkgs "ghc8107").haskell-language-server
@@ -156,8 +156,8 @@
       haskellPackages.hasktags
       haskellPackages.hoogle
       haskellPackages.implicit-hie
-      haskell.compiler.ghc8107
-      # haskell.compiler.ghc921
+      # haskell.compiler.ghc8107
+      haskell.compiler.ghc921
       haskellPackages.fourmolu
       hddtemp
       hpack
