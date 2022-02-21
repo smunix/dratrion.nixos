@@ -80,11 +80,11 @@
     },
     "emacs-overlay": {
       "locked": {
-        "lastModified": 1645204518,
-        "narHash": "sha256-6SXXC0OXN01BHWSx3bA8J6FaAIWxevWmTdOb/0xleMQ=",
+        "lastModified": 1645383769,
+        "narHash": "sha256-WR+1rHjQtzfev9S2ToKXBuoCdyp5aYazfc1LSVL5oDs=",
         "owner": "nix-community",
         "repo": "emacs-overlay",
-        "rev": "6ecfaeb355326456e7b331d1527105adab360adc",
+        "rev": "f73714211a3c1b0346d8b265f7b1e9f6251a2ab6",
         "type": "github"
       },
       "original": {
@@ -431,11 +431,11 @@
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "lastModified": 1645140957,
-        "narHash": "sha256-WTJzLSCDLBI537o2L/3kRyqEV5YRT7+1QSGryeKReHE=",
+        "lastModified": 1645244400,
+        "narHash": "sha256-o7KCd6ySFZ9/LbS62aTeuFmBWtP7Tt3Q3RcNjYgTgZU=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "4f4165a8b9108818ab0193bbd1a252106870b2a2",
+        "rev": "0232fe1b75e6d7864fd82b5c72f6646f87838fc3",
         "type": "github"
       },
       "original": {
@@ -619,22 +619,6 @@
         "type": "github"
       }
     },
-    "nix-haskell-updates": {
-      "locked": {
-        "lastModified": 1645205063,
-        "narHash": "sha256-FbcI0BmmrPSV6qPQE2RggyxgVYey4fbKU4kHbZOxJu0=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "bf8bd354dd2ac363a7ac09b9bd4ffa7335d52b23",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "haskell-updates",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "nix-hls": {
       "inputs": {
         "constraints-extras": "constraints-extras",
@@ -653,11 +637,11 @@
         "retrie": "retrie"
       },
       "locked": {
-        "lastModified": 1645192725,
-        "narHash": "sha256-e5CXYaDC4EfC7/EL1iLUS8kPbXzqJYgFkBlVWQGOEmE=",
+        "lastModified": 1645393828,
+        "narHash": "sha256-oIEQ9cY9FgGK8g0uosnG+2n53CLTrfa7jmFun1zS6aM=",
         "owner": "haskell",
         "repo": "haskell-language-server",
-        "rev": "4018b68925da18a470cdd6f972722ec305b160f4",
+        "rev": "3b687a52acdd1662d316d9e369d04c2919ed9a98",
         "type": "github"
       },
       "original": {
@@ -727,11 +711,11 @@
     },
     "nixos": {
       "locked": {
-        "lastModified": 1645210712,
-        "narHash": "sha256-K3XOnkXmOrJJ+5kJMC3imMKOzV15aV4ns8nhznmxVxE=",
+        "lastModified": 1645396781,
+        "narHash": "sha256-uro/SfawyCXdmRWUgsL0aqOHQvZ2g+AZPr3kQNweXok=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "a4a3ef1016e6dddda8ebd3bde232ba5102a406e7",
+        "rev": "d81f048ef4ce360ba2d11d3d7c94398be134b380",
         "type": "github"
       },
       "original": {
@@ -771,11 +755,11 @@
     },
     "nixpkgs_10": {
       "locked": {
-        "lastModified": 1644525281,
-        "narHash": "sha256-D3VuWLdnLmAXIkooWAtbTGSQI9Fc1lkvAr94wTxhnTU=",
+        "lastModified": 1644613700,
+        "narHash": "sha256-wLRPJclMH8vsHuFtyI78aF09lw5mbi3lMB6uiK5S2wE=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "48d63e924a2666baf37f4f14a18f19347fbd54a2",
+        "rev": "23d785aa6f853e6cf3430119811c334025bbef55",
         "type": "github"
       },
       "original": {
@@ -818,11 +802,11 @@
     },
     "nixpkgs_3": {
       "locked": {
-        "lastModified": 1644972330,
-        "narHash": "sha256-6V2JFpTUzB9G+KcqtUR1yl7f6rd9495YrFECslEmbGw=",
+        "lastModified": 1645013224,
+        "narHash": "sha256-b7OEC8vwzJv3rsz9pwnTX2LQDkeOWz2DbKypkVvNHXc=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "19574af0af3ffaf7c9e359744ed32556f34536bd",
+        "rev": "b66b39216b1fef2d8c33cc7a5c72d8da80b79970",
         "type": "github"
       },
       "original": {
@@ -1074,7 +1058,6 @@
         "moletrooper-dotfiles": "moletrooper-dotfiles",
         "nix-colmena": "nix-colmena",
         "nix-doom-emacs": "nix-doom-emacs",
-        "nix-haskell-updates": "nix-haskell-updates",
         "nix-hls": "nix-hls",
         "nix-smunix-pkgs": "nix-smunix-pkgs",
         "nixF": "nixF",
