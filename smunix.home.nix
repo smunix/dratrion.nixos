@@ -234,7 +234,7 @@
       rofi-calc
       rofi-power-menu
       rofimoji
-      siler-searcher
+      silver-searcher
       wmctrl
       playerctl
       tint2
