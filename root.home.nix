@@ -20,7 +20,6 @@
     stateVersion = "22.05";
     packages = with pkgs; [
       ack
-      ag
       file
       gcc
       htop
@@ -34,6 +33,7 @@
       ripgrep
       rnix-lsp
       rxvt-unicode
+      silver-searcher
       tmux
       tree
       xclip
