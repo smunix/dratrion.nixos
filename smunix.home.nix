@@ -106,7 +106,6 @@
     packages = with pkgs; [
       ack
       acpi
-      ag
       arc-icon-theme
       bat
       binutils
@@ -235,6 +234,7 @@
       rofi-calc
       rofi-power-menu
       rofimoji
+      siler-searcher
       wmctrl
       playerctl
       tint2
