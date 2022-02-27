@@ -72,19 +72,19 @@
     autorun = true;
     videoDrivers = [ "nvidia" ];
     desktopManager = {
-      enlightenment.enable = true;
-      plasma5.enable = true;
+      enlightenment.enable = false;
+      plasma5.enable = false;
     };
     windowManager = {
       awesome = {
-        enable = true;
+        enable = false;
         luaModules = [ pkgs.luaPackages.luaposix ];
       };
       xmonad = { enable = true; };
     };
     displayManager = {
       sddm.enable = true;
-      defaultSession = "enlightenment";
+      defaultSession = "none+xmonad";
       sessionCommands = ''
         xrdb "${
           pkgs.writeText "xrdb.conf" ''
