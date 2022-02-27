@@ -7,7 +7,7 @@
     # https://github.com/nix-community/nix-doom-emacs
     # https://github.com/nix-community/home-manager/issues/1877
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixF.url = "github:nixos/nix?ref=master";
+    nixF.url = "github:nixos/nix?rev=7ec244aec2d3ebe36b7495a2321a05f02f0b4186";
     nixos.url = "github:nixos/nixpkgs/master";
     # nur.url = "github:nix-community/NUR";
     home-manager.url = "github:nix-community/home-manager";
