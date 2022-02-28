@@ -13,7 +13,8 @@
     home-manager.url = "github:nix-community/home-manager";
     emacs-overlay.url = "github:nix-community/emacs-overlay";
     nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
-    nix-hls.url = "github:haskell/haskell-language-server?ref=master";
+    nix-hls.url =
+      "github:haskell/haskell-language-server?rev=0c018ac82681606f1fcdff17619578aa0bc9d6da";
     nix-smunix-pkgs.url = "github:smunix/nixpkgs-unfree?ref=main";
     nix-colmena.url = "github:zhaofengli/colmena?ref=main";
     smunix-nur.url = "gitlab:smunix.nixos/nur-packages?ref=master";
