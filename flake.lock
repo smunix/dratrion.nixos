@@ -80,11 +80,11 @@
     },
     "emacs-overlay": {
       "locked": {
-        "lastModified": 1645814433,
-        "narHash": "sha256-AjZLUVyVKxcJs6JuNumn4RYQRyJJIdHgJ0SKWCMjfWU=",
+        "lastModified": 1646039184,
+        "narHash": "sha256-RXA8DpvrHZ2Mhkzn2kC4higVBrU0eCOXsUqdpe9XCJ0=",
         "owner": "nix-community",
         "repo": "emacs-overlay",
-        "rev": "f920a177e299989ddcdda5d4875879cf0301c96c",
+        "rev": "a0d6dbea94083b76155ec770f5147f8664573025",
         "type": "github"
       },
       "original": {
@@ -414,6 +414,18 @@
         "type": "github"
       }
     },
+    "hie-bios": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-nd+FfUQVZNxJfKZkAWA3dF0JwRgXntL+1gGvyNHDbKc=",
+        "type": "tarball",
+        "url": "https://hackage.haskell.org/package/hie-bios-0.9.0/hie-bios-0.9.0.tar.gz"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://hackage.haskell.org/package/hie-bios-0.9.0/hie-bios-0.9.0.tar.gz"
+      }
+    },
     "hlint": {
       "flake": false,
       "locked": {
@@ -431,11 +443,11 @@
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "lastModified": 1645796113,
-        "narHash": "sha256-s1WSYeOSIO/I/rII6H9o68naHAWieLzvtqrp8w4ggbI=",
+        "lastModified": 1645970334,
+        "narHash": "sha256-6nn4YF9bPtkxkB7bM6yJO3m//p3sGilxNQFjm1epLEM=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "662350bee2090edc82b4c162b1415f76b4eee2f3",
+        "rev": "ea85f4b1fdf3f25cf97dc49f4a9ec4eafda2ea25",
         "type": "github"
       },
       "original": {
@@ -627,6 +639,7 @@
         "fourmolu": "fourmolu",
         "ghc-exactprint": "ghc-exactprint",
         "gitignore": "gitignore",
+        "hie-bios": "hie-bios",
         "hlint": "hlint",
         "implicit-hie-cradle": "implicit-hie-cradle",
         "lsp": "lsp",
@@ -637,17 +650,17 @@
         "retrie": "retrie"
       },
       "locked": {
-        "lastModified": 1645416279,
-        "narHash": "sha256-kxfLP4Jg3aMPR4xMqkrwr1Ty29vyBq1JLWnqk59Ddug=",
+        "lastModified": 1645971680,
+        "narHash": "sha256-GCD2lToCf6oOgHHGHAN6nhmoXuEZDkcbyQbUBGnNoI8=",
         "owner": "haskell",
         "repo": "haskell-language-server",
-        "rev": "3084651ba467c3306ffd7d1024fbd3a13a64a296",
+        "rev": "0c018ac82681606f1fcdff17619578aa0bc9d6da",
         "type": "github"
       },
       "original": {
         "owner": "haskell",
-        "ref": "master",
         "repo": "haskell-language-server",
+        "rev": "0c018ac82681606f1fcdff17619578aa0bc9d6da",
         "type": "github"
       }
     },
@@ -711,11 +724,11 @@
     },
     "nixos": {
       "locked": {
-        "lastModified": 1645850785,
-        "narHash": "sha256-WoROYaUfGfEMQfgMiJ0uLKXQocmmtJSrFH7ybX3f+XU=",
+        "lastModified": 1646046859,
+        "narHash": "sha256-Lsx2IZY5zJtODUnJLpkaHJjvOtPP5ylBP1+0Q47xKbk=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "e864a221335bb1bc6f07d3c7183ff0da10451f79",
+        "rev": "bbbb03bcf4f61b5a9f961e0f3169760bc15eb181",
         "type": "github"
       },
       "original": {
@@ -802,11 +815,11 @@
     },
     "nixpkgs_3": {
       "locked": {
-        "lastModified": 1645623357,
-        "narHash": "sha256-vAaI91QFn/kY/uMiebW+kG2mPmxirMSJWYtkqkBKdDc=",
+        "lastModified": 1645937171,
+        "narHash": "sha256-n9f9GZBNMe8UMhcgmmaXNObkH01jjgp7INMrUgBgcy4=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "9222ae36b208d1c6b55d88e10aa68f969b5b5244",
+        "rev": "22dc22f8cedc58fcb11afe1acb08e9999e78be9c",
         "type": "github"
       },
       "original": {
