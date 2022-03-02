@@ -916,7 +916,7 @@
               myWww = ["Firefox", "Google-chrome-unstable", "google-chrome-unstable"]
               myRemote = ["Wfica"]
               myDev = ["Eclipse", "java", "Java", "Emacs", "emacs", "Gimp", "gimp", "VirtualBox Manager", "Inkscape", "org.inkscape.Inkscape"]
-              myChat = []
+              myChat = ["discord"]
               myDoc = ["Evince", "evince", "libreoffice", "libreoffice-startcenter"]
               myVid = ["vlc", "obs", "zoom"]
               myNames = ["Google Chrome"]
