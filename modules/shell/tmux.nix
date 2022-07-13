@@ -102,25 +102,25 @@ in {
         set-option -g status-right-length "80"
 
         # Messages
-        set-option -g message-style fg="${colors.types.bg}",bg="${colors.types.highlight}",align="centre"
-        set-option -g message-command-style fg="${colors.types.bg}",bg="${colors.types.highlight}",align="centre"
+        set-option -g message-style fg="${colors.main.types.bg}",bg="${colors.main.types.highlight}",align="centre"
+        set-option -g message-command-style fg="${colors.main.types.bg}",bg="${colors.main.types.highlight}",align="centre"
 
         # Panes
-        set-option -g pane-border-style fg="${colors.blue}"
-        set-option -g pane-active-border-style fg="${colors.types.border}"
+        set-option -g pane-border-style fg="${colors.main.normal.blue}"
+        set-option -g pane-active-border-style fg="${colors.main.types.border}"
 
         # Windows
-        set-option -g window-status-format "#[fg=${colors.white}] #W/#{window_panes} "
-        set-option -g window-status-current-format "#[fg=${colors.types.bg},bg=${colors.types.border}]#{?client_prefix,#[fg=${colors.types.bg}],}#{?client_prefix,#[bg=${colors.blue}],} #W "
+        set-option -g window-status-format "#[fg=${colors.main.normal.white}] #W/#{window_panes} "
+        set-option -g window-status-current-format "#[fg=${colors.main.types.bg},bg=${colors.main.types.border}]#{?client_prefix,#[fg=${colors.main.types.bg}],}#{?client_prefix,#[bg=${colors.main.normal.blue}],} #W "
 
         # --------=== Status-line
         set-option -g status-left "🦊 "
         set-option -g status-bg default
-        set-option -g status-right "#[italics]∡ #H | %b %d, %H:%M:%S  #[fg=${colors.types.bg},bg=${colors.types.panelbg},bold,italics] base-#S "
+        set-option -g status-right "#[italics]∡ #H | %b %d, %H:%M:%S  #[fg=${colors.main.types.bg},bg=${colors.main.types.panelbg},bold,italics] base-#S "
 
         # --------=== Clock & Selection
-        set-window-option -g clock-mode-colour "${colors.types.border}"
-        set-window-option -g mode-style "fg=${colors.types.bg} bg=${colors.types.highlight} bold"
+        set-window-option -g clock-mode-colour "${colors.main.types.border}"
+        set-window-option -g mode-style "fg=${colors.main.types.bg} bg=${colors.main.types.highlight} bold"
       '';
     };
   };

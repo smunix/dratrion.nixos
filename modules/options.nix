@@ -43,7 +43,7 @@ with lib.my; {
       user = builtins.getEnv "USER";
       name =
         if elem user ["" "root"]
-        then "icy-thought"
+        then "smunix"
         else user;
     in {
       inherit name;
