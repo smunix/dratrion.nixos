@@ -41,6 +41,7 @@
         default = "brave";
         brave.enable = true;
         firefox.enable = true;
+        chrome.enable = true;
       };
       philomath.aula = {
         zoom.enable = true;
@@ -64,7 +65,8 @@
     develop = {
       haskell.enable = true;
       python.enable = true;
-      rust.enable = true;
+      rust.enable = false;
+      cc.enable = true;
     };
 
     containers.transmission = {
