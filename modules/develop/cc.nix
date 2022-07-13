@@ -26,7 +26,7 @@ in {
         llvmPackages.libcxx
       ];
 
-      hm.programs.ecipse = {
+      hm.programs.eclipse = {
         enable = true;
         package = pkgs.eclipses.eclipse-cpp;
       };
