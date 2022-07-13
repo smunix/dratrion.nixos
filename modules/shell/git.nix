@@ -47,7 +47,8 @@ in {
         email-domains = ''
           !git log --format="%aE" | awk -F'@' '{print $2}' | sort -u
         '';
-      };
+        amend = "!git commit --amend -C HEAD";
+       };
 
       attributes = ["*.lisp diff=lisp" "*.el diff=lisp" "*.org diff=org"];
 
@@ -86,19 +87,74 @@ in {
         "*.o"
         "*.pyc"
         "*.elc"
+        # Created by https://www.toptal.com/developers/gitignore/api/haskell
+        # Edit at https://www.toptal.com/developers/gitignore?templates=haskell
+
+        ### Haskell ###
+        "dist"
+        "dist-*"
+        "cabal-dev"
+        "*.o"
+        "*.hi"
+        "*.hie"
+        "*.chi"
+        "*.chs.h"
+        "*.dyn_o"
+        "*.dyn_hi"
+        ".hpc"
+        ".hsenv"
+        ".cabal-sandbox/"
+        "cabal.sandbox.config"
+        "*.prof"
+        "*.aux"
+        "*.hp"
+        "*.eventlog"
+        ".stack-work/"
+        "cabal.project.local"
+        "cabal.project.local~"
+        ".HTF/"
+        ".ghc.environment.*"
+
+        # End of https://www.toptal.com/developers/gitignore/api/haskell
+
+        # Created by https://www.toptal.com/developers/gitignore/api/tags
+        # Edit at https://www.toptal.com/developers/gitignore?templates=tags
+
+        ### Tags ###
+        # Ignore tags created by etags, ctags, gtags (GNU global) and cscope
+        #
+        "TAGS"
+        ".TAGS"
+        "!TAGS/"
+        "tags"
+        ".tags"
+        "!tags/"
+        "gtags.files"
+        "GTAGS"
+        "GRTAGS"
+        "GPATH"
+        "GSYMS"
+        "cscope.files"
+        "cscope.out"
+        "cscope.in.out"
+        "cscope.po.out"
+
+        # End of https://www.toptal.com/developers/gitignore/api/tags
+
       ];
 
-      userName = "Icy-Thought";
-      userEmail = "icy-thought@pm.me";
+      userName = "Providence Salumu";
+      userEmail = "Providence.Salumu@smunix.com";
       signing = {
         signByDefault = true;
-        key = "B593E438DDAB3C66";
+        key = "5A32FFADFC0F3C58";
       };
 
       extraConfig = {
         init.defaultBranch = "main";
         core = {
-          editor = "nvim";
+          editor = "emacsclient -t";
+          # pager = "diff-so-fancy | less --tabs=4 -RFX";
           whitespace = "trailing-space,space-before-tab";
         };
 
@@ -110,8 +166,8 @@ in {
           autoSquash = true;
         };
 
-        github.user = "Icy-Thought";
-        gitlab.user = "Icy-Thought";
+        github.user = "smunix";
+        gitlab.user = "smunix";
 
         filter = {
           required = true;

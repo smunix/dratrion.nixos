@@ -18,12 +18,18 @@ in {
   config = mkMerge [
     (mkIf cfg.enable {
       user.packages = with pkgs; [
-        clang
         bear
-        gdb
+        ccls
+        clang
         cmake
+        gdb
         llvmPackages.libcxx
       ];
+
+      hm.programs.ecipse = {
+        enable = true;
+        package = pkgs.eclipses.eclipse-cpp;
+      };
     })
 
     (mkIf codeCfg.enable {

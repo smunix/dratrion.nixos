@@ -17,13 +17,15 @@ in {
 
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
+      feh
+      gxmessage
+      haskellPackages.my-xmonad
       lightdm
       libnotify
+      pavucontrol
       playerctl
-      gxmessage
       xdotool
       xclip
-      feh
     ];
 
     # Our beloved modules

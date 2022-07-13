@@ -21,10 +21,12 @@ in {
         [ghc]
         ++ (with haskellPackages; [
           cabal-install
+          graphmod
           haskell-language-server
           hasktags
           hoogle
           hpack
+          implicit-hie
           stylish-haskell
         ]);
 
