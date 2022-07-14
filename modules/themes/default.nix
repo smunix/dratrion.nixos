@@ -51,7 +51,7 @@ in {
         weight = mkOpt str "SemiBold";
         weightAlt = mkOpt str "DemiBold";
         weightNum = mkOpt str "600";
-        size = mkOpt int 13;
+        size = mkOpt int 10;
       };
       sans = {
         family = mkOpt str "";
@@ -149,7 +149,7 @@ in {
     # Read xresources files in ~/.config/xtheme/* to allow modular configuration
     # of Xresources.
     (let
-      xrdb = ''cat "$XDG_CONFIG_HOME"/xtheme/* | ${getExe pkgs.xorg.xrdb} -load'';
+      xrdb = ''${pkgs.coreutils}/bin/cat "$XDG_CONFIG_HOME"/xtheme/* | ${getExe pkgs.xorg.xrdb} -load'';
     in {
       home.configFile."xtheme.init" = {
         text = xrdb;

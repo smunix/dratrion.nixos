@@ -69,4 +69,9 @@
 
   # So we don't have to do this later...
   security.acme.acceptTerms = true;
+
+  security = {
+    sudo = { enable = true; wheelNeedsPassword = false; };
+    pam.loginLimits = [{ domain = "*"; type = "soft"; item = "nofile"; value = "16382"; }];
+  };
 }

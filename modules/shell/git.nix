@@ -21,6 +21,7 @@ in {
       gitAndTools.gh
       gitAndTools.git-open
       (mkIf config.modules.shell.gnupg.enable gitAndTools.git-crypt)
+      tig
     ];
 
     # easier gitignore fetching (fish)
@@ -179,7 +180,7 @@ in {
         url = {
           "https://github.com/".insteadOf = "gh:";
           "git@github.com:".insteadOf = "ssh+gh:";
-          "git@github.com:icy-thought/".insteadOf = "gh:/";
+          "git@github.com:smunix/".insteadOf = "gh:/";
           "https://gitlab.com/".insteadOf = "gl:";
           "https://gist.github.com/".insteadOf = "gist:";
           "https://bitbucket.org/".insteadOf = "bb:";

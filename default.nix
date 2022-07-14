@@ -47,11 +47,22 @@ with lib.my; {
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       ];
     };
+
+    gc = {
+      automatic = true;
+      dates = "daily";
+      options = "--delete-older-than 7d";
+    };
   };
 
   system = {
     stateVersion = "22.05";
     configurationRevision = with inputs; mkIf (self ? rev) self.rev;
+    autoUpgrade = {
+      enable = true;
+      channel = "https://channels.nixos.org/nixos-unstable-small";
+      dates = "01:00";
+    };
   };
 
   # Some reasonable, global defaults
@@ -82,7 +93,7 @@ with lib.my; {
     useXkbConfig = mkDefault true;
   };
 
-  time.timeZone = mkDefault "Europe/Berlin";
+  time.timeZone = mkDefault "America/New_York";
   i18n.defaultLocale = mkDefault "en_US.UTF-8";
 
   environment.systemPackages = with pkgs; [
@@ -90,5 +101,21 @@ with lib.my; {
     gnumake
     unrar
     unzip
+    ack
+    bind
+    cached-nix-shell
+    conky
+    emacsGit
+    file
+    git
+    wget
+    gcc
+    gnumake
+    ripgrep
+    lsb-release
+    lm_sensors
+    silver-searcher
+    unzip
+    unrar
   ];
 }

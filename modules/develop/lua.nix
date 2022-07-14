@@ -24,7 +24,7 @@ in {
     }
     (mkIf cfg.enable {
       home.configFile = with config.snowflake; {
-        "stylua/stylua.toml".source = "${configDir}/formatters/stylua.toml";
+        # "stylua/stylua.toml".source = "${configDir}/formatters/stylua.toml";
       };
     })
 

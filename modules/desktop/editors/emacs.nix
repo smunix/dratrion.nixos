@@ -15,8 +15,8 @@ in {
     doom = rec {
       enable = mkBoolOpt false;
       forgeUrl = mkOpt types.str "https://github.com";
-      repoUrl = mkOpt types.str "${forgeUrl}/doomemacs/doomemacs";
-      configRepoUrl = mkOpt types.str "${forgeUrl}/icy-thought/emacs.d";
+      repoUrl = mkOpt types.str "${cfg.doom.forgeUrl}/doomemacs/doomemacs";
+      configRepoUrl = mkOpt types.str "${cfg.doom.forgeUrl}/icy-thought/emacs.d";
     };
   };
 
@@ -49,14 +49,14 @@ in {
 
     environment.variables = {
       EMACSDIR = "$XDG_CONFIG_HOME/emacs";
-      DOOMDIR = "${configDir}/emacs.d/doom-emacs";
+      DOOMDIR = "$XDG_CONFIG_HOME/doom/doom-emacs";
     };
 
     system.userActivationScripts = mkIf cfg.doom.enable {
       installDoomEmacs = ''
-        if [ ! -d "$XDG_CONFIG_HOME/emacs" ]; then
-           git clone --depth=1 --single-branch "${cfg.doom.repoUrl}" "$XDG_CONFIG_HOME/emacs"
-           git clone "${cfg.doom.configRepoUrl}" "$XDG_CONFIG_HOME/doom"
+        if [[ ! -d "$XDG_CONFIG_HOME/emacs" ]]; then
+           ${pkgs.git}/bin/git clone --depth=1 --single-branch "${cfg.doom.repoUrl}" "$XDG_CONFIG_HOME/emacs"
+           ${pkgs.git}/bin/git clone "${cfg.doom.configRepoUrl}" "$XDG_CONFIG_HOME/doom"
         fi
       '';
     };

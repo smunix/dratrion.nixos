@@ -8,7 +8,7 @@
       bluetooth.enable = true;
       razer.enable = true;
       input.enable = true;
-      # gpgpu.enable = true;
+      gpgpu.enable = true;
       v4l2.enable = true;
   };
 
@@ -35,6 +35,7 @@
         default = "emacs";
         # nvim.enable = false;
         emacs.enable = true;
+        emacs.doom.enable = true;
         neovim.agasaya.enable = true;
       };
       browsers = {
@@ -84,6 +85,7 @@
       git.enable = true;
       fish.enable = true;
       gnupg.enable = true;
+      htop.enable = true;
     };
   };
 
