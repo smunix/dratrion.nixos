@@ -184,11 +184,11 @@ def widgetlist():
         windowname,
         mpris,
         cpu,
-        # net,
+        net,
         mem,
         systray,
         datetime,
-        batt,
+        # batt,
     ]
 
 
