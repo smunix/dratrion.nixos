@@ -68,6 +68,7 @@
       python.enable = true;
       rust.enable = false;
       cc.enable = true;
+      nix.enable = true;
     };
 
     containers.transmission = {
