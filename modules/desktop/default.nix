@@ -30,6 +30,7 @@ in {
 
     user.packages = with pkgs; [
       hyperfine
+      betterlockscreen
       libqalculate
       (makeDesktopItem {
         name = "kalker";

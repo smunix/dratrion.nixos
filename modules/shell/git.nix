@@ -177,6 +177,8 @@ in {
           clean = "git-lfs clean -- %f";
         };
 
+        safe.directory = [ "/etc/snowflake.git" ];
+
         url = {
           "https://github.com/".insteadOf = "gh:";
           "git@github.com:".insteadOf = "ssh+gh:";

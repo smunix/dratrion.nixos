@@ -7,6 +7,13 @@ HOME = os.path.expanduser("~")
 
 # Default applications
 myTerm = "kitty"
+myBetterlockscreen = (
+    "betterlockscreen",
+    "--fx",
+    "dim,pixel",
+    "--lock",
+    "dimblur"
+)
 myBrowser = "firefox-devedition"
 myPrivateBrowser = (
     myBrowser,
@@ -83,6 +90,8 @@ rofi_spawns = [
 
 application_spawns = [
     EzKey("M-S-<Return>", lazy.spawn(myTerm)),
+    EzKey("M-x", lazy.spawn(myTerm)),
+    EzKey("M-<Escape>", lazy.spawn(myBetterlockscreen)),
     EzKey("M-A-f", lazy.spawn(myBrowser)),
     EzKey("M-A-w", lazy.spawn(myPrivateBrowser)),
     EzKey("M-A-g", lazy.spawn("brave")),
