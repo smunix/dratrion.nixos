@@ -65,6 +65,7 @@ window_dimension = [
     EzKey("M-C-k", lazy.layout.grow_up()),
     EzKey("M-C-l", lazy.layout.grow_right()),
     EzKey("M-C-n", lazy.layout.normalize()),  # Restore to original size
+    EzKey("M-C-g", lazy.layout.grow_left(), lazy.layout.grow().when(layout=["monadtall", "monadwide"]), desc="Grow window to the left"),
 ]
 
 window_toggles = [
