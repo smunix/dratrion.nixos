@@ -17,7 +17,7 @@ in {
 
   config = mkMerge [
     (mkIf cfg.enable {
-      user.packages = with pkgs; [alejandra nixfmt];
+      user.packages = with pkgs; [alejandra lorri nixfmt];
     })
 
     (mkIf codeCfg.enable {

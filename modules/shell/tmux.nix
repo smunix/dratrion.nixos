@@ -43,9 +43,9 @@ in {
         set-option -g mode-keys vi
 
         # Rebind C-b -> C-a
-        set-option -g prefix C-a
-        unbind C-b
-        bind-key C-a send-prefix
+        # set-option -g prefix C-a
+        # unbind C-b
+        # bind-key C-a send-prefix
 
         # Disables confirmation on exit
         bind-key x kill-pane
