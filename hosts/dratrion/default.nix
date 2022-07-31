@@ -41,7 +41,7 @@
       browsers = {
         default = "brave";
         brave.enable = true;
-        firefox.enable = true;
+        firefox.enable = false;
         chrome.enable = true;
       };
       philomath.aula = {
