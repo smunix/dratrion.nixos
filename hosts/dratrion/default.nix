@@ -60,7 +60,7 @@
           document.enable = true;
         };
       };
-      virtual.wine.enable = true;
+      virtual.wine.enable = false;
     };
 
     develop = {
