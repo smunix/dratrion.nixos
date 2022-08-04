@@ -53,11 +53,16 @@
           raster.enable = true;
           vector.enable = true;
         };
-        social.common.enable = true;
-        viewer = {
+        social = {
+          common.enable = true;
+        };
+        player = {
           video.enable = true;
           music.enable = true;
-          document.enable = true;
+        };
+        document = {
+          sioyek.enable = true;
+          zathura.enable = true;
         };
       };
       virtual.wine.enable = false;

@@ -14,7 +14,6 @@ in {
   options.modules.shell.fish = {
     enable = mkBoolOpt false;
     theme = config.modules.themes;
-    fishCfgExists = mkBoolOpt (builtins.pathExists "${fishCfg}");
   };
 
   config = mkIf cfg.enable {
@@ -45,13 +44,11 @@ in {
         ${getExe pkgs.zoxide} init fish | source
         ${getExe pkgs.any-nix-shell} fish | source
 
-        ${optionalString cfg.fishCfgExists ''
-          ${builtins.readFile "${fishCfg}/interactive.fish"}
-          ${builtins.readFile "${fishCfg}/abbreviations/main.fish"}
-          ${builtins.readFile "${fishCfg}/aliases/main.fish"}
-          ${optionalString config.modules.shell.git.enable ''
-            ${builtins.readFile "${fishCfg}/abbreviations/git.fish"}
-          ''}
+        ${builtins.readFile "${fishCfg}/interactive.fish"}
+        ${builtins.readFile "${fishCfg}/abbreviations/main.fish"}
+        ${builtins.readFile "${fishCfg}/aliases/main.fish"}
+        ${optionalString config.modules.shell.git.enable ''
+          ${builtins.readFile "${fishCfg}/abbreviations/git.fish"}
         ''}
       '';
 
