@@ -10,7 +10,7 @@
       input.enable = true;
       gpgpu.enable = true;
       v4l2.enable = true;
-  };
+    };
 
     networking = {
       enable = true;
@@ -113,74 +113,6 @@
       };
     };
   };
-
-##
-  # modules.desktop = {
-  #   appliances = {
-  #     termEmu = {
-  #       default = "kitty";
-  #       alacritty.enable = true;
-  #       kitty.enable = true;
-  #     };
-  #     editors = {
-  #       default = "emacs";
-  #       nvim.enable = false;
-  #       emacs.enable = true;
-  #     };
-  #     browsers = {
-  #       default = "chrome";
-  #       firefox.enable = true;
-  #       unGoogled.enable = false;
-  #       chrome.enable = true;
-  #     };
-  #     philomath.aula = {
-  #       anki.enable = true;
-  #       zoom.enable = true;
-  #     };
-  #     media = {
-  #       mpv.enable = true;
-  #       spotify.enable = false;
-  #       graphics.enable = true;
-  #       docViewer.enable = true;
-  #       transmission.enable = false;
-  #       chat = {
-  #         enable = true;
-  #         mobile.enable = true;
-  #       };
-  #       recording.enable = true;
-  #     };
-  #     gaming = { steam.enable = false; };
-  #   };
-  # };
-
-  # modules.develop = {
-  #   cc.enable = true;
-  #   haskell.enable = true;
-  #   haskell.ghc = "ghc_9_2_2";
-  #   node.enable = true;
-  #   python.enable = true;
-  #   rust.enable = true;
-  # };
-
-  # modules.containers.transmission = {
-  #   enable = false; # TODO: Once fixed -> enable = true;
-  #   username = "alonzo";
-  #   password = builtins.readFile config.age.secrets.torBylon.path;
-  # };
-
-  # modules.services = {
-  #   ssh.enable = true;
-  #   laptop.enable = true;
-  #   kdeconnect.enable = true;
-  # };
-
-  # modules.shell = {
-  #   git.enable = true;
-  #   fish.enable = true;
-  #   gnupg.enable = true;
-  #   urxvt.enable = true;
-  #   nix-index.enable = true;
-  # };
 
   boot.kernel.sysctl."abi.vsyscall32" = 0; # League of Legends..
   boot.kernelParams = [ "acpi_backlight=native" ];
