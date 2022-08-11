@@ -61,6 +61,7 @@
           music.enable = true;
         };
         document = {
+          evince.enable = true;
           sioyek.enable = true;
           zathura.enable = true;
         };

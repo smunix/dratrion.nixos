@@ -13,10 +13,15 @@ in {
   options.modules.desktop.media.document = {
     zathura.enable = mkBoolOpt false;
     sioyek.enable = mkBoolOpt false;
+    evince.enable = mkBoolOpt false;
   };
 
   config = mkMerge [
-    (mkIf cfg.zathura.enable {
+    (mkIf cfg.evince.enable {
+      user.packages = with pkgs; [ evince ];
+    })
+
+     (mkIf cfg.zathura.enable {
       hm.programs.zathura = {
         enable = true;
         options = with themeCfg; (mkMerge [
