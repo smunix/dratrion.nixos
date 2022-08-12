@@ -46,6 +46,7 @@
       };
       philomath.aula = {
         zoom.enable = true;
+        obs-studio.enable = true;
       };
       media = {
         downloader.transmission.enable = false;

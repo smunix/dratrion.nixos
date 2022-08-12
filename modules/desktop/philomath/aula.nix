@@ -12,12 +12,17 @@ in {
   options.modules.desktop.philomath.aula = {
     anki.enable = mkBoolOpt false;
     zoom.enable = mkBoolOpt false;
+    obs-studio.enable = mkBoolOpt false;
   };
 
   config = mkMerge [
     (mkIf cfg.anki.enable {
       # TODO: Configure anki OR replace with other software
       user.packages = with pkgs; [anki];
+    })
+
+    (mkIf cfg.obs-studio.enable {
+      user.packages = with pkgs; [obs-studio];
     })
 
     (mkIf cfg.zoom.enable {
