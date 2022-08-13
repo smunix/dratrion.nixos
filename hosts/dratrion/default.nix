@@ -2,6 +2,8 @@
 
   imports = [ ./hwCfg.nix ./v4l2.nix ];
 
+  nix.settings.allow-import-from-derivation = true;
+
   modules = {
     hardware = {
       audio.enable = true;
