@@ -65,8 +65,8 @@
         };
         document = {
           evince.enable = true;
-          sioyek.enable = true;
-          zathura.enable = true;
+          sioyek.enable = false;
+          zathura.enable = false;
         };
       };
       virtual.wine.enable = false;
