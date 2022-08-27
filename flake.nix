@@ -2,8 +2,10 @@
   description = "λ well-tailored and configureable NixOS system!";
 
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-unstable";
-    nixpkgs-unstable.url = "nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs?ref=master";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs?ref=master";
+    # nixpkgs.url = "nixpkgs/nixos-unstable";
+    # nixpkgs-unstable.url = "nixpkgs/nixpkgs-unstable";
     home-manager = {
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -12,7 +14,8 @@
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    xmonad.url = "github:xmonad/xmonad?ref=9189d002dd8ed369b822b10dcaae4bb66d068670";
+    # xmonad.url = "github:xmonad/xmonad?ref=9189d002dd8ed369b822b10dcaae4bb66d068670";
+    xmonad.url = "github:xmonad/xmonad?ref=master";
     # TODO: (-) xmonad-contrib after "ConditionalLayoutModifier" merge
     xmonad-contrib.url = "github:icy-thought/xmonad-contrib";
     taffybar.url = "github:taffybar/taffybar";
