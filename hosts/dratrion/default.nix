@@ -23,7 +23,23 @@
       };
     };
 
-    themes.active = "catppuccin";
+    themes = {
+      active = "catppuccin";
+      # font = {
+      #   mono.family = "Iosevka Nerd Font Mono";
+      #   mono.size = 9;
+      #   sans.family = "Iosevka Nerd Font";
+      #   sans.size = 9;
+      #   emoji = "Twitter Color Emoji";
+      # };
+      font = {
+        mono.family = "Consolas Nerd Font Mono";
+        mono.size = 9;
+        sans.family = "Consolas Nerd Font";
+        sans.size = 9;
+        emoji = "Twitter Color Emoji";
+      };
+     };
 
     desktop = {
       xmonad.enable = false;
