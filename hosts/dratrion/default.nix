@@ -34,9 +34,9 @@
       # };
       font = {
         mono.family = "Consolas Nerd Font Mono";
-        mono.size = 9;
+        mono.size = 8;
         sans.family = "Consolas Nerd Font";
-        sans.size = 9;
+        sans.size = 8;
         emoji = "Twitter Color Emoji";
       };
      };
