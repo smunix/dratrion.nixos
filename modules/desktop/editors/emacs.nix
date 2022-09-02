@@ -16,7 +16,7 @@ in {
       enable = mkBoolOpt false;
       forgeUrl = mkOpt types.str "https://github.com";
       repoUrl = mkOpt types.str "${cfg.doom.forgeUrl}/doomemacs/doomemacs";
-      configRepoUrl = mkOpt types.str "${cfg.doom.forgeUrl}/icy-thought/emacs.d";
+      configRepoUrl = mkOpt types.str "${cfg.doom.forgeUrl}/smunix/emacs.d";
     };
   };
 
@@ -56,7 +56,7 @@ in {
       installDoomEmacs = ''
         if [[ ! -d "$XDG_CONFIG_HOME/emacs" ]]; then
            ${pkgs.git}/bin/git clone --depth=1 --single-branch "${cfg.doom.repoUrl}" "$XDG_CONFIG_HOME/emacs"
-           ${pkgs.git}/bin/git clone "${cfg.doom.configRepoUrl}" "$XDG_CONFIG_HOME/doom"
+           ${pkgs.git}/bin/git clone -b fix.smunix "${cfg.doom.configRepoUrl}" "$XDG_CONFIG_HOME/doom"
         fi
       '';
     };

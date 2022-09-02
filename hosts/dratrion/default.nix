@@ -25,20 +25,20 @@
 
     themes = {
       active = "catppuccin";
-      # font = {
-      #   mono.family = "Iosevka Nerd Font Mono";
-      #   mono.size = 9;
-      #   sans.family = "Iosevka Nerd Font";
-      #   sans.size = 9;
-      #   emoji = "Twitter Color Emoji";
-      # };
       font = {
-        mono.family = "Consolas Nerd Font Mono";
+        mono.family = "Iosevka Nerd Font Mono";
         mono.size = 8;
-        sans.family = "Consolas Nerd Font";
+        sans.family = "Iosevka Nerd Font";
         sans.size = 8;
         emoji = "Twitter Color Emoji";
       };
+      # font = {
+      #   mono.family = "Consolas Nerd Font Mono";
+      #   mono.size = 8;
+      #   sans.family = "Consolas Nerd Font";
+      #   sans.size = 8;
+      #   emoji = "Twitter Color Emoji";
+      # };
      };
 
     desktop = {
@@ -89,11 +89,15 @@
     };
 
     develop = {
+      cc.enable = true;
       haskell.enable = true;
+      nix.enable = true;
       python.enable = true;
       rust.enable = false;
-      cc.enable = true;
-      nix.enable = true;
+      zig = {
+        enable = true;
+        llvm = 13;
+      };
     };
 
     containers.transmission = {

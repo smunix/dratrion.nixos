@@ -22,6 +22,12 @@
     emacs.url = "github:nix-community/emacs-overlay";
     nvim-nightly.url = "github:nix-community/neovim-nightly-overlay";
     rust.url = "github:oxalica/rust-overlay";
+    zig = {
+      # url = "github:ziglang/zig?rev=36f4f32fad3e88a84b6a10d78df31a4ed2c24465";
+      url = "github:ziglang/zig?ref=0.9.1";
+      flake = false;
+    };
+
   };
 
   outputs = inputs @ {
