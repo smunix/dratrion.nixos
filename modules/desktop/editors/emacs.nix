@@ -38,7 +38,7 @@ in {
       binutils
       gnutls
       zstd
-      (mkIf (config.programs.gnupg.agent.enable) pinentry_emacs)
+      (mkIf (config.programs.gnupg.agent.enable) pinentry-emacs)
     ];
 
     # Fonts -> icons + ligatures when specified:

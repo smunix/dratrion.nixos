@@ -16,7 +16,7 @@ in {
   config = mkIf cfg.enable {
     hardware.bluetooth = {
       enable = true;
-      package = pkgs.bluezFull;
+      package = pkgs.bluez;
       powerOnBoot = false;
       hsphfpd.enable = true;
       disabledPlugins = ["sap"];

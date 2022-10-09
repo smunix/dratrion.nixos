@@ -22,7 +22,7 @@ in {
     })
 
     (mkIf cfg.video.enable {
-      user.packages = with pkgs; [mpv-with-scripts mpvc];
+      user.packages = with pkgs; [ mpvc ];
     })
   ];
 }

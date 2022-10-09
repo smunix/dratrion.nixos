@@ -28,7 +28,7 @@ with lib.my; {
     nixPathInputs = mapAttrsToList (n: v: "${n}=${v}") filteredInputs;
     registryInputs = mapAttrs (_: v: {flake = v;}) filteredInputs;
   in {
-    package = pkgs.nixFlakes;
+    package = pkgs.nixVersions.unstable;
     extraOptions = "experimental-features = nix-command flakes";
 
     nixPath =
@@ -72,7 +72,7 @@ with lib.my; {
   fileSystems."/".device = mkDefault "/dev/disk/by-label/nixos";
 
   boot = {
-    kernelPackages = mkDefault pkgs.linuxPackages_latest;
+    # kernelPackages = mkDefault pkgs.linuxPackages_latest;
     kernelParams = ["pcie_aspm.policy=performance"];
 
     loader = {
