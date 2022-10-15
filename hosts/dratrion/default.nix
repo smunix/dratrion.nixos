@@ -46,7 +46,7 @@
       qtile.enable = true;
       terminal = {
         default = "kitty";
-        alacritty.enable = true;
+        alacritty.enable = false;
         kitty.enable = true;
       };
       editors = {

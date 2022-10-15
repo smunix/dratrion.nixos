@@ -18,7 +18,7 @@ in {
 
   config = mkMerge [
     (mkIf cfg.evince.enable {
-      user.packages = with pkgs; [ evince libreoffice-fresh ];
+      user.packages = with pkgs; [ evince ];
     })
 
      (mkIf cfg.zathura.enable {
