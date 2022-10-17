@@ -116,6 +116,7 @@
       fish.enable = true;
       gnupg.enable = true;
       htop.enable = true;
+      utils.enable = true;
     };
   };
 

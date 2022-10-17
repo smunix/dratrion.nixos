@@ -15,7 +15,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    user.packages = with pkgs; [ dfc nix-top ];
+    user.packages = with pkgs; [ nix-top ];
     hm.programs.htop = {
       enable = true;
 
