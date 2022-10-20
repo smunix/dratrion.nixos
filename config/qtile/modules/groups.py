@@ -35,9 +35,10 @@ borderline = dict(
 )
 
 layouts = [
+    layout.MonadWide(**borderline, ratio=0.65),
+    layout.Columns(insert_position=1, **borderline),
     layout.MonadTall(**borderline),
     layout.MonadThreeCol(**borderline),
-    layout.MonadWide(**borderline, ratio=0.65),
     layout.Max(**borderline),
 ]
 
