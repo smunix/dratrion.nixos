@@ -10,18 +10,21 @@ with lib;
 with lib.my; let
   cfg = config.modules.develop.zig;
   devCfg = config.modules.develop.xdg;
+  llvmCfg = config.modules.develop.llvm;
   codeCfg = config.modules.desktop.editors.vscodium;
-  llvmPkgs = pkgs."llvmPackages_${cfg.llvm}";
-  inherit (llvmPkgs) stdenv;
-  zyg = with pkgs;
+  llvm.packages = pkgs."llvmPackages_${llvmCfg.version}";
+  inherit (llvm.packages) stdenv;
+  zig_ = with pkgs;
     stdenv.mkDerivation rec {
       name = "zig";
       src = inputs.zig;
-      nativeBuildInputs = [ cmake ninja llvmPkgs.llvm.dev ];
-      buildInputs = [ libxml2 zlib ] ++ (with llvmPkgs; [
-        libclang
-        lld
-        llvm
+      # https://github.com/ziglang/zig/issues/12218
+      cmakeFlags = [ "-DZIG_STATIC_LIB=ON" "-DCMAKE_SKIP_BUILD_RPATH=ON" ];
+      nativeBuildInputs = [ cmake ninja llvm.packages.llvm.dev ];
+      buildInputs = [ libxml2 zlib ] ++ ([
+        llvm.packages.libclang
+        llvm.packages.lld
+        llvm.packages.llvm
       ]);
       preBuild = ''
         export HOME=$TMPDIR;
@@ -37,31 +40,12 @@ with lib.my; let
 in {
   options.modules.develop.zig = {
     enable = mkBoolOpt false;
-    llvm = mkOption {
-      description = "LLVM version to compile zig with (min required is 14)";
-      default = 14;
-      example = 14;
-      apply = toString;
-      type = types.int;
-    };
-  };
+ };
 
   config = mkMerge [
     (mkIf cfg.enable {
-      user.packages = with pkgs; [
-        bear
-        ccls
-        clang
-        cmake
-        gdb
-        llvmPackages.libcxx
-        zig
-      ];
-    })
-
-    (mkIf codeCfg.enable {
-      hm.programs.vscode.extensions = with pkgs.vscode-extensions; [
-        ms-vscode.cpptools
+      user.packages = [
+        zig_
       ];
     })
 

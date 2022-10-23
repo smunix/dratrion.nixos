@@ -904,17 +904,17 @@
     "zig": {
       "flake": false,
       "locked": {
-        "lastModified": 1644868999,
-        "narHash": "sha256-x2c4c9RSrNWGqEngio4ArW7dJjW0gg+8nqBwPcR721k=",
+        "lastModified": 1659013738,
+        "narHash": "sha256-O0OBLkbWTlivO5Xt4+B6hRY/rMhkFJPyDXROcTR73Os=",
         "owner": "ziglang",
         "repo": "zig",
-        "rev": "6d44a6222d6eba600deb7f16c124bfa30628fb60",
+        "rev": "e863292fe2f280945d914e7e98fbc704b68f1004",
         "type": "github"
       },
       "original": {
         "owner": "ziglang",
-        "ref": "0.9.1",
         "repo": "zig",
+        "rev": "e863292fe2f280945d914e7e98fbc704b68f1004",
         "type": "github"
       }
     }

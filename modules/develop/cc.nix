@@ -20,10 +20,8 @@ in {
       user.packages = with pkgs; [
         bear
         ccls
-        clang
         cmake
         gdb
-        llvmPackages.libcxx
       ];
 
       hm.programs.eclipse = {

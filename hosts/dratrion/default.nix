@@ -89,15 +89,13 @@
     };
 
     develop = {
+      llvm.enable = true;
       cc.enable = true;
       haskell.enable = true;
       nix.enable = true;
       python.enable = true;
       rust.enable = false;
-      zig = {
-        enable = true;
-        llvm = 13;
-      };
+      zig.enable = true;
     };
 
     containers.transmission = {
