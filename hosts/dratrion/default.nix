@@ -45,7 +45,7 @@
       xmonad.enable = false;
       qtile.enable = true;
       terminal = {
-        default = "zellij";
+        default = "kitty";
         alacritty.enable = false;
         kitty.enable = true;
         zellij.enable = true;
@@ -116,6 +116,7 @@
       gnupg.enable = true;
       htop.enable = true;
       utils.enable = true;
+      tmux.enable = false;
     };
   };
 

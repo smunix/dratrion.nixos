@@ -16,6 +16,15 @@ in {
   };
 
   config = mkIf cfg.enable {
+    home.configFile = {
+      "fish/conf.d/zellij.fish".text = ''
+        # Start Zellij on Fish start
+        if status is-interactive && if ! set -q ZELLIJ
+            exec zellij
+            end
+        end
+      '';
+    };
     hm.programs.zellij = (mkMerge [
       {
         enable = true;
