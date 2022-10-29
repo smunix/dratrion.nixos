@@ -45,9 +45,10 @@
       xmonad.enable = false;
       qtile.enable = true;
       terminal = {
-        default = "kitty";
+        default = "zellij";
         alacritty.enable = false;
         kitty.enable = true;
+        zellij.enable = true;
       };
       editors = {
         default = "emacs";
