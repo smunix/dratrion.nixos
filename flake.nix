@@ -27,6 +27,10 @@
       url = "github:ziglang/zig?rev=e863292fe2f280945d914e7e98fbc704b68f1004";
       flake = false;
     };
+    gyro = {
+      url = "github:mattnite/gyro?ref=master";
+      flake = false;
+    };
 
   };
 

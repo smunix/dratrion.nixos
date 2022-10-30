@@ -14,7 +14,7 @@ with lib.my; let
   codeCfg = config.modules.desktop.editors.vscodium;
   llvm.packages = pkgs."llvmPackages_${llvmCfg.version}";
   inherit (llvm.packages) stdenv;
-  zig_ = with pkgs;
+  zig = with pkgs;
     stdenv.mkDerivation rec {
       name = "zig";
       src = inputs.zig;
@@ -36,7 +36,19 @@ with lib.my; let
         runHHook postCheck
       '';
     };
-
+  gyro =
+    pkgs.stdenv.mkDerivation rec {
+      name = "gyro";
+      src = inputs.gyro;
+      nativeBuildInputs = [ zig ];
+      buildPhase = ''
+        export XDG_CACHE_HOME=$TMPDIR;
+        zig build install -p $out -Drelease-safe
+      '';
+      installPhase = ''
+        mkdir -pv $out/bin
+      '';
+    };
 in {
   options.modules.develop.zig = {
     enable = mkBoolOpt false;
@@ -45,7 +57,8 @@ in {
   config = mkMerge [
     (mkIf cfg.enable {
       user.packages = [
-        zig_
+        zig
+        gyro
       ];
     })
 
