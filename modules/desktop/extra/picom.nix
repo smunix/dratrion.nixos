@@ -17,7 +17,7 @@ in {
     services.picom = {
       enable = true;
       backend = "glx";
-      experimentalBackends = true;
+      # experimentalBackends = true;
       vSync = true;
 
       fade = true;
