@@ -31,7 +31,7 @@
       url = "github:mattnite/gyro?ref=master";
       flake = false;
     };
-
+    devenv.url = "github:cachix/devenv";
   };
 
   outputs = inputs @ {

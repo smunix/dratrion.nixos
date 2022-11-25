@@ -3,6 +3,7 @@
   options,
   lib,
   pkgs,
+  inputs,
   ...
 }:
 with lib;
@@ -25,6 +26,7 @@ in {
 
       # alternatives for several gnu-tools
       bottom
+      inputs.devenv.defaultPackage.x86_64-linux
       exa
       fd
       (ripgrep.override {
