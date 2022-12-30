@@ -47,6 +47,7 @@
       import pkgs {
         inherit system;
         config.allowUnfree = true;
+        config.allowBroken = true;
         overlays = extraOverlays ++ (lib.attrValues self.overlays);
       };
     pkgs = mkPkgs nixpkgs [self.overlays.default];

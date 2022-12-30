@@ -27,7 +27,7 @@ in {
           ipython
           isort
           pip
-          poetry
+          # poetry
           pylint
           setuptools
         ]);
@@ -36,7 +36,7 @@ in {
         py = "python";
         py2 = "python2";
         py3 = "python3";
-        po = "poetry";
+        # po = "poetry";
         ipy = "ipython --no-banner";
         ipylab = "ipython --pylab=qt5 --no-banner";
       };
