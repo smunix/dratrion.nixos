@@ -14,7 +14,7 @@ with lib.my; let
   secretsFile = "${secretsDir}/secrets.nix";
 in {
   imports = [agenix.nixosModules.age];
-  environment.systemPackages = [agenix.defaultPackage.x86_64-linux];
+  # environment.systemPackages = [agenix];
 
   age = {
     secrets =

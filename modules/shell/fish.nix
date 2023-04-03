@@ -26,7 +26,7 @@ in {
 
       # alternatives for several gnu-tools
       bottom
-      inputs.devenv.defaultPackage.x86_64-linux
+      inputs.devenv.packages.x86_64-linux.default
       exa
       fd
       (ripgrep.override {
