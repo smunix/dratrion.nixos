@@ -13,11 +13,12 @@ with lib.my; let
   colorscheme = config.modules.themes.neovim.theme;
 in {
   options.modules.desktop.editors.neovim = {
+    enable = mkBoolOpt false;
     ereshkigal.enable = mkBoolOpt false; # fnl
     agasaya.enable = mkBoolOpt false; # lua
   };
 
-  config = mkMerge [
+  config = mkIf cfg.enable (mkMerge [
     {
       nixpkgs.overlays = with inputs; [nvim-nightly.overlay];
 
@@ -41,7 +42,7 @@ in {
       };
     }
 
-    (mkIf cfg.agasaya.enable {
+    (mkIf (cfg.enable && cfg.agasaya.enable) {
       modules.develop.lua.enable = true;
 
       hm.programs.neovim = {
@@ -57,7 +58,7 @@ in {
       };
     })
 
-    (mkIf cfg.ereshkigal.enable {
+    (mkIf (cfg.enable && cfg.ereshkigal.enable) {
       modules.develop.lua.fennel.enable = true;
 
       home.configFile."nvim" = {
@@ -65,5 +66,5 @@ in {
         recursive = true;
       };
     })
-  ];
+  ]);
 }

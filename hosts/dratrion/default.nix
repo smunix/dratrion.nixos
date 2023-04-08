@@ -49,13 +49,14 @@
         alacritty.enable = false;
         kitty.enable = true;
         zellij.enable = true;
+        nushell.enable = true;
       };
       editors = {
         default = "emacs";
-        # nvim.enable = false;
+        neovim.enable = false;
         emacs.enable = true;
         emacs.doom.enable = true;
-        neovim.agasaya.enable = true;
+        neovim.agasaya.enable = false;
       };
       browsers = {
         default = "brave";
