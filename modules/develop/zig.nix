@@ -14,8 +14,8 @@ with lib.my; let
   codeCfg = config.modules.desktop.editors.vscodium;
   llvm.packages = pkgs."llvmPackages_${llvmCfg.version}";
   inherit (llvm.packages) stdenv;
-  zig2 = pkgs.zigpkgs.master;
-  zig = with pkgs;
+  zig = pkgs.zigpkgs.master;
+  zig2 = with pkgs;
     stdenv.mkDerivation rec {
       name = "zig";
       src = inputs.zig;
@@ -58,7 +58,7 @@ in {
   config = mkMerge [
     (mkIf cfg.enable {
       user.packages = [
-        zig2
+        zig
         gyro
       ];
     })
