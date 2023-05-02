@@ -59,7 +59,7 @@ in {
     (mkIf cfg.enable {
       user.packages = [
         zig
-        gyro
+        # gyro
       ];
     })
 
