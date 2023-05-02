@@ -71,7 +71,7 @@
           my = self.packages.${system};
         };
       } // {
-        inherit (zig-overlay.overlays) default;
+        inherit (inputs.zig-overlay.overlays) default;
       };
 
     packages."${system}" = mapModules ./packages (p: pkgs.callPackage p {});
