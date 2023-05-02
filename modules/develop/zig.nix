@@ -14,7 +14,7 @@ with lib.my; let
   codeCfg = config.modules.desktop.editors.vscodium;
   llvm.packages = pkgs."llvmPackages_${llvmCfg.version}";
   inherit (llvm.packages) stdenv;
-  zig = pkgs.zigpkgs.master;
+  zig = zigpkgs.master;
   zig2 = with pkgs;
     stdenv.mkDerivation rec {
       name = "zig";

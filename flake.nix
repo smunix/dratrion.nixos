@@ -69,9 +69,8 @@
         default = final: prev: {
           unstable = pkgs';
           my = self.packages.${system};
+	  zigpkgs = inputs.zig-overlay.overlays.default final prev;
         };
-      } // {
-        inherit (inputs.zig-overlay.overlays) default;
       };
 
     packages."${system}" = mapModules ./packages (p: pkgs.callPackage p {});
