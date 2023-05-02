@@ -22,6 +22,7 @@
     emacs.url = "github:nix-community/emacs-overlay";
     nvim-nightly.url = "github:nix-community/neovim-nightly-overlay";
     rust.url = "github:oxalica/rust-overlay";
+    zig-overlay.url = "github:mitchellh/zig-overlay?ref=main";
     zig = {
       # url = "github:ziglang/zig?ref=master";
       url = "github:ziglang/zig?rev=e863292fe2f280945d914e7e98fbc704b68f1004";
@@ -69,6 +70,8 @@
           unstable = pkgs';
           my = self.packages.${system};
         };
+      } // {
+        inherit (zig-overlay.overlays) default;
       };
 
     packages."${system}" = mapModules ./packages (p: pkgs.callPackage p {});
