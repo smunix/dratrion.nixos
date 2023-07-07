@@ -113,7 +113,8 @@
 
     shell = {
       git.enable = true;
-      fish.enable = true;
+      fish.enable = false;
+      nushell.enable = true;
       gnupg.enable = true;
       htop.enable = true;
       utils.enable = true;

@@ -81,7 +81,6 @@ with lib.my; {
 
       grub = {
         enable = mkDefault true;
-        version = 2;
         device = "nodev";
         efiSupport = mkDefault true;
         useOSProber = mkDefault true;
@@ -106,7 +105,7 @@ with lib.my; {
     bind
     cached-nix-shell
     conky
-    emacsGit
+    emacs-git
     file
     git
     wget

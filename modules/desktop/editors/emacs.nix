@@ -30,7 +30,7 @@ in {
 
     hm.programs.emacs = {
       enable = true;
-      package = pkgs.emacsUnstable;
+      package = pkgs.emacs;
       extraPackages = epkgs: with epkgs; [vterm];
     };
 
