@@ -105,7 +105,7 @@ with lib.my; {
     bind
     cached-nix-shell
     conky
-    emacs-git
+    emacs
     file
     git
     wget
