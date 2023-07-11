@@ -122,13 +122,26 @@
     };
   };
 
+  networking.firewall = {
+    allowedUDPPorts = [ 631 ];
+    allowedTCPPorts = [ 631 ];
+  };
+
   services = {
     upower.enable = true;
-    printing.enable = true;
+    gvfs.enable = true;
+
     avahi.enable = true;
+    avahi.publish.enable = true;
+    avahi.publish.userServices = true;
     avahi.nssmdns = true;
     avahi.openFirewall = true;
-    gvfs.enable = true;
+
+    printing.enable = true;
+    printing.browsing = true;
+    printing.listenAddresses = [ "*:631" ]; # Not 100% sure this is needed and you might want to restrict to the local network
+    printing.allowFrom = [ "all" ]; # this gives access to anyone on the interface you might want to limit it see the official documentation
+    printing.defaultShared = true; # If you want
 
     xserver = {
       videoDrivers = ["nvidia"];
