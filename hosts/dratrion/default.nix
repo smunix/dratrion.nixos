@@ -26,11 +26,11 @@
     themes = {
       active = "catppuccin";
       font = {
-        mono.family = "Iosevka Nerd Font Mono";
+        mono.family = lib.mkForce "Iosevka Nerd Font";
         mono.size = 8;
-        sans.family = "Iosevka Nerd Font";
+        sans.family = lib.mkForce "Iosevka Nerd Font";
         sans.size = 8;
-        emoji = "Twitter Color Emoji";
+        emoji = lib.mkForce "Twitter Color Emoji";
       };
       # font = {
       #   mono.family = "Consolas Nerd Font Mono";
@@ -125,7 +125,9 @@
   services = {
     upower.enable = true;
     printing.enable = true;
-    avahi.enable = false;
+    avahi.enable = true;
+    avahi.nssmdns = true;
+    avahi.openFirewall = true;
     gvfs.enable = true;
 
     xserver = {
