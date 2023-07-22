@@ -35,7 +35,10 @@ in {
     hm.programs.git = {
       enable = true;
       package = pkgs.gitFull;
-      delta.enable = true;
+      delta.enable = false;
+      difftastic = {
+        enable = true;
+      };
 
       aliases = {
         unadd = "reset HEAD";
