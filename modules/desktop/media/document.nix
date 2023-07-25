@@ -18,7 +18,7 @@ in {
 
   config = mkMerge [
     (mkIf cfg.evince.enable {
-      user.packages = with pkgs; [ evince ];
+      user.packages = with pkgs; [ evince  poppler_utils ];
     })
 
      (mkIf cfg.zathura.enable {
