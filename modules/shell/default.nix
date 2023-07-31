@@ -3,6 +3,7 @@
   config,
   lib,
   pkgs,
+  inputs,
   ...
 }:
 with lib;
@@ -20,5 +21,6 @@ in {
 
   config = mkIf (cfg.default != null) {
     users.defaultUserShell = cfg.default;
+    user.packages = with pkgs; [ inputs.nh.packages.x86_64-linux.default ];
   };
 }

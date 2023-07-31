@@ -24,8 +24,8 @@
     rust.url = "github:oxalica/rust-overlay";
     zig-overlay.url = "github:mitchellh/zig-overlay?ref=main";
     zig = {
-      # url = "github:ziglang/zig?ref=master";
-      url = "github:ziglang/zig?rev=e863292fe2f280945d914e7e98fbc704b68f1004";
+      url = "github:ziglang/zig?ref=master";
+      # url = "github:ziglang/zig?rev=e863292fe2f280945d914e7e98fbc704b68f1004";
       flake = false;
     };
     gyro = {
@@ -33,6 +33,10 @@
       flake = false;
     };
     devenv.url = "github:cachix/devenv";
+    nh = {
+      url = "github:viperML/nh";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs @ {
