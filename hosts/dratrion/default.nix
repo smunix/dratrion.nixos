@@ -25,20 +25,20 @@
 
     themes = {
       active = "catppuccin";
+      # font = {
+      #   mono.family = lib.mkForce "Iosevka Nerd Font";
+      #   mono.size = 8;
+      #   sans.family = lib.mkForce "Iosevka Nerd Font";
+      #   sans.size = 8;
+      #   emoji = lib.mkForce "Twitter Color Emoji";
+      # };
       font = {
-        mono.family = lib.mkForce "Iosevka Nerd Font";
-        mono.size = 8;
-        sans.family = lib.mkForce "Iosevka Nerd Font";
-        sans.size = 8;
+        # mono.family = lib.mkForce "Consolas Nerd Font Mono";
+        mono.size = lib.mkForce 8;
+        # sans.family = lib.mkForce "Consolas Nerd Font";
+        sans.size = lib.mkForce 8;
         emoji = lib.mkForce "Twitter Color Emoji";
       };
-      # font = {
-      #   mono.family = "Consolas Nerd Font Mono";
-      #   mono.size = 8;
-      #   sans.family = "Consolas Nerd Font";
-      #   sans.size = 8;
-      #   emoji = "Twitter Color Emoji";
-      # };
      };
 
     desktop = {

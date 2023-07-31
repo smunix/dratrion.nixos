@@ -25,10 +25,10 @@ in {
         };
 
         font = {
-          # sans.family = "Consolas Nerd Font";
-          # mono.family = "Consolas Nerd Font Mono";
-          sans.family = "Iosevka Nerd Font";
-          mono.family = "Iosevka Nerd Font Mono";
+          sans.family = "Consolas Nerd Font";
+          mono.family = "Consolas Nerd Font Mono";
+          # sans.family = "Iosevka Nerd Font";
+          # mono.family = "Iosevka Nerd Font Mono";
           # sans.family = "VictorMono Nerd Font";
           # mono.family = "VictorMono Nerd Font Mono";
           emoji = "Twitter Color Emoji";
